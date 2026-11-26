@@ -1,24 +1,11 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>glitchKIT::UNIFIED</title>
-<style>
-:root{color-scheme:dark;--bg:#08070d;--panel:#14101e;--ink:#f5f1ff;--muted:#aaa2bb;--cyan:#49f6ff;--hot:#ff2aa1;--acid:#c6ff37;--line:#393047}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0,#281135,transparent 55%),var(--bg);color:var(--ink);font:15px/1.5 ui-monospace,Consolas,monospace}
-header{padding:20px clamp(12px,4vw,48px) 12px}h1{font-size:clamp(26px,5vw,52px);margin:0;color:var(--cyan);letter-spacing:-.06em;text-shadow:3px 0 var(--hot)}p{margin:6px 0;color:var(--muted)}.eyebrow{color:var(--acid);letter-spacing:.12em;font-size:12px}
-nav{display:flex;gap:8px;flex-wrap:wrap;padding:10px clamp(12px,4vw,48px);border-bottom:1px solid var(--line)}button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer}button[aria-selected=true]{color:#10120a;background:var(--acid);border-color:var(--acid);font-weight:700}button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
-main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{width:100%;height:80vh;min-height:540px;border:1px solid var(--line);border-radius:10px;background:var(--panel);display:block}.notice{font-size:12px;padding:4px 4px 10px}footer{padding:0 clamp(12px,4vw,48px) 20px;color:var(--muted);font-size:12px}@media(max-width:600px){iframe{min-height:480px;height:78vh}nav button{flex:1}}
-</style></head>
-<body>
-<header><div class="eyebrow">mozWORLD LABS // BTW</div><h1>glitchKIT::UNIFIED</h1><p>Two toolsets. One offline HTML file. Keep the original; glitch a copy.</p></header>
-<nav role="tablist" aria-label="GlitchKIT toolsets"><button type="button" id="tab-chaos" role="tab" aria-controls="chaos" aria-selected="true">01 // TEXT + PIXEL CHAOS</button><button type="button" id="tab-secure" role="tab" aria-controls="secure" aria-selected="false" tabindex="-1">02 // TEXT + ENCRYPTION</button></nav>
-<main>
-<section id="chaos" role="tabpanel" aria-labelledby="tab-chaos"><p class="notice">Seeded text effects, optical illusions and image exports. Decoration is not encryption. Do not enter secrets here: this tool keeps an in-memory undo history.</p><iframe title="Text and pixel glitchKIT" sandbox="allow-scripts allow-same-origin allow-downloads" allow="clipboard-write" srcdoc="&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;utf-8&quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
-  &lt;title&gt;glitchKIT // ALL NEW&lt;/title&gt;
-  &lt;style&gt;
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-knPuP0QhLKUfZmc2rv+ZklxxbXKa5I4t3IQXWbpbyms=' 'sha256-ya46lQ7CFK31bQTrxNXl0SOa89uParv4WLx9nc8PVPQ=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-fp85KO5CQM2mdC/Q2Y4jBSeosKqDm5sewdc7WwTPrgU='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <title>glitchKIT::</title>
+  <style>
     :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
     *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0,#241031 0,transparent 35%),var(--bg);color:var(--ink);font:15px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;min-height:100vh}
     header{padding:28px clamp(18px,5vw,64px) 15px;border-bottom:1px solid var(--line)}
@@ -32,7 +19,6 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
     input[type=range]{accent-color:var(--hot);width:150px} .controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:12px 0}
     button{border:1px solid #514563;background:#20172c;color:var(--ink);padding:9px 12px;border-radius:8px;cursor:pointer;transition:.12s transform,.12s border-color}
     button:hover{transform:translateY(-1px);border-color:var(--cyan)} button.primary{background:var(--hot);border-color:var(--hot);color:white;font-weight:800} button.acid{background:var(--acid);color:#10120a;border-color:var(--acid);font-weight:900}
-    .dangerously-silly{font-size:18px;padding:13px 18px;box-shadow:3px 3px 0 var(--cyan)}
     label{color:var(--muted);font-size:12px}.status{min-height:1.5em;color:var(--cyan);word-break:break-all}.tiny{font-size:11px;color:var(--muted)}
     canvas{width:100%;max-height:520px;object-fit:contain;background:#050507;border:1px dashed #3b3251;border-radius:9px;image-rendering:pixelated}
     .drop{padding:14px;border:1px dashed #514563;border-radius:9px;color:var(--muted)}
@@ -45,433 +31,188 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
     .optics p{margin:8px 0 0}
     button[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan)}
     button:disabled{opacity:.55;cursor:default;transform:none}
-    footer{color:var(--muted);padding:0 clamp(18px,5vw,64px) 40px}.flash{animation:flash .22s steps(2)}
-    @keyframes flash{50%{filter:invert(1) hue-rotate(120deg);transform:translateX(3px)}}
+    footer{color:var(--muted);padding:0 clamp(18px,5vw,64px) 40px}
     @media(max-width:760px){.grid{grid-template-columns:1fr}textarea{min-height:170px}}
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;header&gt;
-    &lt;div class=&quot;tag&quot;&gt;mozWORLD LABS // KURU CHECK&lt;/div&gt;
-    &lt;h1&gt;glitchKIT::&lt;/h1&gt;
-    &lt;p class=&quot;sub&quot;&gt;ALL NEW. Deterministic chaos for text + pixels. No network calls, no mystery upload, no irreversible button. Mess with copies; keep the original.&lt;/p&gt;
-  &lt;/header&gt;
-  &lt;main&gt;
-    &lt;section class=&quot;panel&quot;&gt;
-      &lt;h2&gt;01 // WORD MANGLE&lt;/h2&gt;
-      &lt;div class=&quot;controls&quot;&gt;
-        &lt;label&gt;MODE &lt;select id=&quot;mode&quot;&gt;&lt;option value=&quot;mixed&quot;&gt;mixed soup&lt;/option&gt;&lt;option value=&quot;scramble&quot;&gt;word scramble&lt;/option&gt;&lt;option value=&quot;symbols&quot;&gt;symbol leak&lt;/option&gt;&lt;option value=&quot;echo&quot;&gt;echo chamber&lt;/option&gt;&lt;option value=&quot;reverse&quot;&gt;reverse shards&lt;/option&gt;&lt;option value=&quot;zalgo&quot;&gt;soft zalgo&lt;/option&gt;&lt;option value=&quot;fake&quot;&gt;[FAKE] + [SAUCE]&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
-        &lt;label&gt;INTENSITY &lt;input id=&quot;intensity&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;10&quot; value=&quot;4&quot;&gt;&lt;/label&gt;
-        &lt;label&gt;SEED &lt;input id=&quot;seed&quot; type=&quot;text&quot; value=&quot;KURU&quot; size=&quot;12&quot;&gt;&lt;/label&gt;
-        &lt;button id=&quot;randomSeed&quot;&gt;RANDOM RANDOM&lt;/button&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;grid&quot;&gt;
-        &lt;div&gt;&lt;label&gt;KNOWN INPUT&lt;/label&gt;&lt;textarea id=&quot;source&quot; spellcheck=&quot;false&quot;&gt;BOOP. THINKING NOT FOUND.\nunknown potato in a hat&lt;/textarea&gt;&lt;/div&gt;
-        &lt;div&gt;&lt;label&gt;UNKNOWN OUTPUT&lt;/label&gt;&lt;textarea id=&quot;output&quot; spellcheck=&quot;false&quot;&gt;&lt;/textarea&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;controls&quot;&gt;
-        &lt;button class=&quot;primary&quot; id=&quot;glitch&quot;&gt;GLITCH IT&lt;/button&gt;
-        &lt;button class=&quot;acid dangerously-silly&quot; id=&quot;total&quot;&gt;TOTAL GLITCH&lt;/button&gt;
-        &lt;button id=&quot;yet&quot;&gt;YET&lt;/button&gt;&lt;button id=&quot;undo&quot;&gt;UNDO&lt;/button&gt;&lt;button id=&quot;redo&quot;&gt;REDO&lt;/button&gt;
-        &lt;button id=&quot;copy&quot;&gt;COPY&lt;/button&gt;&lt;button id=&quot;downloadText&quot;&gt;SAVE .TXT&lt;/button&gt;&lt;button id=&quot;stamp&quot;&gt;ASCII STAMP&lt;/button&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;status&quot; id=&quot;hash&quot;&gt;SHA-256 // waiting for nonsense&lt;/div&gt;
-    &lt;/section&gt;
+    [hidden]{display:none!important}
+    header{padding-block:22px}
+    main{max-width:1440px;width:100%;margin-inline:auto}
+    input[type=password]{background:var(--bg);color:var(--ink);border:1px solid #3b3251;padding:9px 10px;border-radius:7px;max-width:100%}
+    :focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+    label input[type=checkbox]{accent-color:var(--hot)}
+    .sauce-rack{margin-block:12px;min-width:0;padding:12px 14px 10px;border:1px solid var(--line);border-radius:10px}
+    .sauce-rack legend{padding-inline:6px;color:var(--cyan);font-size:13px;font-weight:750;letter-spacing:.08em}
+    .sauce-rack p,.status{margin:6px 0}
+    .rack-controls{gap:10px 18px;margin:0 0 6px}
+    .rack-controls label{display:inline-flex;align-items:center;gap:8px}
+    .rack-controls select,.layer-fields select,.layer-tower select{max-width:100%}
+    .layer-card{min-width:0;margin:10px 0;padding:10px 12px;background:#110d1a;border:1px solid var(--line);border-radius:9px}
+    .layer-card legend{padding-inline:5px;font-size:12px;color:var(--ink)}
+    .layer-card[data-bypassed=true] legend{color:var(--muted)}
+    .layer-head,.layer-tower{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px}
+    .layer-head{justify-content:space-between;margin-bottom:10px}
+    .layer-tools{display:flex;gap:6px;flex-wrap:wrap}
+    .layer-tools button{padding:4px 8px;font-size:12px}
+    .layer-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px 14px}
+    .layer-fields label{display:grid;gap:4px}
+    .layer-tower{margin-top:9px}
+    .layer-tower label{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .layer-tower input[type=range]{max-width:100%}
+    .layer-tower output{min-width:4ch;color:var(--ink)}
+    .rack-actions{margin:7px 0 0}
+    .null-bench{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+    .null-bench summary,.secret-panel summary{cursor:pointer;color:var(--acid);font-size:15px;font-weight:750;letter-spacing:.08em}
+    .secret-panel textarea{min-height:130px}
+    .checksum{overflow-wrap:anywhere}
+    .status[data-error=true]{color:#ff9acb}
+    .pixel-download{color:var(--cyan);font-size:12px}
+    @media(max-width:520px){.sauce-rack,.layer-card{padding-inline:8px}.rack-controls label{flex-wrap:wrap}.rack-controls button{padding:7px 9px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="tag">mozWORLD LABS // KURU CHECK</div>
+    <h1>glitchKIT::</h1>
+  </header>
+  <main>
+    <section class="panel" aria-labelledby="wordTitle">
+      <h2 id="wordTitle">WORD MANGLE</h2>
+      <div class="grid">
+        <div>
+          <label for="source">KNOWN INPUT</label>
+          <textarea id="source" spellcheck="false" autocomplete="off">BOOP. THINKING NOT FOUND.
+unknown potato in a hat</textarea>
+        </div>
+        <div>
+          <label for="output">UNKNOWN OUTPUT</label>
+          <textarea id="output" spellcheck="false" aria-describedby="wordStatus"></textarea>
+        </div>
+      </div>
+      <fieldset class="sauce-rack">
+        <legend>SAUCE RACK</legend>
+        <div class="controls rack-controls">
+          <label>MIX
+            <select id="mixPreset">
+              <option value="towers">Tower Garden</option>
+              <option value="gentle">Gentle Glitch</option>
+              <option value="upside">Upside-down Snack</option>
+              <option value="bubble">Bubble Bath</option>
+              <option value="custom">My own stack</option>
+            </select>
+          </label>
+          <label><input id="readable" type="checkbox" checked> Keep it readable</label>
+          <label>SEED <input id="seed" type="text" maxlength="80" value="KURU" size="10" autocomplete="off" spellcheck="false"></label>
+          <button type="button" id="randomSeed">NEW VARIATION</button>
+        </div>
+        <p class="tiny">Effects run top to bottom. Each layer has its own sauce.</p>
+        <div id="effectStack"></div>
+        <div class="controls rack-actions">
+          <button id="addEffect" type="button">+ STACK AN EFFECT</button>
+          <span id="stackCount" class="tiny"></span>
+        </div>
+      </fieldset>
+      <div class="controls">
+        <button class="primary" type="button" id="glitch">GLITCH IT</button>
+        <button class="acid" type="button" id="total">TOTAL GLITCH</button>
+        <button type="button" id="yet">YET</button>
+        <button type="button" id="undo">UNDO</button>
+        <button type="button" id="redo">REDO</button>
+        <button type="button" id="copy">COPY</button>
+        <button type="button" id="downloadText">SAVE .TXT</button>
+        <button type="button" id="stamp">ASCII STAMP</button>
+      </div>
+      <p class="status" id="wordStatus" role="status"></p>
+      <div class="tiny checksum" id="hash"></div>
+      <details class="null-bench">
+        <summary>NULL BENCH</summary>
+        <div class="controls">
+          <button type="button" data-token="␀">␀ NUL</button>
+          <button type="button" data-token="•">• DOT</button>
+          <button type="button" data-token="::">:: GATE</button>
+          <button type="button" data-token="[UNKNOWN]">[UNKNOWN]</button>
+          <button type="button" data-token="YET">YET</button>
+          <button type="button" data-token="GITTET|GODDIT">GITTET|GODDIT</button>
+        </div>
+        <p class="tiny">Stamp printable symbols and phrases into your output.</p>
+      </details>
+    </section>
 
-    &lt;section class=&quot;panel&quot;&gt;
-      &lt;h2&gt;02 // PIXEL WRECKER&lt;/h2&gt;
-      &lt;div class=&quot;drop&quot;&gt;&lt;input id=&quot;imageFile&quot; type=&quot;file&quot; accept=&quot;image/*&quot; aria-label=&quot;Choose a picture&quot;&gt; drop in a picture; processing stays local&lt;/div&gt;
-      &lt;div class=&quot;controls&quot;&gt;
-        &lt;button id=&quot;pixel&quot;&gt;PIXEL SHIFT&lt;/button&gt;&lt;button id=&quot;rgb&quot;&gt;RGB GHOST&lt;/button&gt;&lt;button id=&quot;smear&quot;&gt;BLOCK SMEAR&lt;/button&gt;&lt;button id=&quot;noise&quot;&gt;NOISE BITE&lt;/button&gt;&lt;button id=&quot;scan&quot;&gt;SCANLINE&lt;/button&gt;
-        &lt;button class=&quot;primary&quot; id=&quot;imageTotal&quot;&gt;TOTAL PIXEL&lt;/button&gt;
-      &lt;/div&gt;
-      &lt;fieldset class=&quot;optics&quot; id=&quot;optics&quot; disabled&gt;
-        &lt;legend&gt;OPTICAL ILLUSIONS&lt;/legend&gt;
-        &lt;div class=&quot;controls&quot;&gt;
-          &lt;label for=&quot;opticalEffect&quot;&gt;ILLUSION
-            &lt;select id=&quot;opticalEffect&quot;&gt;
-              &lt;option value=&quot;none&quot;&gt;None&lt;/option&gt;
-              &lt;option value=&quot;ripple&quot;&gt;Ripple Lens&lt;/option&gt;
-              &lt;option value=&quot;twist&quot;&gt;Twist Lens&lt;/option&gt;
-              &lt;option value=&quot;moire&quot;&gt;Moiré Bands&lt;/option&gt;
-              &lt;option value=&quot;cafe&quot;&gt;Café Wall&lt;/option&gt;
-            &lt;/select&gt;
-          &lt;/label&gt;
-          &lt;label for=&quot;opticalStrength&quot;&gt;STRENGTH
-            &lt;input id=&quot;opticalStrength&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;60&quot; disabled&gt;
-          &lt;/label&gt;
-          &lt;output for=&quot;opticalStrength&quot; id=&quot;opticalAmount&quot; aria-hidden=&quot;true&quot;&gt;60%&lt;/output&gt;
-        &lt;/div&gt;
-        &lt;p class=&quot;tiny&quot;&gt;Each illusion previews from your original. Layer other pixel effects afterward.&lt;/p&gt;
-      &lt;/fieldset&gt;
-      &lt;div class=&quot;controls&quot;&gt;
-        &lt;button id=&quot;imageCompare&quot; aria-pressed=&quot;false&quot; disabled&gt;SHOW ORIGINAL&lt;/button&gt;
-        &lt;button id=&quot;imageReset&quot;&gt;RESET IMAGE&lt;/button&gt;
-        &lt;button id=&quot;savePng&quot;&gt;SAVE PNG&lt;/button&gt;
-      &lt;/div&gt;
-      &lt;canvas id=&quot;canvas&quot; width=&quot;900&quot; height=&quot;450&quot; role=&quot;img&quot; aria-label=&quot;Pixel effects preview&quot;&gt;&lt;/canvas&gt;
-      &lt;p class=&quot;tiny&quot; id=&quot;pixelStatus&quot; role=&quot;status&quot;&gt;&lt;/p&gt;
-    &lt;/section&gt;
+    <details class="panel secret-panel">
+      <summary>ENCRYPT / DECRYPT</summary>
+      <div class="controls" role="group" aria-label="Message mode">
+        <button type="button" id="encryptMode" aria-pressed="true">Encrypt</button>
+        <button type="button" id="decryptMode" aria-pressed="false">Decrypt</button>
+      </div>
+      <div class="grid">
+        <div>
+          <label for="secretMessage" id="secretLabel">Private message</label>
+          <textarea id="secretMessage" dir="auto" rows="5" spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="secretCount"></textarea>
+          <p class="tiny" id="secretCount"></p>
+        </div>
+        <div>
+          <label for="secretResult">Result</label>
+          <textarea id="secretResult" dir="auto" rows="5" readonly spellcheck="false" autocomplete="off"></textarea>
+        </div>
+      </div>
+      <div class="controls">
+        <label for="secretPassword">PASSWORD</label>
+        <input id="secretPassword" type="password" maxlength="2048" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="secretHint">
+        <button type="button" id="showSecretPassword" aria-pressed="false">Show</button>
+        <span class="tiny" id="secretHint"></span>
+      </div>
+      <div class="controls">
+        <button type="button" class="primary" id="secretRun">Encrypt message</button>
+        <button type="button" id="secretCopy" disabled>Copy result</button>
+        <button type="button" id="secretUse" hidden>Decrypt this result</button>
+        <button type="button" id="secretClear">Clear</button>
+      </div>
+      <p class="status" id="secretStatus" role="status"></p>
+    </details>
 
-    &lt;section class=&quot;panel&quot;&gt;
-      &lt;h2&gt;03 // NULL BENCH&lt;/h2&gt;
-      &lt;div class=&quot;controls&quot;&gt;
-        &lt;button data-token=&quot;␀&quot;&gt;␀ NUL&lt;/button&gt;&lt;button data-token=&quot;•&quot;&gt;• DOT&lt;/button&gt;&lt;button data-token=&quot;::&quot;&gt;:: GATE&lt;/button&gt;&lt;button data-token=&quot;[UNKNOWN]&quot;&gt;[UNKNOWN]&lt;/button&gt;&lt;button data-token=&quot;YET&quot;&gt;YET&lt;/button&gt;&lt;button data-token=&quot;GITTET|GODDIT&quot;&gt;GITTET|GODDIT&lt;/button&gt;
-      &lt;/div&gt;
-      &lt;p class=&quot;tiny&quot;&gt;Stamp symbols and phrases into Word Mangle text. ␀ is the printable NUL symbol.&lt;/p&gt;
-    &lt;/section&gt;
-  &lt;/main&gt;
-  &lt;footer&gt;glitchKIT v2026.11.26 // &lt;span id=&quot;build&quot;&gt;KURU:LOCAL&lt;/span&gt; // chaos is allowed to have an undo button.&lt;/footer&gt;
-
-&lt;script&gt;
-(() =&gt; {
-  const $=s=&gt;document.querySelector(s), $$=s=&gt;[...document.querySelectorAll(s)];
-  const source=$('#source'), output=$('#output'), mode=$('#mode'), intensity=$('#intensity'), seed=$('#seed'), hash=$('#hash');
-  let history=[''], cursor=0;
-  const hash32=str=&gt;{let h=2166136261;for(const ch of str){h^=ch.codePointAt(0);h=Math.imul(h,16777619)}return h&gt;&gt;&gt;0};
-  const rngFor=str=&gt;{let x=hash32(str)||0x9e3779b9;return()=&gt;{x^=x&lt;&lt;13;x^=x&gt;&gt;&gt;17;x^=x&lt;&lt;5;return(x&gt;&gt;&gt;0)/4294967296}};
-  const pick=(r,a)=&gt;a[Math.floor(r()*a.length)];
-  const setOutput=(v,push=true)=&gt;{output.value=v;if(push){history=history.slice(0,cursor+1);history.push(v);cursor=history.length-1}updateHash(v)};
-  async function updateHash(v){if(!crypto?.subtle){hash.textContent='SHA-256 // unavailable';return}const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));hash.textContent='SHA-256 // '+[...new Uint8Array(b)].map(x=&gt;x.toString(16).padStart(2,'0')).join('')}
-  const shuffle=(word,r)=&gt;{if(word.length&lt;4)return word;const a=[...word], first=a.shift(),last=a.pop();for(let i=a.length-1;i&gt;0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return first+a.join('')+last};
-  const combining=['̴','̷','̸','̡','̢','̨','̛','̖','̗','̘','̙','̜','̝','̞','̟','̠','̤','̥','̦','̩','̪','̫','̬','̮','̯','̰','̱','̲','̳','̹','̺','̻','̼','͇','͈'];
-  const sym={'a':'@','e':'Ξ','i':'!','o':'Ø','s':'$','t':'†','l':'|','b':'ß','g':'9'};
-  function transform(text,kind,amt,r){
-    if(kind==='scramble')return text.replace(/[A-Za-z]{4,}/g,w=&gt;r()&lt;amt/11?shuffle(w,r):w);
-    if(kind==='symbols')return [...text].map(c=&gt;r()&lt;amt/15?(sym[c.toLowerCase()]||c):c).join('');
-    if(kind==='echo')return text.split(/(\s+)/).map(w=&gt;w.trim()&amp;&amp;r()&lt;amt/14?w+' '+w.slice(0,Math.max(1,Math.floor(w.length*r()))):w).join('');
-    if(kind==='reverse')return text.split(/(\s+)/).map(w=&gt;w.trim()&amp;&amp;r()&lt;amt/12?[...w].reverse().join(''):w).join('');
-    if(kind==='zalgo')return [...text].map(c=&gt;/\s/.test(c)?c:c+(r()&lt;amt/11?pick(r,combining)+(r()&lt;amt/18?pick(r,combining):''):'')).join('');
-    if(kind==='fake'){const bits=text.split(/(\s+)/);return bits.map(w=&gt;w.trim()&amp;&amp;r()&lt;amt/14?pick(r,['[FAKE]','[SAUCE]','[SECRET?]'])+w:w).join('')}
-    let v=text;for(const k of ['scramble','symbols','echo','reverse','zalgo'])v=transform(v,k,Math.max(1,amt-2),r);return v;
-  }
-  function run(total=false){const r=rngFor(seed.value+'|'+source.value+'|'+mode.value+'|'+intensity.value);const amt=total?10:+intensity.value;let kind=total?'mixed':mode.value;let v=transform(source.value,kind,amt,r);if(total)v='␀ '+v+' :: YET';setOutput(v);document.body.classList.remove('flash');void document.body.offsetWidth;document.body.classList.add('flash')}
-  $('#glitch').onclick=()=&gt;run(false); $('#total').onclick=()=&gt;run(true);
-  $('#randomSeed').onclick=()=&gt;{seed.value=Math.random().toString(36).slice(2,10).toUpperCase()};
-  $('#yet').onclick=()=&gt;setOutput((output.value||source.value)+'\nYET');
-  $('#undo').onclick=()=&gt;{if(cursor&gt;0){cursor--;output.value=history[cursor];updateHash(output.value)}};
-  $('#redo').onclick=()=&gt;{if(cursor&lt;history.length-1){cursor++;output.value=history[cursor];updateHash(output.value)}};
-  $('#copy').onclick=async()=&gt;{await navigator.clipboard.writeText(output.value);$('#copy').textContent='COPIED';setTimeout(()=&gt;$('#copy').textContent='COPY',700)};
-  const save=(blob,name)=&gt;{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=&gt;URL.revokeObjectURL(a.href),1000)};
-  $('#downloadText').onclick=()=&gt;save(new Blob([output.value],{type:'text/plain'}),'glitchKIT-output.txt');
-  $('#stamp').onclick=()=&gt;{const lines=(output.value||source.value).split('\n');const w=Math.min(72,Math.max(10,...lines.map(x=&gt;x.length)));const fit=lines.flatMap(line=&gt;{const a=[];for(let i=0;i&lt;line.length||i===0;i+=w)a.push(line.slice(i,i+w));return a});setOutput('┌'+'─'.repeat(w+2)+'┐\n'+fit.map(x=&gt;'│ '+x.padEnd(w)+' │').join('\n')+'\n└'+'─'.repeat(w+2)+'┘')};
-  $$('[data-token]').forEach(b=&gt;b.onclick=()=&gt;{const t=b.dataset.token;const el=document.activeElement===source?source:output;const a=el.selectionStart??el.value.length,z=el.selectionEnd??a;el.value=el.value.slice(0,a)+t+el.value.slice(z);el.focus();el.selectionStart=el.selectionEnd=a+t.length;if(el===output)setOutput(el.value)});
-
-  const canvas = $('#canvas');
-  const ctx = canvas.getContext('2d', { willReadFrequently: true });
-  const imageFile = $('#imageFile');
-  const opticalEffect = $('#opticalEffect');
-  const opticalStrength = $('#opticalStrength');
-  const opticalAmount = $('#opticalAmount');
-  const imageCompare = $('#imageCompare');
-  const pixelStatus = $('#pixelStatus');
-  const imgData = () =&gt; ctx.getImageData(0, 0, canvas.width, canvas.height);
-  let originalPixels = null;
-  let comparisonPixels = null;
-  let previewFrame = null;
-  let imageRequest = 0;
-
-  ctx.fillStyle = '#050507';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#49f6ff';
-  ctx.font = '28px monospace';
-  ctx.fillText('DROP PIXELS HERE ::', 35, 70);
-  ctx.fillStyle = '#958da8';
-  ctx.font = '18px monospace';
-  ctx.fillText('image stays on this machine', 35, 105);
-
-  function samplePixel(sourceData, width, height, x, y, target, index) {
-    x = Math.max(0, Math.min(width - 1, x));
-    y = Math.max(0, Math.min(height - 1, y));
-    const left = Math.floor(x);
-    const top = Math.floor(y);
-    const right = Math.min(left + 1, width - 1);
-    const bottom = Math.min(top + 1, height - 1);
-    const dx = x - left;
-    const dy = y - top;
-    const a = (top * width + left) * 4;
-    const b = (top * width + right) * 4;
-    const c = (bottom * width + left) * 4;
-    const d = (bottom * width + right) * 4;
-    // Weight by alpha before mixing colors so transparent pixels do not add dark fringes.
-    const wa = sourceData[a + 3] * (1 - dx) * (1 - dy);
-    const wb = sourceData[b + 3] * dx * (1 - dy);
-    const wc = sourceData[c + 3] * (1 - dx) * dy;
-    const wd = sourceData[d + 3] * dx * dy;
-    const alpha = wa + wb + wc + wd;
-    target[index + 3] = alpha;
-    for (let channel = 0; channel &lt; 3; channel += 1) {
-      const color = sourceData[a + channel] * wa + sourceData[b + channel] * wb
-        + sourceData[c + channel] * wc + sourceData[d + channel] * wd;
-      target[index + channel] = alpha ? color / alpha : 0;
-    }
-  }
-
-  function applyLens(pixels, isRipple, strength) {
-    const { width, height, data } = pixels;
-    const result = ctx.createImageData(width, height);
-    result.data.set(data);
-    const centerX = (width - 1) / 2;
-    const centerY = (height - 1) / 2;
-    const radiusX = Math.max(0.5, centerX);
-    const radiusY = Math.max(0.5, centerY);
-    // Sample the original for every destination pixel and keep the outer edge fixed.
-    for (let y = 0; y &lt; height; y += 1) {
-      const ny = (y - centerY) / radiusY;
-      for (let x = 0; x &lt; width; x += 1) {
-        const nx = (x - centerX) / radiusX;
-        const radius = Math.sqrt(nx * nx + ny * ny);
-        if (radius &gt;= 1 || radius === 0) continue;
-        const falloff = 1 - radius;
-        let sampleX;
-        let sampleY;
-        if (isRipple) {
-          const scale = 1 + Math.sin(radius * 6 * Math.PI) * strength * 0.85 * falloff;
-          sampleX = nx * scale;
-          sampleY = ny * scale;
-        } else {
-          const angle = 3.6 * strength * falloff ** 2;
-          const cos = Math.cos(angle);
-          const sin = Math.sin(angle);
-          sampleX = nx * cos - ny * sin;
-          sampleY = nx * sin + ny * cos;
-        }
-        samplePixel(data, width, height, centerX + sampleX * radiusX, centerY + sampleY * radiusY,
-          result.data, (y * width + x) * 4);
-      }
-    }
-    return result;
-  }
-
-  function applyPattern(pixels, isMoire, strength) {
-    const { width, height, data } = pixels;
-    const result = ctx.createImageData(width, height);
-    result.data.set(data);
-    const size = Math.min(width, height);
-    const period = Math.max(4, size / 64);
-    const frequency = 2 * Math.PI / period;
-    const tile = Math.max(3, Math.round(size / 10));
-    const mortar = Math.max(1, Math.round(tile / 15));
-    const rowHeight = tile + mortar;
-    for (let y = 0; y &lt; height; y += 1) {
-      const offset = Math.floor(y / rowHeight) % 2 * tile / 2;
-      const isMortar = y % rowHeight &gt;= tile;
-      const tiltedPhase = (y - height / 2) * frequency * 0.087;
-      for (let x = 0; x &lt; width; x += 1) {
-        let shade;
-        let opacity;
-        if (isMoire) {
-          const phase = (x - width / 2) * frequency;
-          const tilted = phase * 1.018 + tiltedPhase;
-          const contrast = (0.68 * Math.cos(phase - tilted) + 0.32 * Math.cos(phase + tilted)) * strength;
-          shade = contrast &gt;= 0 ? 255 : 0;
-          opacity = 0.48 * Math.abs(contrast);
-        } else {
-          const dark = Math.floor((x + offset) / tile) % 2 === 0;
-          shade = isMortar ? 125 : dark ? 16 : 242;
-          opacity = 0.88 * strength;
-        }
-        const index = (y * width + x) * 4;
-        for (let channel = 0; channel &lt; 3; channel += 1) {
-          const value = data[index + channel];
-          result.data[index + channel] = value + (shade - value) * opacity;
-        }
-      }
-    }
-    return result;
-  }
-
-  function setComparison(pixels) {
-    comparisonPixels = pixels;
-    imageCompare.setAttribute('aria-pressed', String(Boolean(pixels)));
-  }
-
-  function showEditedImage() {
-    if (!comparisonPixels) return;
-    ctx.putImageData(comparisonPixels, 0, 0);
-    setComparison(null);
-  }
-
-  function renderOptics() {
-    if (previewFrame !== null) cancelAnimationFrame(previewFrame);
-    previewFrame = null;
-    if (!originalPixels) return;
-    setComparison(null);
-    const effect = opticalEffect.value;
-    const strength = Number(opticalStrength.value) / 100;
-    let pixels = originalPixels;
-    if (strength &amp;&amp; effect !== 'none') {
-      pixels = effect === 'ripple' || effect === 'twist'
-        ? applyLens(originalPixels, effect === 'ripple', strength)
-        : applyPattern(originalPixels, effect === 'moire', strength);
-    }
-    ctx.putImageData(pixels, 0, 0);
-  }
-
-  function updateOpticsControls() {
-    opticalStrength.disabled = opticalEffect.value === 'none';
-    opticalAmount.value = opticalStrength.value + '%';
-    opticalStrength.setAttribute('aria-valuetext', opticalAmount.value);
-  }
-
-  function queueOpticalPreview() {
-    updateOpticsControls();
-    if (originalPixels &amp;&amp; previewFrame === null) {
-      previewFrame = requestAnimationFrame(renderOptics);
-    }
-  }
-
-  function resetImage() {
-    opticalEffect.value = 'none';
-    updateOpticsControls();
-    renderOptics();
-  }
-
-  opticalEffect.addEventListener('change', queueOpticalPreview);
-  opticalStrength.addEventListener('input', queueOpticalPreview);
-  imageCompare.addEventListener('click', () =&gt; {
-    if (!originalPixels) return;
-    if (previewFrame !== null) renderOptics();
-    if (comparisonPixels) {
-      showEditedImage();
-      return;
-    }
-    setComparison(imgData());
-    ctx.putImageData(originalPixels, 0, 0);
-  });
-  imageFile.addEventListener('change', async () =&gt; {
-    const file = imageFile.files[0];
-    if (!file) return;
-    const request = ++imageRequest;
-    const image = new Image();
-    const url = URL.createObjectURL(file);
-    try {
-      image.src = url;
-      await image.decode();
-      if (request !== imageRequest) return;
-      const scale = Math.min(1, 1100 / image.naturalWidth, 1100 / image.naturalHeight);
-      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
-      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
-      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-      originalPixels = imgData();
-      $('#optics').disabled = false;
-      imageCompare.disabled = false;
-      resetImage();
-      pixelStatus.textContent = 'Picture loaded. Pick an effect to preview it.';
-    } catch {
-      if (request === imageRequest) {
-        imageFile.value = '';
-        pixelStatus.textContent = 'Could not open that picture. Choose a supported image such as PNG or JPEG.';
-      }
-    } finally {
-      URL.revokeObjectURL(url);
-    }
-  });
-
-  function pxShift(){const r=rngFor(seed.value+'px'+canvas.width);for(let y=0;y&lt;canvas.height;y+=Math.max(2,Math.floor(canvas.height/45))){if(r()&lt;.55){const h=Math.max(1,Math.floor(2+r()*14)),shift=Math.floor((r()-.5)*canvas.width*.18);const d=ctx.getImageData(0,y,canvas.width,Math.min(h,canvas.height-y));ctx.putImageData(d,shift,y)}}}
-  function rgbGhost(){const d=imgData(),a=d.data,copy=new Uint8ClampedArray(a),off=Math.max(1,Math.floor(canvas.width*.012))*4;for(let i=0;i&lt;a.length;i+=4){a[i]=copy[Math.min(a.length-4,i+off)];a[i+2]=copy[Math.max(0,i-off)+2]}ctx.putImageData(d,0,0)}
-  function blockSmear(){const r=rngFor(seed.value+'smear');for(let n=0;n&lt;36;n++){const w=10+r()*canvas.width*.18,h=3+r()*40,x=r()*Math.max(1,canvas.width-w),y=r()*Math.max(1,canvas.height-h),d=ctx.getImageData(x,y,w,h);ctx.putImageData(d,Math.max(0,Math.min(canvas.width-w,x+(r()-.5)*160)),y)} }
-  function noiseBite(){const r=rngFor(seed.value+'noise'),d=imgData(),a=d.data;for(let i=0;i&lt;a.length;i+=4)if(r()&lt;.035){const n=(r()-.5)*150;a[i]+=n;a[i+1]-=n*.4;a[i+2]+=n*.7}ctx.putImageData(d,0,0)}
-  function scanline(){ctx.save();ctx.globalCompositeOperation='multiply';ctx.fillStyle='#8c7cff55';for(let y=0;y&lt;canvas.height;y+=5)ctx.fillRect(0,y,canvas.width,2);ctx.restore()}
-  const pixelEffects = {
-    pixel: pxShift,
-    rgb: rgbGhost,
-    smear: blockSmear,
-    noise: noiseBite,
-    scan: scanline,
-    imageTotal() { pxShift(); rgbGhost(); blockSmear(); noiseBite(); scanline(); },
-  };
-  for (const [id, effect] of Object.entries(pixelEffects)) {
-    $('#' + id).addEventListener('click', () =&gt; {
-      if (!originalPixels) return;
-      if (previewFrame !== null) renderOptics();
-      showEditedImage();
-      effect();
-    });
-  }
-  $('#imageReset').addEventListener('click', resetImage);
-  $('#savePng').addEventListener('click', () =&gt; {
-    if (previewFrame !== null) renderOptics();
-    canvas.toBlob(blob =&gt; {
-      if (blob) save(blob, 'glitchKIT-pixels.png');
-    }, 'image/png');
-  });
-  setOutput(transform(source.value,'mixed',4,rngFor('KURU')),false);
-})();
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-"></iframe></section>
-<section id="secure" role="tabpanel" aria-labelledby="tab-secure" hidden><p class="notice">The original offline Text Glitch Kit: playful effects and password-based AES-GCM encryption. Switching tabs does not clear fields; use its Clear button when finished. Passwords and results are not shared with the other toolset.</p><iframe title="Text Glitch Kit encryption and text effects" sandbox="allow-scripts allow-same-origin allow-downloads" allow="clipboard-write" srcdoc="&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;utf-8&quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-  &lt;meta name=&quot;description&quot; content=&quot;A small, offline message glitcher and password encryptor from Bullshit Telephone World.&quot;&gt;
-  &lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src 'none'; script-src 'sha256-z4xFYvakoHZzfcKrodVxXpRBHA7Ccp24WOtvSgjV9bg=' 'sha256-mzVz3UV3CqhB7ny8uOTVkPrEMQWUal2hb3XiqxGmNtE='; style-src 'sha256-FJwKnhefa9ECQjqs0qzyLiDS5kfG8624SFy6xlcxwuw='; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'&quot;&gt;
-  &lt;meta name=&quot;color-scheme&quot; content=&quot;light&quot;&gt;
-  &lt;link rel=&quot;icon&quot; href=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23d7ff38'/%3E%3Cpath d='M13 17h38v9H37v23H27V26H13z' fill='%231b1c19'/%3E%3C/svg%3E&quot;&gt;
-  &lt;title&gt;Text Glitch Kit · BTW&lt;/title&gt;
-  &lt;style&gt;:root{--paper:#f3f1e8;--ink:#1c1e19;--muted:#62665b;--line:#c5c8b8;--lime:#d7ff38;--pink:#ff80b9;--white:#fffef8;--mono:ui-monospace,SFMono-Regular,Consolas,&quot;Liberation Mono&quot;,monospace;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}
-*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}button:disabled{cursor:default}a{color:inherit}button,input,select,textarea,summary{ -webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7540c8;outline-offset:4px}input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #7540c8;outline-offset:2px}button{touch-action:manipulation}button:disabled{opacity:.45}[hidden]{display:none!important}.page{max-width:1190px;padding:0 38px;margin:auto}.masthead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--ink);padding:25px 0 22px;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-size:11px;font-weight:800;line-height:1.2;letter-spacing:1.1px;text-decoration:none}.brand-icon{width:36px;height:36px;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-size:31px;line-height:1;transform:rotate(-5deg)}.local-badge{font:10px var(--mono);letter-spacing:.7px;display:flex;align-items:center;gap:8px}.local-badge&gt;span,.privacy-dot{display:inline-block;width:7px;height:7px;background:#558000;border-radius:50%;flex-shrink:0}.intro{padding:47px 0 29px}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;margin:0 0 15px}h1{font-size:clamp(46px,6.7vw,78px);letter-spacing:-5px;line-height:1.03;margin:0;font-weight:800}.glitch-word{position:relative;isolation:isolate;white-space:nowrap}.glitch-word&gt;span{position:absolute;left:3px;top:0;color:var(--pink);clip-path:polygon(0 37%,100% 37%,100% 51%,0 51%);pointer-events:none}.title-dot{color:#5f7419}.lede{font-size:16px;line-height:1.55;color:#53574e;margin:20px 0 0}.tool{border:1px solid var(--ink);background:var(--white);box-shadow:5px 5px 0 #dce0cf}.toolbar{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;gap:10px;border-bottom:1px solid var(--line)}.modes{display:flex;gap:5px;flex-wrap:wrap}.mode{border:1px solid transparent;background:transparent;padding:10px 17px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;border-radius:3px}.mode&gt;span{font-size:19px;line-height:1}.mode:hover{background:#eeeee4}.mode.active{background:var(--ink);color:var(--lime);border-color:var(--ink)}.text-button{border:0;background:transparent;font-size:11px;padding:9px 0;font-weight:600;text-underline-offset:4px}.text-button:hover{text-decoration:underline}.toolbar&gt;.text-button{white-space:nowrap;color:var(--muted)}.toolbar&gt;.text-button&gt;span{font-size:18px;padding-left:9px}.mode-note{margin:0;padding:13px 25px;font-size:12px;line-height:1.5;background:#f3f5e9;border-bottom:1px solid var(--line);min-height:47px;display:flex;gap:10px;align-items:center}.note-tag{font:9px var(--mono);letter-spacing:.7px;border:1px solid #9ba48b;border-radius:2px;padding:2px 4px;flex-shrink:0}.workbench{display:grid;grid-template-columns:1fr 1fr}.panel{padding:24px;min-width:0}.input-panel{border-right:1px solid var(--line)}.output-panel{background:#f5f6ee;display:flex;flex-direction:column}.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.panel-heading label{font-size:12px;font-weight:700}.counter,.result-tag{font:9px var(--mono);letter-spacing:.2px;color:var(--muted);text-align:right}.counter.over-limit{color:#a52a40}textarea{resize:vertical;border:1px solid var(--line);border-radius:3px;background:#fffefa;padding:15px 16px;width:100%;min-height:168px;max-height:420px;font:14px/1.65 var(--mono);display:block;overflow-wrap:anywhere}textarea::placeholder{color:#858a7c}#message::placeholder{max-width:240px}#message{min-height:174px}textarea:focus{border-color:var(--ink)}.input-under{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:42px}.input-under p,.password-settings p{font-size:10px;line-height:1.5;color:var(--muted);margin:0}.sample{font-size:10px;white-space:nowrap}.settings{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin:14px 0 23px}.settings label,.password-settings&gt;label{display:block;font-size:10px;font-weight:700;margin-bottom:9px}.style-setting select{width:100%;border:1px solid var(--line);border-radius:3px;background:var(--white);height:38px;font-size:12px;padding:0 9px}.strength-label{display:flex;justify-content:space-between;align-items:start}.strength-label output{font:10px var(--mono);color:var(--muted)}input[type=range]{width:100%;margin:6px 0 3px;accent-color:var(--ink);height:20px}.range-labels{display:flex;justify-content:space-between;gap:5px;font:8px var(--mono);color:var(--muted)}.primary-button{display:flex;align-items:center;justify-content:space-between;gap:15px;background:var(--lime);border:1px solid var(--ink);border-radius:3px;padding:13px 17px;width:100%;font-size:13px;font-weight:700;min-height:47px;box-shadow:0 2px 0 var(--ink)}.primary-button:hover:not(:disabled){background:#e2ff75}.primary-button&gt;span:last-child{font-size:22px;line-height:1}.primary-button:active:not(:disabled){transform:translateY(1px);box-shadow:0 1px 0 var(--ink)}.password-settings{margin:14px 0 20px}.password-row{display:flex;gap:10px;margin-bottom:9px;align-items:center}.password-row input{width:100%;min-width:0;height:38px;border:1px solid var(--line);border-radius:3px;background:var(--white);padding:0 10px;font-size:12px}.password-row button{width:38px;flex-shrink:0}.result-wrap{position:relative;display:flex;flex:1;min-height:223px}#result{border-color:transparent;background:transparent;padding:0;min-height:223px;resize:vertical;flex:1}#result::placeholder{font:13px/1.65 var(--mono);color:#838878}.empty-mark{position:absolute;top:91px;left:0;right:0;text-align:center;font:46px var(--mono);letter-spacing:1px;color:#d8deca;pointer-events:none}.result-hint{font-size:10px;line-height:1.5;margin:12px 0 14px;color:var(--muted)}.result-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.copy-button{border:1px solid var(--ink);background:var(--white);border-radius:3px;padding:10px 14px;font-size:11px;font-weight:700;min-height:39px;display:flex;align-items:center;gap:8px}.copy-button:hover:not(:disabled){background:var(--lime)}.copy-button&gt;span{font-size:16px}.feedback{min-height:44px;padding-top:12px}.feedback p{margin:0;font:10px/1.5 var(--mono);color:var(--muted);overflow-wrap:anywhere}#error{color:#9b1d3e}.tool-footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 24px;font:8px/1.6 var(--mono);color:var(--muted)}.tool-footer&gt;span:first-child{display:flex;align-items:center;gap:7px}.tool-footer&gt;span:last-child{letter-spacing:.7px;text-align:right}.explanation{margin:26px 0 39px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:11px}.explanation summary{padding:17px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;gap:12px;list-style:none}.explanation summary::-webkit-details-marker{display:none}.explanation summary&gt;span{font-size:18px;font-weight:400}.explanation[open] summary&gt;span{transform:rotate(45deg)}.explanation-content{display:grid;grid-template-columns:1fr 1fr;gap:8px 30px;padding:0 0 15px;line-height:1.7;color:var(--muted)}.explanation-content p{margin:0 0 8px}.explanation-content strong{color:var(--ink)}.explanation-content code{font-size:10px}.page-footer{border-top:1px solid var(--ink);padding:20px 0 25px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font:8px/1.5 var(--mono);letter-spacing:.5px}.page-footer&gt;span:last-child{letter-spacing:0}.page-footer&gt;span:last-child&gt;span{color:var(--ink);font-size:14px;margin-left:8px}
-@media(min-width:1400px){.intro{padding-top:55px}.page{padding-top:10px}}
-@media(max-width:760px){.page{padding:0 22px}.masthead{padding:20px 0}.brand{font-size:9px;letter-spacing:.7px}.local-badge{font-size:8px}.intro{padding:34px 0 26px}h1{font-size:55px;letter-spacing:-3px}.lede{font-size:14px}.workbench{grid-template-columns:1fr}.input-panel{border-right:0;border-bottom:1px solid var(--line)}.panel{padding:21px}.toolbar{padding:12px 15px}.mode{padding:9px 12px}.mode-note{padding:12px 21px}.result-wrap,#result{min-height:180px}.empty-mark{top:70px}.tool-footer&gt;span:last-child{display:none}.tool-footer{padding:12px 21px;font-size:8px}.page-footer{flex-wrap:wrap;gap:10px}.explanation-content{grid-template-columns:1fr}.explanation{margin-bottom:27px}.desktop-break{display:none}.result-hint{margin-top:8px}}
-@media(max-width:400px){.page{padding:0 15px}.local-badge{max-width:100px;font-size:7px;gap:6px}.local-badge&gt;span{width:5px;height:5px}h1{font-size:46px;letter-spacing:-2.7px}.mode{font-size:12px;padding:9px 10px;gap:5px}.mode&gt;span{font-size:16px}.toolbar{padding:10px}.toolbar&gt;.text-button{font-size:9px}.toolbar&gt;.text-button&gt;span{padding-left:2px}.panel{padding:17px}.mode-note{padding:11px 17px;font-size:11px}.settings{gap:14px}.input-under{align-items:start;padding-top:8px}.input-under p{font-size:9px}.sample{padding-top:0;font-size:9px}.panel-heading{gap:6px}.result-tag{font-size:8px}.tool-footer{padding:10px 17px}.page-footer{font-size:7px}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;div class=&quot;page&quot;&gt;
-    &lt;header class=&quot;masthead&quot;&gt;
-      &lt;a class=&quot;brand&quot; href=&quot;#main&quot; aria-label=&quot;Bullshit Telephone World, skip to message tool&quot;&gt;&lt;span class=&quot;brand-icon&quot; aria-hidden=&quot;true&quot;&gt;↯&lt;/span&gt;&lt;span&gt;BULLSHIT&lt;br&gt;TELEPHONE WORLD&lt;/span&gt;&lt;/a&gt;
-      &lt;span class=&quot;local-badge&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; ALL LOCAL. ALL YOURS.&lt;/span&gt;
-    &lt;/header&gt;
-    &lt;main id=&quot;main&quot;&gt;
-      &lt;section class=&quot;intro&quot; aria-labelledby=&quot;title&quot;&gt;
-        &lt;p class=&quot;eyebrow&quot;&gt;SMALL TOOL. STRANGE TRANSMISSIONS.&lt;/p&gt;
-        &lt;h1 id=&quot;title&quot;&gt;Text &lt;span class=&quot;glitch-word&quot;&gt;Glitch&lt;span aria-hidden=&quot;true&quot;&gt;Glitch&lt;/span&gt;&lt;/span&gt; Kit&lt;span class=&quot;title-dot&quot;&gt;.&lt;/span&gt;&lt;/h1&gt;
-        &lt;p class=&quot;lede&quot;&gt;Bend a message. Or lock it with a password.&lt;br class=&quot;desktop-break&quot;&gt; The telephone has learned some boundaries.&lt;/p&gt;
-      &lt;/section&gt;
-      &lt;section class=&quot;tool&quot; aria-label=&quot;Message tool&quot;&gt;
-        &lt;div class=&quot;toolbar&quot;&gt;
-          &lt;div class=&quot;modes&quot; role=&quot;group&quot; aria-label=&quot;Choose a mode&quot;&gt;
-            &lt;button type=&quot;button&quot; class=&quot;mode active&quot; data-mode=&quot;glitch&quot; aria-pressed=&quot;true&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;↯&lt;/span&gt; Glitch&lt;/button&gt;
-            &lt;button type=&quot;button&quot; class=&quot;mode&quot; data-mode=&quot;encrypt&quot; aria-pressed=&quot;false&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;▣&lt;/span&gt; Encrypt&lt;/button&gt;
-            &lt;button type=&quot;button&quot; class=&quot;mode&quot; data-mode=&quot;decrypt&quot; aria-pressed=&quot;false&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;↳&lt;/span&gt; Decrypt&lt;/button&gt;
-          &lt;/div&gt;
-          &lt;button id=&quot;clear&quot; class=&quot;text-button&quot; type=&quot;button&quot;&gt;Clear all &lt;span aria-hidden=&quot;true&quot;&gt;×&lt;/span&gt;&lt;/button&gt;
-        &lt;/div&gt;
-        &lt;p id=&quot;modeNote&quot; class=&quot;mode-note&quot;&gt;&lt;span class=&quot;note-tag&quot;&gt;PLAY&lt;/span&gt; A visual remix. Glitched text is readable and isn’t encrypted.&lt;/p&gt;
-        &lt;div class=&quot;workbench&quot;&gt;
-          &lt;div class=&quot;input-panel panel&quot;&gt;
-            &lt;div class=&quot;panel-heading&quot;&gt;&lt;label id=&quot;messageLabel&quot; for=&quot;message&quot;&gt;Your message&lt;/label&gt;&lt;span id=&quot;count&quot; class=&quot;counter&quot;&gt;0 / 4,000&lt;/span&gt;&lt;/div&gt;
-            &lt;textarea id=&quot;message&quot; dir=&quot;auto&quot; rows=&quot;7&quot; spellcheck=&quot;false&quot; autocomplete=&quot;off&quot; autocapitalize=&quot;off&quot; aria-describedby=&quot;inputHint count&quot; placeholder=&quot;The pigeons have unionized. Please hold.&quot;&gt;&lt;/textarea&gt;
-            &lt;div class=&quot;input-under&quot;&gt;&lt;p id=&quot;inputHint&quot;&gt;Short messages. Maximum 4,000 characters.&lt;/p&gt;&lt;button id=&quot;sample&quot; class=&quot;text-button sample&quot; type=&quot;button&quot;&gt;Try a message ↗&lt;/button&gt;&lt;/div&gt;
-            &lt;div id=&quot;glitchSettings&quot; class=&quot;settings&quot;&gt;
-              &lt;div class=&quot;style-setting&quot;&gt;&lt;label for=&quot;style&quot;&gt;Glitch style&lt;/label&gt;&lt;select id=&quot;style&quot;&gt;&lt;option value=&quot;signal&quot;&gt;Signal leak&lt;/option&gt;&lt;option value=&quot;echo&quot;&gt;Echo chamber&lt;/option&gt;&lt;option value=&quot;telephone&quot;&gt;Bad telephone&lt;/option&gt;&lt;option value=&quot;leet&quot;&gt;Leet speak&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
-              &lt;div class=&quot;strength-setting&quot;&gt;&lt;div class=&quot;strength-label&quot;&gt;&lt;label for=&quot;strength&quot;&gt;Strength&lt;/label&gt;&lt;output id=&quot;strengthValue&quot; for=&quot;strength&quot;&gt;3 / 5&lt;/output&gt;&lt;/div&gt;&lt;input id=&quot;strength&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;5&quot; value=&quot;3&quot; aria-valuetext=&quot;3 of 5&quot;&gt;&lt;div class=&quot;range-labels&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;A little weird&lt;/span&gt;&lt;span&gt;Very weird&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
-            &lt;/div&gt;
-            &lt;div id=&quot;passwordSettings&quot; class=&quot;password-settings&quot; hidden&gt;
-              &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;&lt;div class=&quot;password-row&quot;&gt;&lt;input id=&quot;password&quot; type=&quot;password&quot; spellcheck=&quot;false&quot; autocomplete=&quot;off&quot; autocapitalize=&quot;off&quot; aria-describedby=&quot;passwordHint&quot; placeholder=&quot;A long, unique passphrase&quot;&gt;&lt;button id=&quot;showPassword&quot; type=&quot;button&quot; class=&quot;text-button&quot; aria-pressed=&quot;false&quot;&gt;Show&lt;/button&gt;&lt;/div&gt;
-              &lt;p id=&quot;passwordHint&quot;&gt;At least 12 characters. Keep the password separately; there’s no reset.&lt;/p&gt;
-            &lt;/div&gt;
-            &lt;button id=&quot;run&quot; class=&quot;primary-button&quot; type=&quot;button&quot;&gt;&lt;span id=&quot;runLabel&quot;&gt;Glitch message&lt;/span&gt;&lt;span id=&quot;runArrow&quot; aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;&lt;/button&gt;
-          &lt;/div&gt;
-          &lt;div class=&quot;output-panel panel&quot;&gt;
-            &lt;div class=&quot;panel-heading&quot;&gt;&lt;label for=&quot;result&quot;&gt;The result&lt;/label&gt;&lt;span id=&quot;resultTag&quot; class=&quot;result-tag&quot;&gt;AWAITING SIGNAL&lt;/span&gt;&lt;/div&gt;
-            &lt;div class=&quot;result-wrap&quot;&gt;&lt;textarea id=&quot;result&quot; dir=&quot;auto&quot; rows=&quot;7&quot; readonly spellcheck=&quot;false&quot; aria-label=&quot;The result&quot; placeholder=&quot;Your transformed message lands here.&quot;&gt;&lt;/textarea&gt;&lt;span class=&quot;empty-mark&quot; id=&quot;emptyMark&quot; aria-hidden=&quot;true&quot;&gt;[ &amp;nbsp; ↯ &amp;nbsp; ]&lt;/span&gt;&lt;/div&gt;
-            &lt;p id=&quot;resultHint&quot; class=&quot;result-hint&quot;&gt;A little interference goes a long way.&lt;/p&gt;
-            &lt;div class=&quot;result-actions&quot;&gt;&lt;button id=&quot;copy&quot; type=&quot;button&quot; class=&quot;copy-button&quot; disabled&gt;&lt;span aria-hidden=&quot;true&quot;&gt;▤&lt;/span&gt; Copy result&lt;/button&gt;&lt;button id=&quot;useEncrypted&quot; type=&quot;button&quot; class=&quot;text-button&quot; hidden&gt;Decrypt this result &lt;span aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;
-            &lt;div class=&quot;feedback&quot;&gt;&lt;p id=&quot;status&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;Ready when you are.&lt;/p&gt;&lt;p id=&quot;error&quot; role=&quot;alert&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;tool-footer&quot;&gt;&lt;span&gt;&lt;span class=&quot;privacy-dot&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Stays in this browser. Nothing sent or saved by this tool.&lt;/span&gt;&lt;span&gt;NO ACCOUNT. NO BIG PRODUCTION.&lt;/span&gt;&lt;/div&gt;
-      &lt;/section&gt;
-      &lt;details class=&quot;explanation&quot;&gt;&lt;summary&gt;Glitch, Encrypt, Decrypt — what’s the difference?&lt;span aria-hidden=&quot;true&quot;&gt;+&lt;/span&gt;&lt;/summary&gt;&lt;div class=&quot;explanation-content&quot;&gt;&lt;p&gt;&lt;strong&gt;Glitch is play.&lt;/strong&gt; It changes how text looks. It is readable, may lose information, and has no undo or secret key. Copy your original if you want to keep it.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Encrypt locks the message.&lt;/strong&gt; It uses AES-256-GCM with a fresh random salt and nonce, and a password-derived key (PBKDF2-SHA-256, 600,000 iterations). Use a long, unique passphrase and share it separately from the encrypted text. Weak passwords can be guessed.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Decrypt opens it.&lt;/strong&gt; Paste the entire encrypted result and enter the exact password. Spaces and capitalization matter. It also opens verified BTW &lt;code&gt;BTWE1.&lt;/code&gt; tokens within this kit’s message limit. Other formats aren’t supported. Wrong password or changed text? No partial message is shown.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Local means local.&lt;/strong&gt; No analytics, network calls, or message history. Closing or reloading clears the tool; Clear all empties its fields. Your browser, extensions and clipboard still have their own behavior. Use a trusted device. Textarea line endings follow your browser’s handling.&lt;/p&gt;&lt;/div&gt;&lt;/details&gt;
-    &lt;/main&gt;
-    &lt;footer class=&quot;page-footer&quot;&gt;&lt;span&gt;BTW / FIELD TOOLS&lt;/span&gt;&lt;span&gt;FRESH SIMPLIFIED EDITION · 2026.10&lt;/span&gt;&lt;span&gt;A small machine for your words. &lt;span aria-hidden=&quot;true&quot;&gt;↯&lt;/span&gt;&lt;/span&gt;&lt;/footer&gt;
-  &lt;/div&gt;
-  &lt;script&gt;(function (root) {
+    <section class="panel">
+      <h2>PIXEL WRECKER</h2>
+      <div class="drop"><input id="imageFile" type="file" accept="image/*" aria-label="Choose a picture"> drop in a picture; processing stays local</div>
+      <div class="controls">
+        <button id="pixel">PIXEL SHIFT</button><button id="rgb">RGB GHOST</button><button id="smear">BLOCK SMEAR</button><button id="noise">NOISE BITE</button><button id="scan">SCANLINE</button>
+        <button class="primary" id="imageTotal">TOTAL PIXEL</button>
+      </div>
+      <fieldset class="optics" id="optics" disabled>
+        <legend>OPTICAL ILLUSIONS</legend>
+        <div class="controls">
+          <label for="opticalEffect">ILLUSION
+            <select id="opticalEffect" aria-describedby="opticsNote">
+              <option value="none">None</option>
+              <optgroup label="Color illusions">
+                <option value="contrast">Color Contrast</option>
+                <option value="munker">Munker Stripes</option>
+                <option value="neon">Neon Spread</option>
+              </optgroup>
+              <optgroup label="Lens and pattern effects">
+                <option value="ripple">Ripple Lens</option>
+                <option value="twist">Twist Lens</option>
+                <option value="moire">Moiré Bands</option>
+                <option value="cafe">Café Wall</option>
+              </optgroup>
+            </select>
+          </label>
+          <label for="opticalStrength">STRENGTH
+            <input id="opticalStrength" type="range" min="0" max="100" value="60" disabled>
+          </label>
+          <output for="opticalStrength" id="opticalAmount" aria-hidden="true">60%</output>
+        </div>
+        <p class="tiny" id="opticsNote">Each illusion previews from your original. Layer other pixel effects afterward.</p>
+      </fieldset>
+      <div class="controls">
+        <button id="imageCompare" aria-pressed="false" disabled>SHOW ORIGINAL</button>
+        <button id="imageReset">RESET IMAGE</button>
+        <button id="savePng">SAVE PNG</button>
+        <a id="pngDownload" class="pixel-download" download="glitchKIT-pixels.png" hidden>Download last PNG</a>
+      </div>
+      <canvas id="canvas" width="900" height="450" role="img" aria-label="Pixel effects preview"></canvas>
+      <p class="tiny" id="pixelStatus" role="status"></p>
+    </section>
+  </main>
+<script>
+(function (root) {
   'use strict';
   const encoder = new TextEncoder();
   const decoder = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true });
@@ -481,19 +222,19 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
 
   function validUnicode(text) {
     // TextEncoder would silently replace lone surrogates, losing the original text.
-    for (let i = 0; i &lt; text.length; i++) {
+    for (let i = 0; i < text.length; i++) {
       const c = text.charCodeAt(i);
-      if (c &gt;= 0xD800 &amp;&amp; c &lt;= 0xDBFF) {
+      if (c >= 0xD800 && c <= 0xDBFF) {
         const next = text.charCodeAt(++i);
-        if (!(next &gt;= 0xDC00 &amp;&amp; next &lt;= 0xDFFF)) return false;
-      } else if (c &gt;= 0xDC00 &amp;&amp; c &lt;= 0xDFFF) return false;
+        if (!(next >= 0xDC00 && next <= 0xDFFF)) return false;
+      } else if (c >= 0xDC00 && c <= 0xDFFF) return false;
     }
     return true;
   }
   function validateMessage(text) {
     if (typeof text !== 'string' || !text.length) throw new Error('Enter a message first.');
     if (!validUnicode(text)) throw new Error('This message contains an incomplete Unicode character. Paste it again.');
-    if ([...text].length &gt; MAX_CHARS || encoder.encode(text).length &gt; MAX_BYTES) {
+    if ([...text].length > MAX_CHARS || encoder.encode(text).length > MAX_BYTES) {
       throw new Error('Keep your message to 4,000 characters or fewer.');
     }
     return text;
@@ -502,8 +243,8 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
     if (typeof password !== 'string' || !password.length) throw new Error('Enter the password for this message.');
     if (!validUnicode(password)) throw new Error('The password contains an incomplete Unicode character. Enter it again.');
     const length = [...password].length;
-    if (creating &amp;&amp; length &lt; 12) throw new Error('Use a password of at least 12 characters. A long, unique passphrase is best.');
-    if (length &gt; 1024 || encoder.encode(password).length &gt; 4096) throw new Error('Keep your password to 1,024 characters or fewer.');
+    if (creating && length < 12) throw new Error('Use a password of at least 12 characters. A long, unique passphrase is best.');
+    if (length > 1024 || encoder.encode(password).length > 4096) throw new Error('Keep your password to 1,024 characters or fewer.');
   }
   function cryptoApi() {
     if (!root.crypto?.subtle) throw new Error('Encryption is unavailable here. Open this file in a current Chrome, Edge, Firefox or Safari browser.');
@@ -516,18 +257,18 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
     return url ? result.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '') : result;
   }
   function parseToken(input) {
-    if (typeof input !== 'string' || input.length &gt; MAX_TOKEN + 128) throw new Error('Encrypted text is too long for this short-message kit.');
+    if (typeof input !== 'string' || input.length > MAX_TOKEN + 128) throw new Error('Encrypted text is too long for this short-message kit.');
     const token = input.trim();
     const legacy = token.startsWith('BTWE1.');
-    if (!legacy &amp;&amp; !token.startsWith(HEADER)) throw new Error('Paste a complete encrypted message beginning BTW1. or BTWE1.');
+    if (!legacy && !token.startsWith(HEADER)) throw new Error('Paste a complete encrypted message beginning BTW1. or BTWE1.');
     const body = token.slice(legacy ? 6 : 5);
-    if (body.length &gt; 21392) throw new Error('Encrypted text is too long for this short-message kit.');
+    if (body.length > 21392) throw new Error('Encrypted text is too long for this short-message kit.');
     const alphabetOK = legacy ? /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(body) : /^[A-Za-z0-9_-]+$/.test(body);
     if (!alphabetOK || body.length % 4 === 1) throw new Error('This encrypted text is incomplete or damaged. Copy the whole result again.');
     let bytes;
-    try { bytes = Uint8Array.from(atob(legacy ? body : body.replace(/-/g, '+').replace(/_/g, '/')), c =&gt; c.charCodeAt(0)); }
+    try { bytes = Uint8Array.from(atob(legacy ? body : body.replace(/-/g, '+').replace(/_/g, '/')), c => c.charCodeAt(0)); }
     catch { throw new Error('This encrypted text is incomplete or damaged. Copy the whole result again.'); }
-    if (bytes.length &lt; 45 || bytes.length &gt; MAX_PACKED || base64(bytes, !legacy) !== body) {
+    if (bytes.length < 45 || bytes.length > MAX_PACKED || base64(bytes, !legacy) !== body) {
       throw new Error('This encrypted text is incomplete or damaged. Copy the whole result again.');
     }
     return { bytes, legacy };
@@ -568,14 +309,14 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
   function glitch(message, style = 'signal', strength = 3) {
     validateMessage(message);
     if (!['signal', 'echo', 'telephone', 'leet'].includes(style)) throw new Error('Choose a glitch style.');
-    if (!Number.isInteger(strength) || strength &lt; 1 || strength &gt; 5) throw new Error('Choose a strength from 1 to 5.');
+    if (!Number.isInteger(strength) || strength < 1 || strength > 5) throw new Error('Choose a strength from 1 to 5.');
     const segments = typeof Intl.Segmenter === 'function'
-      ? Array.from(new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(message), x =&gt; x.segment)
+      ? Array.from(new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(message), x => x.segment)
       : Array.from(message);
     const marks = ['\u0338', '\u0336', '\u0301', '\u0323', '\u0308'];
     const substitutions = { a: '4', e: '3', i: '1', o: '0', s: '5', t: '7', b: '8' };
     let index = 0, changed = false;
-    const result = segments.map(segment =&gt; {
+    const result = segments.map(segment => {
       // Only affect plain ASCII letters: emoji, scripts and combining sequences stay intact.
       if (!/^[A-Za-z]$/.test(segment)) return segment;
       const active = index++ % (6 - strength) === 0;
@@ -591,174 +332,1124 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
     return changed ? result : '⟦ ' + result + ' ⟧';
   }
   const kit = Object.freeze({ encrypt, decrypt, glitch, validateMessage, MAX_CHARS, MAX_TOKEN, AUTH_ERROR });
-  if (typeof module !== 'undefined' &amp;&amp; module.exports) module.exports = kit;
+  if (typeof module !== 'undefined' && module.exports) module.exports = kit;
   else root.TextGlitchKit = kit;
 })(globalThis);
-&lt;/script&gt;
-  &lt;script&gt;(function () {
+</script>
+<script>
+/* glitchKIT short-message core v0.3.0. No network or persistent storage. */
+(() => {
   'use strict';
-  const kit = globalThis.TextGlitchKit;
-  const $ = id =&gt; document.getElementById(id);
-  const message = $('message'), password = $('password'), result = $('result');
-  let mode = 'glitch', revision = 0, pending = false;
-  const modes = {
-    glitch: { label: 'Your message', button: 'Glitch message', tag: 'PLAY', note: 'A visual remix. Glitched text is readable and isn’t encrypted.', placeholder: 'The pigeons have unionized. Please hold.', result: 'Your transformed message lands here.', hint: 'A little interference goes a long way.' },
-    encrypt: { label: 'Your message', button: 'Encrypt message', tag: 'LOCK', note: 'Password-based encryption. Only the exact password can open the result.', placeholder: 'Write the message you want to keep private.', result: 'Your encrypted message lands here.', hint: 'Copy the entire result. Keep your password separately.' },
-    decrypt: { label: 'Encrypted message', button: 'Decrypt message', tag: 'OPEN', note: 'Paste an encrypted result, then enter the password used to lock it.', placeholder: 'BTW1. … paste the entire encrypted message', result: 'Your original message lands here.', hint: 'Your message appears only after its password and integrity check pass.' }
+  const PREFIX='GKT1.', LIMIT=4000, OUTPUT_LIMIT=20000;
+  const ITERATIONS=600000,encoder=new TextEncoder();
+  const decoder=new TextDecoder('utf-8',{fatal:true,ignoreBOM:true});
+  const chars=s=>Array.from(s);
+  const segmenter=typeof Intl.Segmenter==='function'?new Intl.Segmenter(undefined,{granularity:'grapheme'}):null;
+  function graphemes(s){
+    if(segmenter)return Array.from(segmenter.segment(s),x=>x.segment);
+    // Preserve complete input when grapheme support is absent; effects require it.
+    return [s];
+  }
+  const hash32=str=>{let h=2166136261;for(const ch of str){h^=ch.codePointAt(0);h=Math.imul(h,16777619)}return h>>>0};
+  const rngFor=str=>{let x=hash32(str)||0x9e3779b9;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296}};
+  const pick=(r,a)=>a[Math.floor(r()*a.length)];
+  function checkText(s, limit=LIMIT){
+    if(typeof s!=='string'||!s.trim())throw new Error('Type a message first.');
+    if(chars(s).length>limit)throw new Error('Keep your message to '+limit.toLocaleString('en-US')+' characters or fewer.');
+    if(s.isWellFormed&&!s.isWellFormed())throw new Error('The message contains a broken Unicode character. Please paste it again.');
+  }
+  function checkPassword(s,creating=false){
+    if(typeof s!=='string'||!s.length)throw new Error('Enter the password.');
+    if(s.length>512)throw new Error('Use a password of 512 characters or fewer.');
+    if(s.isWellFormed&&!s.isWellFormed())throw new Error('The password contains a broken Unicode character.');
+    if(creating&&(chars(s).length<12||!s.trim()))throw new Error('Use at least 12 characters. Several random words work well.');
+  }
+  const effectDefs=Object.freeze([
+    {id:'fake',label:'[FAKE] + [SAUCE]',description:'Tag selected words with the original KURU labels.',destructive:false},
+    {id:'signal',label:'Signal leak',description:'Add thin scratch marks to letters.',destructive:false},
+    {id:'letter-echo',label:'Letter echo',description:'Repeat individual letters with a middle dot.',destructive:false},
+    {id:'telephone',label:'Bad telephone',description:'Bounce between odd punctuation and case.',destructive:true},
+    {id:'leet',label:'Leet speak',description:'Swap selected letters for digit lookalikes.',destructive:true},
+    {id:'zalgo',label:'Zalgo towers',description:'Grow stacks of marks above or below selected letters.',destructive:false},
+    {id:'upside',label:'Upside down',description:'Turn each line upside down with approximate lookalike letters.',destructive:false},
+    {id:'mirror',label:'Mirror',description:'Reverse each line while keeping emoji and accents together.',destructive:false},
+    {id:'wide',label:'Wide text',description:'Give Latin letters and numbers fullwidth forms.',destructive:false},
+    {id:'bubble',label:'Bubble letters',description:'Put Latin letters and numbers inside circles.',destructive:false},
+    {id:'smallcaps',label:'Small caps',description:'Use small capital lookalikes; unsupported letters stay as they are.',destructive:false},
+    {id:'spaced',label:'Air gaps',description:'Add thin spaces inside words.',destructive:false},
+    {id:'underline',label:'Underline',description:'Draw a combining underline under letters.',destructive:false},
+    {id:'overline',label:'Overline',description:'Draw a combining line above letters.',destructive:false},
+    {id:'strike',label:'Crossed wires',description:'Draw a light strike through a few letters.',destructive:false},
+    {id:'alternating',label:'Bouncy case',description:'Alternate upper and lower case.',destructive:false},
+    {id:'mixed',label:'Mixed soup',description:'A little letter shuffle, symbol leak, and Zalgo.',destructive:true},
+    {id:'scramble',label:'Word scramble',description:'Shuffle interiors of selected words; keep their ends.',destructive:true},
+    {id:'symbols',label:'Symbol leak',description:'Swap a few letters for familiar symbols.',destructive:true},
+    {id:'echo',label:'Echo chamber',description:'Repeat a small piece of a selected word.',destructive:true},
+    {id:'reverse',label:'Reverse shards',description:'Reverse a few short words without changing word order.',destructive:true},
+    {id:'polyglot',label:'Lookalike letters',description:'Use a few Greek letter lookalikes, without translating.',destructive:true},
+    {id:'void',label:'Void',description:'Replace a few letters with light signal noise.',destructive:true},
+    {id:'paras',label:'Paras',description:'Sprinkle a few visible symbols between letters.',destructive:false},
+    {id:'horizon',label:'Event horizon',description:'Let a few letters near the middle disappear into dots.',destructive:true}
+  ].map(Object.freeze));
+  const sauceNames={
+    fake:[['mild-mayo','Mild Mayo','Add fewer KURU labels.']],
+    signal:[['static-salt','Static Salt','Add visible static dots to the scratches.']],
+    'letter-echo':[['mild-mayo','Mild Mayo','Use softer letter echoes.']],
+    telephone:[['mild-mayo','Mild Mayo','Make fewer case and punctuation changes.']],
+    leet:[['static-salt','Static Salt','Add visible static dots to the leet letters.']],
+    zalgo:[['cloud-pepper','Cloud Pepper','Grow upward; add up to two marks to the chosen height (maximum 12).'],['basement-dust','Basement Dust','Grow downward; add up to two marks to the chosen height (maximum 12).'],['static-salt','Static Salt','Split the tower above and below its letter.']],
+    upside:[['gravity-gravy','Gravity Gravy','Add down arrows around the turned text.'],['ceiling-syrup','Ceiling Syrup','Turn the letters in place instead of reversing the line.']],
+    mirror:[['silver-syrup','Silver Syrup','Frame the reflection with angle brackets.'],['glass-salt','Glass Salt','Add a light sparkle at the edges.']],
+    wide:[['neon-nectar','Neon Nectar','Frame the wide text with neon-style brackets.'],['mild-mayo','Mild Mayo','Apply wide letters only to alternating words.']],
+    bubble:[['soap-soda','Soap Soda','Add small bubbles around the circled letters.'],['mild-mayo','Mild Mayo','Circle alternating words for an easier read.']],
+    smallcaps:[['tiny-thyme','Tiny Thyme','Add a little dot frame to the small capitals.'],['mild-mayo','Mild Mayo','Use small caps on alternating words.']],
+    spaced:[['air-sugar','Air Sugar','Use two thin spaces instead of one.'],['vapor-vanilla','Vapor Vanilla','Space only alternating words.']],
+    underline:[['double-dill','Double Dill','Use a double underline.'],['dotted-dressing','Dotted Dressing','Underline alternating letters.']],
+    overline:[['roof-rosemary','Roof Rosemary','Use a double overline.'],['dotted-dressing','Dotted Dressing','Overline alternating letters.']],
+    strike:[['chalk-ketchup','Chalk Ketchup','Use a shorter, lighter strike.'],['mild-mayo','Mild Mayo','Reduce the crossed-wire amount.']],
+    alternating:[['capital-curry','Capital Curry','Start the bounce with an uppercase letter.'],['lowercase-lime','Lowercase Lime','Start the bounce with a lowercase letter.']],
+    mixed:[['mild-mayo','Mild Mayo','Halve the amount of the mix.'],['static-salt','Static Salt','Add a few visible static dots.']],
+    scramble:[['mild-mayo','Mild Mayo','Halve the shuffle amount.'],['static-salt','Static Salt','Add a few visible static dots.']],
+    symbols:[['mild-mayo','Mild Mayo','Halve the symbol replacements.'],['static-salt','Static Salt','Add a few visible static dots.']],
+    echo:[['echo-espresso','Echo Espresso','Make each echo a little longer.'],['mild-mayo','Mild Mayo','Halve the chance of an echo.']],
+    reverse:[['mild-mayo','Mild Mayo','Halve the chance of reversed words.'],['static-salt','Static Salt','Add a few visible static dots.']],
+    polyglot:[['mild-mayo','Mild Mayo','Halve the lookalike replacements.'],['static-salt','Static Salt','Add a few visible static dots.']],
+    void:[['mild-mayo','Mild Mayo','Halve the missing signal.'],['static-salt','Static Salt','Add a few visible static dots.']],
+    paras:[['glitter-garlic','Glitter Garlic','Use small sparkles for the extra symbols.'],['mild-mayo','Mild Mayo','Halve the extra symbols.']],
+    horizon:[['mild-mayo','Mild Mayo','Halve the swallowed letters.'],['static-salt','Static Salt','Add a few visible static dots.']]
   };
-  function announce(text) { $('status').textContent = text; }
+  function saucesFor(id){return [{id:'none',label:'No sauce',description:'Use the effect as selected.'},...(sauceNames[id]||[]).map(([id,label,description])=>({id,label,description}))]}
+  const upperMarks=['\u0300','\u0301','\u0302','\u0303','\u0304','\u0306','\u0307','\u0308','\u030a','\u030b','\u030c','\u0342'];
+  const lowerMarks=['\u0316','\u0317','\u0318','\u0319','\u031c','\u031d','\u031e','\u031f','\u0323','\u0324','\u0325','\u0329'];
+  const symbols={a:'@',e:'\u039e',i:'!',o:'\u00d8',s:'$',t:'\u2020',l:'|',b:'\u00df',g:'9'};
+  const lookalikes={a:'\u03b1',b:'\u03b2',e:'\u03b5',i:'\u03b9',k:'\u03ba',n:'\u03b7',o:'\u03bf',p:'\u03c1',t:'\u03c4',x:'\u03c7',y:'\u03b3'};
+  const smallChars=['\u1d00','\u0299','\u1d04','\u1d05','\u1d07','\ua730','\u0262','\u029c','\u026a','\u1d0a','\u1d0b','\u029f','\u1d0d','\u0274','\u1d0f','\u1d18','q','\u0280','\ua731','\u1d1b','\u1d1c','\u1d20','\u1d21','x','\u028f','\u1d22'];
+  const smallMap=Object.fromEntries(chars('abcdefghijklmnopqrstuvwxyz').map((x,i)=>[x,smallChars[i]]));
+  const smallBack=Object.fromEntries(Object.entries(smallMap).map(([a,b])=>[b,a]));
+  const flipMap={a:'\u0250',b:'q',c:'\u0254',d:'p',e:'\u01dd',f:'\u025f',g:'\u0183',h:'\u0265',i:'\u1d09',j:'\u027e',k:'\u029e',l:'l',m:'\u026f',n:'u',o:'o',p:'d',q:'b',r:'\u0279',s:'s',t:'\u0287',u:'n',v:'\u028c',w:'\u028d',x:'x',y:'\u028e',z:'z',A:'\u2200',B:'\u15fa',C:'\u0186',D:'\u15e1',E:'\u018e',F:'\u2132',G:'\u2141',H:'H',I:'I',J:'\u017f',K:'\u029e',L:'\u02e5',M:'W',N:'N',O:'O',P:'\u0500',Q:'\u038c',R:'\u1d1a',S:'S',T:'\u22a5',U:'\u2229',V:'\u039b',W:'M',X:'X',Y:'\u2144',Z:'Z','0':'0','1':'\u0196','2':'\u1105','3':'\u0190','4':'\u3123','5':'\u03db','6':'9','7':'\u3125','8':'8','9':'6','!':'\u00a1','?':'\u00bf','(' :')',')':'(','[':']',']':'[','{':'}','}':'{'};
+  const protectedCluster=s=>/\p{Extended_Pictographic}|\p{Regional_Indicator}|\u200d|\u20e3/u.test(s);
+  function latinParts(body){
+    const a=chars(body),first=a.shift(),normalized=first?.normalize('NFKC');
+    let base=/^[A-Za-z0-9]$/.test(first||'')?first:/^[A-Za-z0-9]$/.test(normalized||'')?normalized:smallBack[first];
+    return base?{base,tail:a.join('')}:null;
+  }
+  function makeState(text,readable){
+    const units=graphemes(text).map((body,id)=>({body,marks:'',id,protected:protectedCluster(body)}));
+    const letterCount=units.filter(u=>!u.protected&&latinParts(u.body)).length;
+    return {units,readable,remaining:OUTPUT_LIMIT-chars(text).length,damage:new Set(),damageMax:readable?Math.floor(letterCount*.18):letterCount,towers:new Set(),towerMax:readable?Math.max(1,Math.ceil(letterCount*.2)):letterCount,extra:0,extraMax:readable?Math.max(8,Math.floor(letterCount*.2)):2000};
+  }
+  const visible=u=>u.body+u.marks;
+  function setBody(s,u,body){const delta=chars(body).length-chars(u.body).length;if(delta>s.remaining)return false;u.body=body;s.remaining-=delta;return true}
+  function addMarks(s,u,marks){
+    const cap=s.readable?12:20,room=Math.max(0,cap-chars(u.marks).length);
+    const added=chars(marks).slice(0,Math.min(room,s.remaining)).join('');u.marks+=added;s.remaining-=chars(added).length;
+  }
+  function mayDamage(s,units){
+    const fresh=[...new Set(units.map(u=>u.id).filter(id=>id!==null&&!s.damage.has(id)))];
+    if(s.damage.size+fresh.length>s.damageMax)return false;
+    fresh.forEach(id=>s.damage.add(id));return true;
+  }
+  function extraUnit(s,text){
+    const size=chars(text).length;if(size>s.remaining||size+s.extra>s.extraMax)return null;
+    s.remaining-=size;s.extra+=size;return {body:text,marks:'',id:null,protected:true};
+  }
+  function words(units){
+    const groups=[];let current=[];
+    for(const u of units){if(/\s/u.test(u.body)){if(current.length)groups.push(current);current=[]}else current.push(u)}
+    if(current.length)groups.push(current);return groups;
+  }
+  function frame(s,left,right){
+    const size=chars(left+right).length;if(size>s.remaining||size+s.extra>s.extraMax)return;
+    const a=extraUnit(s,left),b=extraUnit(s,right);s.units.unshift(a);s.units.push(b);
+  }
+  function expandSyntheticUnits(s){
+    // An echo or sauce frame can contain several graphemes. Orientation effects
+    // operate on each grapheme, while preserving the synthetic/protected flags.
+    // This only changes grouping; the already-charged output budget is unchanged.
+    s.units=s.units.flatMap(u=>{
+      if(u.id!==null)return [u];
+      const parts=graphemes(visible(u));
+      return parts.map(body=>({...u,body,marks:''}));
+    });
+  }
+  function permuteLines(s){
+    expandSyntheticUnits(s);
+    const result=[];let line=[];
+    for(const u of s.units){if(/\r|\n/.test(u.body)){result.push(...line.reverse(),u);line=[]}else line.push(u)}
+    result.push(...line.reverse());s.units=result;
+  }
+  function styleUnits(s,kind,sauce,r,amt){
+    let wordIndex=0,inWord=false,index=0;
+    for(const u of s.units){
+      if(/\s/u.test(u.body)){if(inWord)wordIndex++;inWord=false;continue}inWord=true;
+      if(u.protected)continue;
+      const p=latinParts(u.body);if(!p)continue;
+      const skip=sauce==='mild-mayo'&&wordIndex%2===1;
+      if(skip)continue;
+      let mapped=p.base;
+      if(kind==='wide')mapped=String.fromCodePoint(p.base.codePointAt(0)+0xfee0);
+      if(kind==='bubble')mapped=/[A-Z]/.test(p.base)?String.fromCodePoint(0x24b6+p.base.charCodeAt(0)-65):/[a-z]/.test(p.base)?String.fromCodePoint(0x24d0+p.base.charCodeAt(0)-97):p.base==='0'?'\u24ea':String.fromCodePoint(0x2460+Number(p.base)-1);
+      if(kind==='smallcaps')mapped=smallMap[p.base.toLowerCase()]||p.base;
+      if(kind==='alternating')mapped=(index+++(sauce==='lowercase-lime'?1:0))%2?p.base.toLowerCase():p.base.toUpperCase();
+      setBody(s,u,mapped+p.tail);
+    }
+  }
+  function zalgo(s,layer,r,amt){
+    let direction=layer.direction||'up',height=layer.height??5;
+    if(!['up','down','both'].includes(direction))throw new Error('Choose towers up, down, or both.');
+    if(!Number.isFinite(Number(height)))throw new Error('Choose a valid tower height.');
+    height=Math.max(1,Math.min(12,Math.round(Number(height))));
+    if(layer.sauce==='cloud-pepper'){direction='up';height=Math.min(12,height+2)}
+    if(layer.sauce==='basement-dust'){direction='down';height=Math.min(12,height+2)}
+    if(layer.sauce==='static-salt')direction='both';
+    const candidates=s.units.filter(u=>!u.protected&&u.id!==null&&latinParts(u.body));
+    const decorated=candidates.filter(u=>s.towers.has(u.id));
+    const fresh=candidates.filter(u=>!s.towers.has(u.id)).map(u=>({u,score:r()})).sort((a,b)=>a.score-b.score).map(x=>x.u);
+    const desired=Math.max(1,Math.ceil(candidates.length*(s.readable?.035+.0165*amt:amt/10)));
+    const selected=decorated.concat(fresh.slice(0,Math.max(0,Math.min(desired-decorated.length,s.towerMax-s.towers.size))));
+    for(const u of selected){s.towers.add(u.id);let mark='';for(let i=0;i<height;i++)mark+=pick(r,direction==='up'?upperMarks:direction==='down'?lowerMarks:i%2?lowerMarks:upperMarks);addMarks(s,u,mark)}
+  }
+  function fakeLabels(state, random, amount) {
+    const firstLetters = new Set(words(state.units).map(group => group[0]));
+    const labels = ['[FAKE]', '[SAUCE]', '[SECRET?]'];
+    const result = [];
+    for (const unit of state.units) {
+      if (firstLetters.has(unit) && random() < amount / 14) {
+        const label = extraUnit(state, pick(random, labels));
+        if (label) result.push(label);
+      }
+      result.push(unit);
+    }
+    state.units = result;
+  }
+
+  function applyMessageStyle(state, effect, amount) {
+    const style = effect === 'letter-echo' ? 'echo' : effect;
+    const strength = Math.max(1, Math.round(amount / 2));
+    const replacements = new Map();
+    const result = [];
+    let index = 0;
+    for (const unit of state.units) {
+      result.push(unit);
+      if (unit.protected || !/^[A-Za-z]$/.test(unit.body)) continue;
+      const position = index++;
+      if (position % (6 - strength)) continue;
+      const letter = unit.body;
+      if (!replacements.has(letter)) {
+        replacements.set(letter, TextGlitchKit.glitch(letter, style, strength));
+      }
+      let replacement = replacements.get(letter);
+      if (style === 'signal') {
+        addMarks(state, unit, replacement.slice(1));
+      } else if (style === 'echo') {
+        const repeat = extraUnit(state, replacement.slice(1));
+        if (repeat) result.push(repeat);
+      } else {
+        if (style === 'telephone' && position % 2) replacement = letter.toLowerCase();
+        if (style === 'leet' && replacement.length !== 1) continue;
+        if (replacement !== letter && mayDamage(state, [unit])) setBody(state, unit, replacement);
+      }
+    }
+    state.units = result;
+  }
+
+  function applyEffect(s,layer,r){
+    const kind=layer.effect,amt=layer.sauce==='mild-mayo'?layer.amount/2:layer.amount;
+    if(!amt)return;
+    if(kind==='fake')fakeLabels(s,r,amt);
+    else if(['signal','letter-echo','telephone','leet'].includes(kind))applyMessageStyle(s,kind,amt);
+    else if(kind==='mixed'){
+      for(const effect of ['scramble','symbols','zalgo'])applyEffect(s,{...layer,effect,sauce:'none',amount:Math.max(1,amt*.55)},r);
+    }else if(kind==='zalgo')zalgo(s,layer,r,amt);
+    else if(kind==='upside'){
+      expandSyntheticUnits(s);
+      for(const u of s.units){if(u.protected&&(u.id!==null||protectedCluster(u.body)))continue;const p=latinParts(u.body);const a=chars(u.body);const base=p?.base||a[0],tail=p?.tail||a.slice(1).join('');if(flipMap[base])setBody(s,u,flipMap[base]+tail)}
+      if(layer.sauce!=='ceiling-syrup')permuteLines(s);
+    }else if(kind==='mirror')permuteLines(s);
+    else if(['wide','bubble','smallcaps','alternating'].includes(kind))styleUnits(s,kind,layer.sauce,r,amt);
+    else if(kind==='spaced'){
+      const result=[];let wordIndex=0,inWord=false;
+      for(let i=0;i<s.units.length;i++){const u=s.units[i];result.push(u);if(/\s/u.test(u.body)){if(inWord)wordIndex++;inWord=false;continue}inWord=true;
+        if(layer.sauce==='vapor-vanilla'&&wordIndex%2)continue;
+        if(s.units[i+1]&&!/\s/u.test(s.units[i+1].body)&&!u.protected&&!s.units[i+1].protected){const gap=layer.sauce==='air-sugar'?'\u2009\u2009':'\u2009';const size=chars(gap).length;if(size<=s.remaining){result.push({body:gap,marks:'',id:null,protected:true});s.remaining-=size}}
+      }s.units=result;
+    }else if(['underline','overline','strike'].includes(kind)){
+      let i=0;for(const u of s.units){if(u.protected||!latinParts(u.body))continue;
+        const mark=kind==='underline'?(layer.sauce==='double-dill'?'\u0333':'\u0332'):kind==='overline'?(layer.sauce==='roof-rosemary'?'\u033f':'\u0305'):(layer.sauce==='chalk-ketchup'?'\u0335':'\u0336');
+        if(layer.sauce==='dotted-dressing'&&i++%2)continue;
+        if(kind==='strike'&&r()>(s.readable?.12:1)*amt/10)continue;
+        if(!u.marks.includes(mark))addMarks(s,u,mark);
+      }
+    }else if(kind==='scramble'||kind==='reverse'){
+      for(const group of words(s.units)){
+        if(group.some(u=>u.protected||!latinParts(u.body))||r()>amt/10)continue;
+        const target=kind==='scramble'?group.slice(1,-1):group;
+        if(target.length<2||!mayDamage(s,target))continue;
+        const positions=target.map(u=>s.units.indexOf(u)),reordered=target.slice();
+        if(kind==='reverse')reordered.reverse();
+        else for(let i=reordered.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[reordered[i],reordered[j]]=[reordered[j],reordered[i]]}
+        positions.forEach((pos,i)=>s.units[pos]=reordered[i]);
+      }
+    }else if(kind==='echo'){
+      for(const group of words(s.units)){if(group.some(u=>u.protected)||r()>amt/10||!mayDamage(s,group.slice(0,1)))continue;
+        const n=layer.sauce==='echo-espresso'?Math.min(3,group.length):1,echo=extraUnit(s,'-'+group.slice(0,n).map(visible).join(''));
+        if(echo)s.units.splice(s.units.indexOf(group[group.length-1])+1,0,echo);
+      }
+    }else if(kind==='paras'){
+      const result=[];for(const u of s.units){result.push(u);if(!u.protected&&latinParts(u.body)&&r()<amt/30){const extra=extraUnit(s,layer.sauce==='glitter-garlic'?'\u2727':'\u00b7');if(extra)result.push(extra)}}s.units=result;
+    }else if(['symbols','polyglot','void','horizon'].includes(kind)){
+      const candidates=s.units.filter(u=>!u.protected&&latinParts(u.body));
+      const ranked=candidates.map((u,i)=>({u,score:r()+(kind==='horizon'?Math.abs(i-candidates.length/2)/Math.max(1,candidates.length):0)})).sort((a,b)=>a.score-b.score);
+      for(const {u,score} of ranked){if(score>amt/10)continue;const p=latinParts(u.body);let mapped;
+        if(kind==='symbols')mapped=symbols[p.base.toLowerCase()];if(kind==='polyglot')mapped=lookalikes[p.base.toLowerCase()];if(kind==='void')mapped='\u2591';if(kind==='horizon')mapped='\u00b7';
+        if(mapped&&mapped!==p.base&&mayDamage(s,[u]))setBody(s,u,mapped+p.tail);
+      }
+    }
+    // Sauces are attached to this layer and follow its transformation.
+    if(layer.sauce==='gravity-gravy')frame(s,'\u2193 ',' \u2193');
+    if(layer.sauce==='silver-syrup')frame(s,'\u2039 ',' \u203a');
+    if(layer.sauce==='glass-salt')frame(s,'\u2727 ',' \u2727');
+    if(layer.sauce==='neon-nectar')frame(s,'\u27e6','\u27e7');
+    if(layer.sauce==='soap-soda')frame(s,'\u00b0 ',' \u00b0');
+    if(layer.sauce==='tiny-thyme')frame(s,'\u00b7 ',' \u00b7');
+    if(layer.sauce==='static-salt'&&kind!=='zalgo')applyEffect(s,{effect:'paras',amount:Math.max(1,amt*.5),sauce:'none'},r);
+  }
+  function stamp(text){
+    if(chars(text).length>OUTPUT_LIMIT)throw new Error('Shorten the text before adding an ASCII frame.');
+    const lines=text.split('\n').flatMap(line=>{const a=graphemes(line),rows=[];for(let i=0;i<a.length||i===0;i+=42)rows.push(a.slice(i,i+42).join(''));return rows});
+    const width=Math.max(4,...lines.map(x=>graphemes(x).length));
+    if(chars(text).length+(width+5)*(lines.length+2)>OUTPUT_LIMIT)
+      throw new Error('Shorten the text before adding an ASCII frame.');
+    return '+'+'-'.repeat(width+2)+'+\n'+lines.map(x=>'| '+x+' '.repeat(width-graphemes(x).length)+' |').join('\n')+'\n+'+'-'.repeat(width+2)+'+';
+  }
+  function glitch(text,options={}){
+    checkText(text);
+    if(/^(?:GKT|BTWE?)\d+\./.test(text.trim()))throw new Error('Open encrypted messages in Encrypt / Decrypt.');
+    if(!segmenter)throw new Error('These effects need a browser with Intl.Segmenter. Your message is unchanged.');
+    // Older integrations can still pass effect/intensity; new UI uses stack.
+    if(options.layers&&options.layers.length>8)throw new Error('Use at most eight sauce layers.');
+    const raw=options.stack??[{effect:options.effect||'zalgo',amount:options.intensity??3,sauce:'none',height:5,direction:'up'}];
+    if(!Array.isArray(raw)||raw.length>8)throw new Error('Use at most eight effect layers.');
+    const stack=raw.map(layer=>{
+      if(!layer||!effectDefs.some(x=>x.id===layer.effect))throw new Error('Choose a known text effect.');
+      const amount=Number(layer.amount??3);if(!Number.isFinite(amount))throw new Error('Choose a valid effect amount.');
+      const sauce=layer.sauce||'none';if(!saucesFor(layer.effect).some(x=>x.id===sauce))throw new Error('Choose a sauce made for this effect.');
+      return {...layer,amount:Math.max(0,Math.min(10,amount)),sauce};
+    });
+    const s=makeState(text,options.readable!==false),r=rngFor((options.seed||'KURU')+'|'+text+'|'+JSON.stringify(stack));
+    for(const layer of stack)applyEffect(s,layer,r);
+    const output=s.units.map(visible).join('');
+    if(options.stamp){const framed=stamp(output);if(chars(framed).length>OUTPUT_LIMIT)throw new Error('This frame would be too large. Turn off the ASCII frame or use fewer effects.');return framed}
+    return output;
+  }
+
+  function cryptoReady(){
+    if(!globalThis.crypto?.subtle||!globalThis.crypto?.getRandomValues)throw new Error('Encryption is unavailable here. Download this HTML and open it in a current browser.');
+  }
+  function to64(bytes){return btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+  function from64(s){
+    if(!/^[A-Za-z0-9_-]+$/.test(s)||s.length%4===1)throw new Error('This encrypted message is damaged or incomplete.');
+    let b;try{b=Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')+'='.repeat((4-s.length%4)%4)),c=>c.charCodeAt(0))}catch{throw new Error('This encrypted message is damaged or incomplete.')}
+    if(to64(b)!==s)throw new Error('This encrypted message is damaged or incomplete.');
+    return b;
+  }
+  async function keyFor(password,salt,usage){
+    const raw=encoder.encode(password);
+    try{
+      const material=await crypto.subtle.importKey('raw',raw,'PBKDF2',false,['deriveKey']);
+      return await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:ITERATIONS,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,[usage]);
+    } finally {raw.fill(0)}
+  }
+  async function decrypt(envelope,password){
+    checkPassword(password);cryptoReady();
+    if(typeof envelope!=='string'||envelope.length>16000)throw new Error('This encrypted message is too large.');
+    const compact=envelope.replace(/[\t\r\n ]/g,'');
+    if(!compact.startsWith(PREFIX))throw new Error('Paste a GKT1. message made by this edition. Other formats are not supported.');
+    const bytes=from64(compact.slice(PREFIX.length));
+    if(bytes.length<45||bytes.length>4044)throw new Error('This encrypted message is damaged or too large.');
+    const key=await keyFor(password,bytes.slice(0,16),'decrypt');
+    let plain;
+    try{plain=new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes.slice(16,28),additionalData:encoder.encode(PREFIX),tagLength:128},key,bytes.slice(28)))}
+    catch{throw new Error('Could not unlock: check the password and the complete encrypted message.')}
+    try{const message=decoder.decode(plain);checkText(message,1000);return message}finally{plain.fill(0)}
+  }
+  globalThis.GlitchKitCore=Object.freeze({glitch,decrypt,rngFor,effectDefs,saucesFor,stamp});
+})();
+</script>
+<script>
+const KuruFiles = (() => {
+  function download(blob, name) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = name;
+    link.hidden = true;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  }
+
+  async function copy(field) {
+    try {
+      await navigator.clipboard.writeText(field.value);
+      return 'Copied.';
+    } catch {
+      field.focus();
+      field.select();
+      return 'Press Ctrl+C or Command+C to copy the selected text.';
+    }
+  }
+
+  return { download, copy };
+})();
+
+(() => {
+  const $ = id => document.getElementById(id);
+  const core = GlitchKitCore;
+  const source = $('source');
+  const output = $('output');
+  const seed = $('seed');
+  const preset = $('mixPreset');
+  const addEffect = $('addEffect');
+  const wordStatus = $('wordStatus');
+  const hash = $('hash');
+  const history = [''];
+  let cursor = 0;
+  let nextLayer = 1;
+  let stack = [];
+
+  const layerTypes = Object.fromEntries(core.effectDefs.map(effect => [effect.id, effect]));
+  const amountEffects = new Set(['zalgo', 'mixed', 'scramble', 'symbols', 'echo', 'reverse', 'polyglot',
+    'void', 'paras', 'horizon', 'strike', 'fake', 'signal', 'letter-echo', 'telephone', 'leet']);
+  const directions = [{ id: 'up', label: 'Up' }, { id: 'down', label: 'Down' }, { id: 'both', label: 'Both ways' }];
+  const heights = Array.from({ length: 12 }, (_, i) => ({ id: i + 1, label: i + 1 }));
+  const mixes = {
+    towers: [{ effect: 'zalgo', amount: 4, height: 10, direction: 'both' }],
+    gentle: [{ effect: 'zalgo', sauce: 'cloud-pepper' }],
+    upside: [{ effect: 'upside', amount: 7, sauce: 'gravity-gravy' }],
+    bubble: [{ effect: 'bubble', amount: 7, sauce: 'soap-soda' }, { effect: 'spaced', amount: 2 }],
+  };
+
+  function say(message, error = false) {
+    wordStatus.textContent = message;
+    wordStatus.dataset.error = String(error);
+  }
+
+  function makeLayer(options = {}) {
+    return { id: nextLayer++, effect: 'zalgo', amount: 3, height: 5, direction: 'up', sauce: 'none', enabled: true, ...options };
+  }
+
+  function changed() {
+    preset.value = 'custom';
+    say('Stack updated. Press Glitch It to mix.');
+  }
+
+  function button(text, label, action, disabled = false) {
+    const control = document.createElement('button');
+    control.type = 'button';
+    control.textContent = text;
+    control.setAttribute('aria-label', label);
+    control.disabled = disabled;
+    control.addEventListener('click', action);
+    return control;
+  }
+
+  function select(label, id, options, value, onChange) {
+    const field = document.createElement('label');
+    field.append(label);
+    const control = document.createElement('select');
+    control.id = id;
+    for (const item of options) control.add(new Option(item.label, item.id));
+    control.value = value;
+    control.addEventListener('change', () => onChange(control.value));
+    field.append(control);
+    return field;
+  }
+
+  function refreshLayer(layer, field) {
+    changed();
+    renderStack();
+    $(field + '-' + layer.id).focus();
+  }
+
+  function renderStack() {
+    const list = $('effectStack');
+    list.replaceChildren();
+    stack.forEach((layer, index) => {
+      const number = index + 1;
+      const card = document.createElement('fieldset');
+      card.className = 'layer-card';
+      card.dataset.bypassed = String(!layer.enabled);
+      const legend = document.createElement('legend');
+      legend.textContent = 'Layer ' + number;
+      card.append(legend);
+
+      const header = document.createElement('div');
+      header.className = 'layer-head';
+      const enable = document.createElement('label');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = layer.enabled;
+      checkbox.setAttribute('aria-label', 'Enable layer ' + number);
+      checkbox.addEventListener('change', () => {
+        layer.enabled = checkbox.checked;
+        card.dataset.bypassed = String(!layer.enabled);
+        changed();
+      });
+      enable.append(checkbox, ' Enabled');
+      const tools = document.createElement('div');
+      tools.className = 'layer-tools';
+      for (const [step, arrow, name] of [[-1, '↑', 'up'], [1, '↓', 'down']]) {
+        const destination = index + step;
+        tools.append(button(arrow, 'Move layer ' + number + ' ' + name, () => {
+          [stack[index], stack[destination]] = [stack[destination], stack[index]];
+          refreshLayer(layer, 'effect');
+        }, destination < 0 || destination >= stack.length));
+      }
+      tools.append(button('Remove', 'Remove layer ' + number, () => {
+        stack.splice(index, 1);
+        changed();
+        renderStack();
+        addEffect.focus();
+      }));
+      header.append(enable, tools);
+      card.append(header);
+
+      const fields = document.createElement('div');
+      fields.className = 'layer-fields';
+      fields.append(select('Effect', 'effect-' + layer.id, core.effectDefs, layer.effect, value => {
+        layer.effect = value;
+        layer.sauce = 'none';
+        refreshLayer(layer, 'effect');
+      }));
+      const sauces = core.saucesFor(layer.effect);
+      fields.append(select('Sauce', 'sauce-' + layer.id, sauces, layer.sauce, value => {
+        layer.sauce = value;
+        refreshLayer(layer, 'sauce');
+      }));
+      card.append(fields);
+      const help = document.createElement('p');
+      help.className = 'tiny';
+      help.textContent = layer.sauce === 'none'
+        ? layerTypes[layer.effect].description
+        : sauces.find(sauce => sauce.id === layer.sauce).description;
+      card.append(help);
+
+      if (amountEffects.has(layer.effect)) {
+        const dial = document.createElement('div');
+        dial.className = 'layer-tower';
+        const label = document.createElement('label');
+        label.append(layer.effect === 'zalgo' ? 'Tower coverage' : 'Strength');
+        const slider = document.createElement('input');
+        slider.type = 'range';
+        slider.min = '0';
+        slider.max = '10';
+        slider.value = layer.amount;
+        const value = document.createElement('output');
+        value.textContent = layer.amount + '/10';
+        value.setAttribute('aria-hidden', 'true');
+        slider.addEventListener('input', () => {
+          layer.amount = Number(slider.value);
+          value.textContent = layer.amount + '/10';
+          changed();
+        });
+        label.append(slider, value);
+        dial.append(label);
+        if (layer.effect === 'zalgo') {
+          if (layer.sauce === 'none') {
+            dial.append(select('Tower direction', 'direction-' + layer.id, directions, layer.direction, value => {
+              layer.direction = value;
+              changed();
+            }));
+          }
+          dial.append(select('Tower height', 'height-' + layer.id, heights, layer.height, value => {
+            layer.height = Number(value);
+            changed();
+          }));
+        }
+        card.append(dial);
+      }
+      list.append(card);
+    });
+    $('stackCount').textContent = stack.length + ' / 8 layers';
+    addEffect.disabled = stack.length >= 8;
+  }
+
+  async function updateOutputControls() {
+    for (const id of ['copy', 'downloadText']) $(id).disabled = !output.value;
+    $('undo').disabled = cursor <= 0;
+    $('redo').disabled = cursor >= history.length - 1;
+    const content = output.value;
+    hash.textContent = '';
+    if (!content || !globalThis.crypto?.subtle) return;
+    const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(content));
+    if (output.value === content) {
+      hash.textContent = 'SHA-256 // ' + Array.from(new Uint8Array(bytes), n => n.toString(16).padStart(2, '0')).join('');
+    }
+  }
+
+  function setOutput(text) {
+    if (text === output.value) return;
+    history[cursor] = output.value;
+    history.splice(cursor + 1, history.length, text);
+    if (history.length > 24) history.shift();
+    cursor = history.length - 1;
+    output.value = text;
+    updateOutputControls();
+  }
+
+  function run(total = false) {
+    const active = stack.filter(layer => layer.enabled).map(({ effect, amount, height, direction, sauce }) =>
+      ({ effect, amount: total && amount ? 10 : amount, height, direction, sauce }));
+    try {
+      const result = core.glitch(source.value, { stack: active, readable: $('readable').checked, seed: seed.value });
+      setOutput(total ? '␀ ' + result + ' :: YET' : result);
+      say(active.length ? 'Stack applied.' : 'All layers bypassed.');
+    } catch (error) {
+      say(error.message, true);
+    }
+  }
+
+  function loadMix() {
+    if (preset.value === 'custom') return;
+    stack = mixes[preset.value].map(makeLayer);
+    $('readable').checked = true;
+    renderStack();
+  }
+
+  preset.addEventListener('change', () => {
+    loadMix();
+    say('Mix selected. Press Glitch It to apply it.');
+  });
+  addEffect.addEventListener('click', () => {
+    if (stack.length >= 8) return;
+    const layer = makeLayer({ effect: 'symbols' });
+    stack.push(layer);
+    refreshLayer(layer, 'effect');
+  });
+  $('readable').addEventListener('change', changed);
+  $('randomSeed').addEventListener('click', () => {
+    seed.value = Math.random().toString(36).slice(2, 10).toUpperCase();
+    run();
+  });
+  $('glitch').addEventListener('click', () => run());
+  $('total').addEventListener('click', () => run(true));
+  source.addEventListener('keydown', event => {
+    if (event.key === 'Enter' && (event.ctrlKey || event.metaKey)) {
+      event.preventDefault();
+      run();
+    }
+  });
+  output.addEventListener('input', () => {
+    history[cursor] = output.value;
+    updateOutputControls();
+  });
+  $('yet').addEventListener('click', () => setOutput((output.value || source.value) + '\nYET'));
+  $('stamp').addEventListener('click', () => {
+    try { setOutput(core.stamp(output.value || source.value)); }
+    catch (error) { say(error.message, true); }
+  });
+  for (const [id, step] of [['undo', -1], ['redo', 1]]) {
+    $(id).addEventListener('click', () => {
+      cursor += step;
+      output.value = history[cursor];
+      updateOutputControls();
+    });
+  }
+  $('copy').addEventListener('click', async () => say(await KuruFiles.copy(output)));
+  $('downloadText').addEventListener('click', () => {
+    KuruFiles.download(new Blob([output.value], { type: 'text/plain;charset=utf-8' }), 'glitchKIT-output.txt');
+  });
+  for (const stamp of document.querySelectorAll('[data-token]')) {
+    stamp.addEventListener('click', () => {
+      const start = output.selectionStart;
+      const end = output.selectionEnd;
+      const token = stamp.dataset.token;
+      setOutput(output.value.slice(0, start) + token + output.value.slice(end));
+      output.focus();
+      output.setSelectionRange(start + token.length, start + token.length);
+      say('Stamp added to output.');
+    });
+  }
+
+  loadMix();
+  run();
+})();
+</script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const cryptoKit = TextGlitchKit;
+  const message = $('secretMessage');
+  const password = $('secretPassword');
+  const result = $('secretResult');
+  const run = $('secretRun');
+  const status = $('secretStatus');
+  const showPassword = $('showSecretPassword');
+  const copy = $('secretCopy');
+  const useEncrypted = $('secretUse');
+  let mode = 'encrypt';
+  let revision = 0;
+  let working = false;
+
+  function say(message, error = false) {
+    status.textContent = message;
+    status.dataset.error = String(error);
+  }
+
   function count() {
-    const total = [...message.value].length, limit = mode === 'decrypt' ? kit.MAX_TOKEN : kit.MAX_CHARS;
-    $('count').textContent = total.toLocaleString('en-US') + ' / ' + limit.toLocaleString('en-US');
-    $('count').classList.toggle('over-limit', total &gt; limit);
+    const size = Array.from(message.value).length.toLocaleString('en-US');
+    const max = mode === 'encrypt' ? cryptoKit.MAX_CHARS : cryptoKit.MAX_TOKEN;
+    $('secretCount').textContent = size + ' / ' + max.toLocaleString('en-US');
   }
-  function invalidate(text = 'Changed. Run again to make a new result.') {
-    revision++;
+
+  function invalidate() {
+    revision += 1;
     result.value = '';
-    $('copy').disabled = true;
-    $('useEncrypted').hidden = true;
-    $('emptyMark').hidden = false;
-    $('resultTag').textContent = 'AWAITING SIGNAL';
-    $('error').hidden = true;
-    $('error').textContent = '';
-    if (text) announce(text);
+    useEncrypted.hidden = true;
+    copy.disabled = true;
     count();
+    say('');
   }
-  function buttonState() {
-    $('run').disabled = pending;
-    $('runLabel').textContent = pending ? 'Working…' : modes[mode].button;
-    $('runArrow').textContent = pending ? '···' : '↗';
-    $('run').setAttribute('aria-busy', String(pending));
+
+  function mask() {
+    password.type = 'password';
+    showPassword.textContent = 'Show';
+    showPassword.setAttribute('aria-pressed', 'false');
   }
+
+  function updateRun() {
+    run.disabled = working;
+    run.setAttribute('aria-busy', String(working));
+    run.textContent = working ? 'Working…' : mode === 'encrypt' ? 'Encrypt message' : 'Decrypt message';
+  }
+
   function setMode(next) {
     mode = next;
-    invalidate('Ready when you are.');
-    document.querySelectorAll('[data-mode]').forEach(button =&gt; {
-      const active = button.dataset.mode === mode;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-pressed', String(active));
-    });
-    const config = modes[mode];
-    $('messageLabel').textContent = config.label;
-    message.placeholder = config.placeholder;
-    result.placeholder = config.result;
-    $('resultHint').textContent = config.hint;
-    $('glitchSettings').hidden = mode !== 'glitch';
-    $('passwordSettings').hidden = mode === 'glitch';
-    $('sample').hidden = mode === 'decrypt';
-    $('inputHint').textContent = mode === 'decrypt' ? 'Paste the full BTW1. or BTWE1. result, including its prefix.' : 'Short messages. Maximum 4,000 characters.';
-    $('passwordHint').textContent = mode === 'encrypt' ? 'At least 12 characters. Keep the password separately; there’s no reset.' : 'Use the exact original password, including spaces and capitalization.';
-    $('modeNote').replaceChildren();
-    const tag = document.createElement('span'); tag.className = 'note-tag'; tag.textContent = config.tag;
-    $('modeNote').append(tag, document.createTextNode(config.note));
-    hidePassword();
-    buttonState();
-  }
-  function hidePassword() {
-    password.type = 'password';
-    $('showPassword').textContent = 'Show';
-    $('showPassword').setAttribute('aria-pressed', 'false');
-  }
-  document.querySelectorAll('[data-mode]').forEach(button =&gt; button.addEventListener('click', () =&gt; setMode(button.dataset.mode)));
-  message.addEventListener('input', () =&gt; invalidate());
-  password.addEventListener('input', () =&gt; invalidate());
-  $('style').addEventListener('change', () =&gt; invalidate());
-  $('strength').addEventListener('input', () =&gt; {
-    $('strengthValue').value = $('strength').value + ' / 5';
-    $('strength').setAttribute('aria-valuetext', $('strength').value + ' of 5');
+    $('encryptMode').setAttribute('aria-pressed', String(mode === 'encrypt'));
+    $('decryptMode').setAttribute('aria-pressed', String(mode === 'decrypt'));
+    $('secretLabel').textContent = mode === 'encrypt' ? 'Private message' : 'Encrypted message';
+    $('secretHint').textContent = mode === 'encrypt'
+      ? 'Use a passphrase of at least 12 characters.'
+      : 'Paste the full BTW1, BTWE1, or GKT1 message and enter its exact password.';
+    mask();
     invalidate();
+    updateRun();
+  }
+
+  function clear() {
+    message.value = '';
+    password.value = '';
+    mask();
+    invalidate();
+  }
+
+  $('encryptMode').addEventListener('click', () => setMode('encrypt'));
+  $('decryptMode').addEventListener('click', () => setMode('decrypt'));
+  message.addEventListener('input', invalidate);
+  password.addEventListener('input', invalidate);
+  showPassword.addEventListener('click', () => {
+    if (password.type === 'text') {
+      mask();
+      return;
+    }
+    password.type = 'text';
+    showPassword.textContent = 'Hide';
+    showPassword.setAttribute('aria-pressed', 'true');
   });
-  $('sample').addEventListener('click', () =&gt; {
-    message.value = 'The pigeons have unionized. Please hold. 🐦';
-    invalidate('Sample loaded. Give it a little interference.');
-    message.focus();
-  });
-  $('showPassword').addEventListener('click', () =&gt; {
-    const show = password.type === 'password';
-    password.type = show ? 'text' : 'password';
-    $('showPassword').textContent = show ? 'Hide' : 'Show';
-    $('showPassword').setAttribute('aria-pressed', String(show));
-  });
-  $('clear').addEventListener('click', () =&gt; {
-    message.value = ''; password.value = '';
-    hidePassword();
-    invalidate('Cleared. The fields are empty.');
-    message.focus();
-  });
-  $('run').addEventListener('click', async () =&gt; {
-    if (pending) return;
-    invalidate('');
-    const current = revision, currentMode = mode;
-    pending = true; buttonState();
-    announce(mode === 'glitch' ? 'Glitching…' : mode === 'encrypt' ? 'Encrypting locally…' : 'Checking password and message…');
+  run.addEventListener('click', async () => {
+    if (working) return;
+    invalidate();
+    const version = revision;
+    const action = mode;
+    working = true;
+    updateRun();
+    say(action === 'encrypt' ? 'Encrypting on this device…' : 'Checking the password…');
     try {
-      const text = message.value;
-      const output = currentMode === 'glitch' ? kit.glitch(text, $('style').value, Number($('strength').value)) : currentMode === 'encrypt' ? await kit.encrypt(text, password.value) : await kit.decrypt(text, password.value);
-      // Crypto cannot be canceled; discard any result whose inputs have changed.
-      if (current !== revision) return;
-      result.value = output;
-      $('copy').disabled = false;
-      $('useEncrypted').hidden = currentMode !== 'encrypt';
-      $('emptyMark').hidden = true;
-      $('resultTag').textContent = currentMode === 'glitch' ? 'GLITCHED / READABLE' : currentMode === 'encrypt' ? 'ENCRYPTED / BTW1' : 'DECRYPTED / VERIFIED';
-      announce(currentMode === 'glitch' ? 'Glitch ready. Your original is unchanged.' : currentMode === 'encrypt' ? 'Encrypted locally. Copy the entire result to keep it.' : 'Decrypted. Password and message integrity verified.');
+      let text;
+      if (action === 'encrypt') {
+        text = await cryptoKit.encrypt(message.value, password.value);
+      } else {
+        const decode = message.value.trim().startsWith('GKT1.') ? GlitchKitCore.decrypt : cryptoKit.decrypt;
+        text = await decode(message.value, password.value);
+      }
+      if (version !== revision) return;
+      result.value = text;
+      copy.disabled = false;
+      useEncrypted.hidden = action !== 'encrypt';
+      say(action === 'encrypt' ? 'Encrypted. Copy the whole result.' : 'Decrypted. Original text restored.');
     } catch (error) {
-      if (current !== revision) return;
-      announce('');
-      $('error').textContent = error.message || 'Something went wrong. Check your message and try again.';
-      $('error').hidden = false;
+      if (version === revision) say(error.message, true);
     } finally {
-      pending = false; buttonState();
+      working = false;
+      updateRun();
     }
   });
-  $('copy').addEventListener('click', async () =&gt; {
-    if (!result.value) return;
-    const current = revision;
-    try {
-      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
-      await navigator.clipboard.writeText(result.value);
-      if (current === revision) announce('Copied. Your clipboard now holds the result.');
-    } catch {
-      if (current !== revision) return;
-      result.focus(); result.select(); result.setSelectionRange(0, result.value.length);
-      announce('Copy manually: the result is selected. Press Ctrl+C (Command+C on Mac), or use your device’s Copy menu.');
-    }
+  copy.addEventListener('click', async () => {
+    const version = revision;
+    const feedback = await KuruFiles.copy(result);
+    if (version === revision) say(feedback);
   });
-  $('useEncrypted').addEventListener('click', () =&gt; {
-    if (mode !== 'encrypt' || !result.value) return;
+  useEncrypted.addEventListener('click', () => {
     message.value = result.value;
     setMode('decrypt');
-    announce('Encrypted result loaded. Use the same password to open it.');
     password.focus();
   });
-  // Browser back/forward caching may retain a page; always clear fields when leaving.
-  window.addEventListener('pagehide', () =&gt; {
-    message.value = ''; password.value = ''; hidePassword(); invalidate('Ready when you are.');
+  $('secretClear').addEventListener('click', () => {
+    clear();
+    say('Private fields cleared.');
+    message.focus();
   });
-  setMode('glitch');
+  window.addEventListener('pagehide', clear);
+  setMode('encrypt');
 })();
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-"></iframe></section>
-</main><footer>UNIFIED // local image and text processing. Clipboard access depends on your browser.</footer>
-<script>(() => {
-const tabs=[...document.querySelectorAll('[role=tab]')];
-function choose(index,focus=false){
- tabs.forEach((tab,i)=>{
-  const selected=i===index;
-  tab.setAttribute('aria-selected',String(selected));
-  tab.tabIndex=selected?0:-1;
-  document.getElementById(tab.getAttribute('aria-controls')).hidden=!selected;
- });
- if(focus)tabs[index].focus();
-}
-tabs.forEach((tab,i)=>{
- tab.addEventListener('click',()=>choose(i));
- tab.addEventListener('keydown',event=>{
-  const keys={'ArrowLeft':(i+tabs.length-1)%tabs.length,'ArrowRight':(i+1)%tabs.length,'Home':0,'End':tabs.length-1};
-  if(Object.hasOwn(keys,event.key)){event.preventDefault();choose(keys[event.key],true);}
- });
-});
-choose(0);
-})();</script></body></html>
+</script>
+<script>
+(() => {
+  const $ = selector => document.querySelector(selector);
+  const seed = $('#seed');
+  const { rngFor } = GlitchKitCore;
+  const canvas = $('#canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const imageFile = $('#imageFile');
+  const opticalEffect = $('#opticalEffect');
+  const opticalStrength = $('#opticalStrength');
+  const opticalAmount = $('#opticalAmount');
+  const opticsNote = $('#opticsNote');
+  const imageCompare = $('#imageCompare');
+  const pixelStatus = $('#pixelStatus');
+  const pngDownload = $('#pngDownload');
+  const imgData = () => ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let originalPixels = null;
+  let comparisonPixels = null;
+  let previewFrame = null;
+  let imageRequest = 0;
+  let pngUrl = null;
+  let pngRequest = 0;
+
+  const colorDescriptions = {
+    contrast: 'The same picture sits inside warm and cool surrounds. Compare the colors across the two copies.',
+    munker: 'Matching picture colors peek through bands of different hues.',
+    neon: 'Bright crossbars can make the spaces between them look tinted.',
+  };
+
+  ctx.fillStyle = '#050507';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#49f6ff';
+  ctx.font = '28px monospace';
+  ctx.fillText('DROP PIXELS HERE ::', 35, 70);
+  ctx.fillStyle = '#958da8';
+  ctx.font = '18px monospace';
+  ctx.fillText('image stays on this machine', 35, 105);
+
+  function samplePixel(sourceData, width, height, x, y, target, index) {
+    x = Math.max(0, Math.min(width - 1, x));
+    y = Math.max(0, Math.min(height - 1, y));
+    const left = Math.floor(x);
+    const top = Math.floor(y);
+    const right = Math.min(left + 1, width - 1);
+    const bottom = Math.min(top + 1, height - 1);
+    const dx = x - left;
+    const dy = y - top;
+    const a = (top * width + left) * 4;
+    const b = (top * width + right) * 4;
+    const c = (bottom * width + left) * 4;
+    const d = (bottom * width + right) * 4;
+    // Weight by alpha before mixing colors so transparent pixels do not add dark fringes.
+    const wa = sourceData[a + 3] * (1 - dx) * (1 - dy);
+    const wb = sourceData[b + 3] * dx * (1 - dy);
+    const wc = sourceData[c + 3] * (1 - dx) * dy;
+    const wd = sourceData[d + 3] * dx * dy;
+    const alpha = wa + wb + wc + wd;
+    target[index + 3] = alpha;
+    for (let channel = 0; channel < 3; channel += 1) {
+      const color = sourceData[a + channel] * wa + sourceData[b + channel] * wb
+        + sourceData[c + channel] * wc + sourceData[d + channel] * wd;
+      target[index + channel] = alpha ? color / alpha : 0;
+    }
+  }
+
+  function applyLens(pixels, isRipple, strength) {
+    const { width, height, data } = pixels;
+    const result = ctx.createImageData(width, height);
+    result.data.set(data);
+    const centerX = (width - 1) / 2;
+    const centerY = (height - 1) / 2;
+    const radiusX = Math.max(0.5, centerX);
+    const radiusY = Math.max(0.5, centerY);
+    // Sample the original for every destination pixel and keep the outer edge fixed.
+    for (let y = 0; y < height; y += 1) {
+      const ny = (y - centerY) / radiusY;
+      for (let x = 0; x < width; x += 1) {
+        const nx = (x - centerX) / radiusX;
+        const radius = Math.sqrt(nx * nx + ny * ny);
+        if (radius >= 1 || radius === 0) continue;
+        const falloff = 1 - radius;
+        let sampleX;
+        let sampleY;
+        if (isRipple) {
+          const scale = 1 + Math.sin(radius * 6 * Math.PI) * strength * 0.85 * falloff;
+          sampleX = nx * scale;
+          sampleY = ny * scale;
+        } else {
+          const angle = 3.6 * strength * falloff ** 2;
+          const cos = Math.cos(angle);
+          const sin = Math.sin(angle);
+          sampleX = nx * cos - ny * sin;
+          sampleY = nx * sin + ny * cos;
+        }
+        samplePixel(data, width, height, centerX + sampleX * radiusX, centerY + sampleY * radiusY,
+          result.data, (y * width + x) * 4);
+      }
+    }
+    return result;
+  }
+
+  function applyPattern(pixels, isMoire, strength) {
+    const { width, height, data } = pixels;
+    const result = ctx.createImageData(width, height);
+    result.data.set(data);
+    const size = Math.min(width, height);
+    const period = Math.max(4, size / 64);
+    const frequency = 2 * Math.PI / period;
+    const tile = Math.max(3, Math.round(size / 10));
+    const mortar = Math.max(1, Math.round(tile / 15));
+    const rowHeight = tile + mortar;
+    for (let y = 0; y < height; y += 1) {
+      const offset = Math.floor(y / rowHeight) % 2 * tile / 2;
+      const isMortar = y % rowHeight >= tile;
+      const tiltedPhase = (y - height / 2) * frequency * 0.087;
+      for (let x = 0; x < width; x += 1) {
+        let shade;
+        let opacity;
+        if (isMoire) {
+          const phase = (x - width / 2) * frequency;
+          const tilted = phase * 1.018 + tiltedPhase;
+          const contrast = (0.68 * Math.cos(phase - tilted) + 0.32 * Math.cos(phase + tilted)) * strength;
+          shade = contrast >= 0 ? 255 : 0;
+          opacity = 0.48 * Math.abs(contrast);
+        } else {
+          const dark = Math.floor((x + offset) / tile) % 2 === 0;
+          shade = isMortar ? 125 : dark ? 16 : 242;
+          opacity = 0.88 * strength;
+        }
+        const index = (y * width + x) * 4;
+        for (let channel = 0; channel < 3; channel += 1) {
+          const value = data[index + channel];
+          result.data[index + channel] = value + (shade - value) * opacity;
+        }
+      }
+    }
+    return result;
+  }
+
+  function tintPixel(data, index, color, amount) {
+    for (let channel = 0; channel < 3; channel += 1) {
+      const original = data[index + channel];
+      data[index + channel] = original + (color[channel] - original) * amount;
+    }
+  }
+
+  function applyPairedColors(pixels, stripes, strength) {
+    const { width, height, data } = pixels;
+    const vertical = height > width;
+    const panelWidth = vertical ? width : Math.floor(width / 2);
+    const panelHeight = vertical ? Math.floor(height / 2) : height;
+    if (panelWidth < 3 || panelHeight < 3) return pixels;
+    const scale = Math.min(0.80 * panelWidth / width, 0.80 * panelHeight / height);
+    const imageWidth = Math.max(1, Math.round(width * scale));
+    const imageHeight = Math.max(1, Math.round(height * scale));
+    const insetX = Math.floor((panelWidth - imageWidth) / 2);
+    const insetY = Math.floor((panelHeight - imageHeight) / 2);
+    const period = Math.max(4, Math.round(imageHeight / 7));
+    const warm = [253, 133, 66];
+    const cool = [89, 145, 255];
+    const result = ctx.createImageData(width, height);
+    result.data.set(data);
+
+    // Both insets use the same source coordinates. Each surround supplies the color contrast.
+    for (let y = 0; y < panelHeight * (vertical ? 2 : 1); y += 1) {
+      const localY = y % panelHeight - insetY;
+      for (let x = 0; x < panelWidth * (vertical ? 1 : 2); x += 1) {
+        const localX = x % panelWidth - insetX;
+        const tint = (vertical ? y >= panelHeight : x >= panelWidth) ? cool : warm;
+        const index = (y * width + x) * 4;
+        if (localX >= 0 && localX < imageWidth && localY >= 0 && localY < imageHeight) {
+          const sx = (localX + 0.5) * width / imageWidth - 0.5;
+          const sy = (localY + 0.5) * height / imageHeight - 0.5;
+          samplePixel(data, width, height, sx, sy, result.data, index);
+          if (stripes && localY % period < period * 0.42) {
+            tintPixel(result.data, index, tint, 0.8 * strength);
+          }
+        } else {
+          tintPixel(result.data, index, tint, 0.95 * strength);
+        }
+      }
+    }
+    return result;
+  }
+
+  function applyNeonSpread(pixels, strength) {
+    const { width, height, data } = pixels;
+    const step = Math.max(12, Math.round(Math.min(width, height) / 5));
+    const line = Math.max(0.5, step * 0.035);
+    const ink = [12, 9, 23];
+    const mint = [37, 249, 193];
+    const pink = [255, 77, 188];
+    const result = ctx.createImageData(width, height);
+    result.data.set(data);
+
+    for (let y = 0; y < height; y += 1) {
+      const dy = Math.abs(y % step - (step - 1) / 2);
+      const row = Math.floor(y / step);
+      for (let x = 0; x < width; x += 1) {
+        const dx = Math.abs(x % step - (step - 1) / 2);
+        if (dx > line && dy > line) continue;
+        const nearCrossing = Math.max(dx, dy) <= step * 0.23;
+        const neon = (row + Math.floor(x / step)) % 2 ? mint : pink;
+        tintPixel(result.data, (y * width + x) * 4, nearCrossing ? neon : ink, 0.94 * strength);
+      }
+    }
+    return result;
+  }
+
+  const illusionEffects = {
+    contrast: strength => applyPairedColors(originalPixels, false, strength),
+    munker: strength => applyPairedColors(originalPixels, true, strength),
+    neon: strength => applyNeonSpread(originalPixels, strength),
+    ripple: strength => applyLens(originalPixels, true, strength),
+    twist: strength => applyLens(originalPixels, false, strength),
+    moire: strength => applyPattern(originalPixels, true, strength),
+    cafe: strength => applyPattern(originalPixels, false, strength),
+  };
+
+  function setComparison(pixels) {
+    comparisonPixels = pixels;
+    imageCompare.setAttribute('aria-pressed', String(Boolean(pixels)));
+  }
+
+  function showEditedImage() {
+    if (!comparisonPixels) return;
+    ctx.putImageData(comparisonPixels, 0, 0);
+    setComparison(null);
+  }
+
+  function renderOptics() {
+    if (previewFrame !== null) cancelAnimationFrame(previewFrame);
+    previewFrame = null;
+    if (!originalPixels) return;
+    setComparison(null);
+    const effect = illusionEffects[opticalEffect.value];
+    const strength = Number(opticalStrength.value) / 100;
+    const pixels = strength && effect ? effect(strength) : originalPixels;
+    ctx.putImageData(pixels, 0, 0);
+  }
+
+  function updateOpticsControls() {
+    opticalStrength.disabled = opticalEffect.value === 'none';
+    opticalAmount.value = opticalStrength.value + '%';
+    opticalStrength.setAttribute('aria-valuetext', opticalAmount.value);
+    opticsNote.textContent = colorDescriptions[opticalEffect.value] ||
+      'Each illusion previews from your original. Layer other pixel effects afterward.';
+  }
+
+  function queueOpticalPreview() {
+    updateOpticsControls();
+    if (originalPixels && previewFrame === null) {
+      previewFrame = requestAnimationFrame(renderOptics);
+    }
+  }
+
+  function resetImage() {
+    opticalEffect.value = 'none';
+    updateOpticsControls();
+    renderOptics();
+  }
+
+  opticalEffect.addEventListener('change', queueOpticalPreview);
+  opticalStrength.addEventListener('input', queueOpticalPreview);
+  imageCompare.addEventListener('click', () => {
+    if (!originalPixels) return;
+    if (previewFrame !== null) renderOptics();
+    if (comparisonPixels) {
+      showEditedImage();
+      return;
+    }
+    setComparison(imgData());
+    ctx.putImageData(originalPixels, 0, 0);
+  });
+  imageFile.addEventListener('change', async () => {
+    const file = imageFile.files[0];
+    if (!file) return;
+    const request = ++imageRequest;
+    const image = new Image();
+    const url = URL.createObjectURL(file);
+    try {
+      image.src = url;
+      await image.decode();
+      if (request !== imageRequest) return;
+      const scale = Math.min(1, 1100 / image.naturalWidth, 1100 / image.naturalHeight);
+      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      originalPixels = imgData();
+      $('#optics').disabled = false;
+      imageCompare.disabled = false;
+      resetImage();
+      pixelStatus.textContent = 'Picture loaded. Pick an effect to preview it.';
+    } catch {
+      if (request === imageRequest) {
+        imageFile.value = '';
+        pixelStatus.textContent = 'Could not open that picture. Choose a supported image such as PNG or JPEG.';
+      }
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  });
+
+  function pxShift(){const r=rngFor(seed.value+'px'+canvas.width);for(let y=0;y<canvas.height;y+=Math.max(2,Math.floor(canvas.height/45))){if(r()<.55){const h=Math.max(1,Math.floor(2+r()*14)),shift=Math.floor((r()-.5)*canvas.width*.18);const d=ctx.getImageData(0,y,canvas.width,Math.min(h,canvas.height-y));ctx.putImageData(d,shift,y)}}}
+  function rgbGhost(){const d=imgData(),a=d.data,copy=new Uint8ClampedArray(a),off=Math.max(1,Math.floor(canvas.width*.012))*4;for(let i=0;i<a.length;i+=4){a[i]=copy[Math.min(a.length-4,i+off)];a[i+2]=copy[Math.max(0,i-off)+2]}ctx.putImageData(d,0,0)}
+  function blockSmear(){const r=rngFor(seed.value+'smear');for(let n=0;n<36;n++){const w=10+r()*canvas.width*.18,h=3+r()*40,x=r()*Math.max(1,canvas.width-w),y=r()*Math.max(1,canvas.height-h),d=ctx.getImageData(x,y,w,h);ctx.putImageData(d,Math.max(0,Math.min(canvas.width-w,x+(r()-.5)*160)),y)} }
+  function noiseBite(){const r=rngFor(seed.value+'noise'),d=imgData(),a=d.data;for(let i=0;i<a.length;i+=4)if(r()<.035){const n=(r()-.5)*150;a[i]+=n;a[i+1]-=n*.4;a[i+2]+=n*.7}ctx.putImageData(d,0,0)}
+  function scanline(){ctx.save();ctx.globalCompositeOperation='multiply';ctx.fillStyle='#8c7cff55';for(let y=0;y<canvas.height;y+=5)ctx.fillRect(0,y,canvas.width,2);ctx.restore()}
+  const pixelEffects = {
+    pixel: pxShift,
+    rgb: rgbGhost,
+    smear: blockSmear,
+    noise: noiseBite,
+    scan: scanline,
+    imageTotal() { pxShift(); rgbGhost(); blockSmear(); noiseBite(); scanline(); },
+  };
+  for (const [id, effect] of Object.entries(pixelEffects)) {
+    $('#' + id).addEventListener('click', () => {
+      if (!originalPixels) return;
+      if (previewFrame !== null) renderOptics();
+      showEditedImage();
+      effect();
+    });
+  }
+  $('#imageReset').addEventListener('click', resetImage);
+  $('#savePng').addEventListener('click', () => {
+    if (previewFrame !== null) renderOptics();
+    const request = ++pngRequest;
+    canvas.toBlob(blob => {
+      if (!blob || request !== pngRequest) return;
+      if (pngUrl) URL.revokeObjectURL(pngUrl);
+      pngUrl = URL.createObjectURL(blob);
+      pngDownload.href = pngUrl;
+      pngDownload.hidden = false;
+      pngDownload.click();
+    }, 'image/png');
+  });
+  window.addEventListener('pagehide', () => {
+    pngRequest += 1;
+    if (pngUrl) URL.revokeObjectURL(pngUrl);
+    pngUrl = null;
+    pngDownload.hidden = true;
+    pngDownload.removeAttribute('href');
+  });
+})();
+</script>
+</body>
+</html>
