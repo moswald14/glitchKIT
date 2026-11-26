@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-p5YmTfy5lJaB4mHCoc9Ahm0N3nTXGoPTHoab/TOK2h8=' 'sha256-qvbYSp8+It4kWtt5tkPik/VHjaewzaF9mc9z8ghLw9g=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-PKQLpAkTvdb2jnMPEUxDcx8+zJrPZ1UOmvuiLYTUT4c=' 'sha256-aqxCTmK7AGkWuNy6QNOuFjg9vJx5tv57KC3qB8+X8J0=' 'sha256-vHfCg//WNBVxk2Tvj74rhr0vRO8X6VwWZSepKbG/Vn0='; style-src 'sha256-8wZ66loRrAcGwO7eonA2D0NsWj6wAOK8A+jw7/eHBSU='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-p5YmTfy5lJaB4mHCoc9Ahm0N3nTXGoPTHoab/TOK2h8=' 'sha256-mbt8IM4cLA3TkzHCcprTqGK12nS3BpnhyHRcb2NySdM=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-QfTTDMAu9hh0j20pd5UHpcVmGsaFMyHCyfFehbT9oFk=' 'sha256-aqxCTmK7AGkWuNy6QNOuFjg9vJx5tv57KC3qB8+X8J0=' 'sha256-B4Lg73SkYiU+ltf1kDlCtUS6I+NKyxPTX8jUVue1R+w='; style-src 'sha256-KzbeffhNYJ6KEJtpEj9bdEWWdUKQiAJrrMvp2zBVvdk='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
   <title>glitchKIT::</title>
   <style>
     :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
@@ -88,6 +88,10 @@
     .status[data-error=true]{color:#ff9acb}
     .pixel-download{color:var(--cyan);font-size:12px}
     .pixel-sources{display:flex;align-items:center;gap:10px 20px;flex-wrap:wrap}
+    .pixel-paste{padding:6px 8px;border:1px dashed var(--line);border-radius:6px;color:var(--ink);font-size:12px;cursor:text}
+    .restore-input{padding:4px 7px;font-size:11px}
+    .puzzle-actions{margin:3px 0 12px}
+    #searchCopyField{min-height:7em}
     #searchEntries{min-height:6.5em;margin-top:5px}
     #wordSearchForm p{margin:5px 0 10px}
     .word-search-game{display:grid;grid-template-columns:minmax(0,34rem) minmax(10rem,1fr);gap:16px 24px;align-items:start}
@@ -136,6 +140,7 @@
           <label for="source">KNOWN INPUT</label>
           <textarea id="source" spellcheck="false" autocomplete="off">BOOP. THINKING NOT FOUND.
 unknown potato in a hat</textarea>
+          <button type="button" id="restoreInput" class="restore-input" hidden>Restore previous input</button>
         </div>
         <div>
           <div class="output-heading">
@@ -195,7 +200,8 @@ unknown potato in a hat</textarea>
         <button type="button" id="yet">YET</button>
         <button type="button" id="undo">UNDO</button>
         <button type="button" id="redo">REDO</button>
-        <button type="button" id="copy">COPY</button>
+        <button type="button" id="copy">COPY TEXT</button>
+        <button type="button" id="copyOutputPicture">COPY AS IMAGE</button>
         <button type="button" id="downloadText">SAVE .TXT</button>
         <button type="button" id="stamp">ASCII STAMP</button>
         <button type="button" id="searchFromWords">WORD SEARCH FROM INPUT</button>
@@ -225,13 +231,22 @@ unknown potato in a hat</textarea>
         <button type="submit" class="primary">BUILD PUZZLE</button>
       </form>
       <p id="searchStatus" class="status" role="status"></p>
-      <div id="wordSearchGame" class="word-search-game" hidden>
-        <div class="word-search-scroll">
-          <div id="searchGrid" role="group" aria-label="Word search grid" aria-describedby="searchPlayHint"></div>
+      <div id="wordSearchGame" hidden>
+        <div class="controls puzzle-actions">
+          <button type="button" id="copySearchText">COPY TEXT</button>
+          <button type="button" id="copySearchPicture">COPY AS IMAGE</button>
+          <button type="button" id="glitchSearchText">GLITCH TEXT</button>
+          <button type="button" id="wreckSearchPicture">SEND IMAGE TO PIXEL WRECKER</button>
         </div>
-        <div>
-          <p id="searchPlayHint" class="tiny">Pick the first and last letter. Words can run backward or diagonally. Use arrow keys to move and Space to pick.</p>
-          <ul id="searchClues"></ul>
+        <textarea id="searchCopyField" rows="5" aria-label="Word search text for copying" readonly hidden></textarea>
+        <div class="word-search-game">
+          <div class="word-search-scroll">
+            <div id="searchGrid" role="group" aria-label="Word search grid" aria-describedby="searchPlayHint"></div>
+          </div>
+          <div>
+            <p id="searchPlayHint" class="tiny">Pick the first and last letter. Words can run backward or diagonally. Use arrow keys to move and Space to pick.</p>
+            <ul id="searchClues"></ul>
+          </div>
         </div>
       </div>
     </section>
@@ -327,6 +342,7 @@ unknown potato in a hat</textarea>
       <h2 id="pixelTitle" tabindex="-1">PIXEL WRECKER</h2>
       <div class="drop pixel-sources">
         <input id="imageFile" type="file" accept="image/*" aria-label="Choose a picture">
+        <div id="pixelPaste" class="pixel-paste" tabindex="0">Paste an image here (Ctrl+V / ⌘V)</div>
         <a class="pixel-download" href="#paintTitle">Draw in Wobble Wave</a>
       </div>
       <div class="controls">
@@ -909,6 +925,210 @@ unknown potato in a hat</textarea>
 })();
 </script>
 <script>
+const KuruGlyphs = (() => {
+  const shapedGlyph = /^([\u2460-\u2468\u24b6-\u24ea\uff10-\uff19\uff21-\uff3a\uff41-\uff5a])\ufe0e?(\p{M}*)$/u;
+  const shapedTower = /[\u2460-\u2468\u24b6-\u24ea\uff10-\uff19\uff21-\uff3a\uff41-\uff5a]\ufe0e?[\u0300-\u036f]/u;
+  const plainTower = /^([A-Za-z0-9])([\u0300-\u036f]+)$/u;
+  const upper = new Map([
+    ['\u0300', '\x60'], ['\u0301', "'"], ['\u0302', '^'], ['\u0303', '~'], ['\u0304', '-'],
+    ['\u0306', 'v'], ['\u0307', '.'], ['\u0308', ':'], ['\u030a', 'o'], ['\u030b', '"'],
+    ['\u030c', 'v'], ['\u0342', '~'], ['\u0305', '-'], ['\u033f', '='],
+  ]);
+  const lower = new Map([
+    ['\u0316', '\\'], ['\u0317', '/'], ['\u0318', '<'], ['\u0319', '>'], ['\u031c', '('],
+    ['\u031d', '^'], ['\u031e', 'v'], ['\u031f', '+'], ['\u0323', '.'], ['\u0324', ':'],
+    ['\u0325', 'o'], ['\u0329', '|'], ['\u0332', '-'], ['\u0333', '='],
+  ]);
+  const segmenter = typeof Intl.Segmenter === 'function'
+    ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+
+  function segments(text) {
+    return segmenter ? Array.from(segmenter.segment(text), item => item.segment) : Array.from(text);
+  }
+
+  function describe(segment, includePlain = false) {
+    const shaped = shapedGlyph.exec(segment);
+    const match = shaped || (includePlain && plainTower.exec(segment));
+    if (!match || segment.includes('\ufe0f')) return null;
+    const [, character, marks] = match;
+    const shape = shaped ? (character.codePointAt(0) < 0xff00 ? 'bubble' : 'wide') : 'plain';
+    const above = [];
+    const below = [];
+    let strike = false;
+    for (const mark of marks) {
+      if (mark === '\ufe0e') continue;
+      if (mark === '\u0335' || mark === '\u0336' || mark === '\u0338') strike = true;
+      else if (lower.has(mark)) below.push(lower.get(mark));
+      else above.push(upper.get(mark) ?? '.');
+    }
+    return { base: character.normalize('NFKC'), shape, above: above.reverse(), below, strike };
+  }
+
+  return { segments, describe, hasShapedTower: text => Boolean(segmenter && shapedTower.test(text)) };
+})();
+const KuruPictures = (() => {
+  const fontFamily = 'ui-monospace, Consolas, "Segoe UI Emoji", monospace';
+  const background = '#09080d';
+  const foreground = '#f5f1ff';
+  const padding = 28;
+
+  function canvasFor(width, height) {
+    const canvas = document.createElement('canvas');
+    const scale = Math.min(1, 8192 / height, Math.sqrt(12000000 / (width * height)));
+    if (scale < 0.42) throw Error('This is too long for one readable picture. Shorten it or copy the text.');
+    canvas.width = Math.ceil(width * scale);
+    canvas.height = Math.ceil(height * scale);
+    const context = canvas.getContext('2d');
+    context.scale(canvas.width / width, canvas.height / height);
+    context.fillStyle = background;
+    context.fillRect(0, 0, width, height);
+    context.textBaseline = 'middle';
+    return { canvas, context };
+  }
+
+  function drawDecorated(context, glyph, x, y, width) {
+    const center = x + width / 2;
+    context.save();
+    context.textAlign = 'center';
+    context.fillStyle = foreground;
+    context.strokeStyle = foreground;
+    if (glyph.shape === 'bubble') {
+      context.beginPath();
+      context.arc(center, y, 12, 0, Math.PI * 2);
+      context.stroke();
+      context.font = '17px ' + fontFamily;
+    }
+    context.fillText(glyph.base, center, y);
+    if (glyph.strike) context.fillRect(x + 2, y, width - 4, 1);
+    context.font = '12px ' + fontFamily;
+    context.fillStyle = '#49f6ff';
+    glyph.above.forEach((mark, index) => context.fillText(mark, center, y - 17 - (glyph.above.length - index - 1) * 7));
+    context.fillStyle = '#ff9acb';
+    glyph.below.forEach((mark, index) => context.fillText(mark, center, y + 17 + index * 7));
+    context.restore();
+  }
+
+  function textPicture(text) {
+    if (text.length > 30000) throw Error('This is too long for one readable picture. Shorten it or copy the text.');
+    const font = '22px ' + fontFamily;
+    const metrics = document.createElement('canvas').getContext('2d');
+    metrics.font = font;
+    const maxWidth = 1152;
+    const widths = new Map();
+    const lines = [];
+    for (const line of text.split(/\r\n|[\r\n]/u)) {
+      let row = { parts: [], width: 0, above: 0, below: 0 };
+      for (const segment of KuruGlyphs.segments(line.replaceAll('\t', '    '))) {
+        const glyph = KuruGlyphs.describe(segment, true);
+        if (!widths.has(segment)) {
+          widths.set(segment, glyph?.shape === 'bubble' ? 27
+            : glyph?.shape === 'wide' ? 25 : metrics.measureText(glyph?.base ?? segment).width);
+        }
+        const advance = Math.min(maxWidth, widths.get(segment));
+        if (row.width + advance > maxWidth && row.parts.length) {
+          lines.push(row);
+          row = { parts: [], width: 0, above: 0, below: 0 };
+        }
+        row.parts.push({ segment, glyph, advance });
+        row.width += advance;
+        if (glyph) {
+          row.above = Math.max(row.above, glyph.above.length);
+          row.below = Math.max(row.below, glyph.below.length);
+        }
+      }
+      lines.push(row);
+    }
+    const lineHeight = row => 36 + 7 * (row.above + row.below);
+    const width = Math.ceil(lines.reduce((max, row) => Math.max(max, row.width), 0)) + padding * 2;
+    const height = lines.reduce((sum, row) => sum + lineHeight(row), 0) + padding * 2;
+    const { canvas, context } = canvasFor(width, height);
+    context.font = font;
+    context.fillStyle = foreground;
+    let top = padding;
+    for (const row of lines) {
+      const y = top + 18 + row.above * 7;
+      let x = padding;
+      let plain = '';
+      let plainStart = x;
+      for (const { segment, glyph, advance } of row.parts) {
+        if (glyph) {
+          if (plain) context.fillText(plain, plainStart, y, x - plainStart);
+          plain = '';
+          drawDecorated(context, glyph, x, y, advance);
+        } else {
+          if (!plain) plainStart = x;
+          plain += segment;
+        }
+        x += advance;
+      }
+      if (plain) context.fillText(plain, plainStart, y, x - plainStart);
+      top += lineHeight(row);
+    }
+    return canvas;
+  }
+
+  function wrapClue(context, value, width) {
+    const lines = [];
+    let row = '';
+    for (const glyph of KuruGlyphs.segments(value)) {
+      if (row && context.measureText(row + glyph).width > width) {
+        lines.push(row.trimEnd());
+        row = '';
+      }
+      if (row || glyph.trim()) row += glyph;
+    }
+    if (row) lines.push(row.trimEnd());
+    return lines;
+  }
+
+  function puzzlePicture(puzzle) {
+    const cell = 36;
+    const gridTop = 62;
+    const gridWidth = puzzle.size * cell;
+    const width = gridWidth + padding * 2;
+    const columns = puzzle.size >= 14 ? 2 : 1;
+    const columnWidth = Math.floor(gridWidth / columns);
+    const clueFont = '17px ' + fontFamily;
+    const metrics = document.createElement('canvas').getContext('2d');
+    metrics.font = clueFont;
+    const bank = Array.from({ length: columns }, () => []);
+    puzzle.entries.forEach(({ label }, index) => {
+      bank[index % columns].push(...wrapClue(metrics, label, columnWidth - 18), '');
+    });
+    const clueTop = gridTop + gridWidth + 58;
+    const height = clueTop + Math.max(...bank.map(column => column.length)) * 23 + 10;
+    const { canvas, context } = canvasFor(width, height);
+    context.font = 'bold 23px ' + fontFamily;
+    context.fillStyle = '#c6ff37';
+    context.fillText('WORD SEARCH', padding, 32);
+    context.font = 'bold 19px ' + fontFamily;
+    context.textAlign = 'center';
+    for (const [index, letter] of puzzle.grid.entries()) {
+      const x = padding + index % puzzle.size * cell;
+      const y = gridTop + Math.floor(index / puzzle.size) * cell;
+      context.fillStyle = '#181326';
+      context.fillRect(x + 1, y + 1, cell - 2, cell - 2);
+      context.strokeStyle = '#3b3251';
+      context.strokeRect(x + 1.5, y + 1.5, cell - 3, cell - 3);
+      context.fillStyle = foreground;
+      context.fillText(letter, x + cell / 2, y + cell / 2, cell - 7);
+    }
+    context.textAlign = 'left';
+    context.fillStyle = '#49f6ff';
+    context.font = 'bold 16px ' + fontFamily;
+    context.fillText('FIND', padding, clueTop - 27);
+    context.font = clueFont;
+    context.fillStyle = foreground;
+    bank.forEach((lines, column) => {
+      lines.forEach((line, row) => {
+        if (line) context.fillText(line, padding + column * columnWidth, clueTop + row * 23);
+      });
+    });
+    return canvas;
+  }
+
+  return { text: textPicture, puzzle: puzzlePicture };
+})();
 const KuruFiles = (() => {
   function download(blob, name) {
     const url = URL.createObjectURL(blob);
@@ -934,13 +1154,31 @@ const KuruFiles = (() => {
     }
   }
 
-  return { download, copy };
+  async function copyPicture(canvas, filename) {
+    const png = new Promise((resolve, reject) => {
+      canvas.toBlob(blob => blob ? resolve(blob) : reject(Error('Could not create the PNG.')), 'image/png');
+    });
+    // Keep the clipboard call inside the click gesture while the PNG is being encoded.
+    if (typeof ClipboardItem === 'function' && navigator.clipboard?.write) {
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': png })]);
+        return 'Image copied.';
+      } catch {
+        // A browser can offer clipboard access and still reject the write.
+      }
+    }
+    download(await png, filename);
+    return 'Image clipboard unavailable. PNG download started.';
+  }
+
+  return { download, copy, copyPicture };
 })();
 
-(() => {
+const KuruWordMangle = (() => {
   const $ = id => document.getElementById(id);
   const core = GlitchKitCore;
   const source = $('source');
+  const restoreInput = $('restoreInput');
   const output = $('output');
   const preview = $('outputPreview');
   const outputView = $('outputView');
@@ -963,20 +1201,7 @@ const KuruFiles = (() => {
   let editingOutput = false;
   let previewContent = '';
   let hasVisualPreview = false;
-
-  const shapedGlyph = /^([\u2460-\u2468\u24b6-\u24ea\uff10-\uff19\uff21-\uff3a\uff41-\uff5a])\ufe0e?(\p{M}*)$/u;
-  const shapedTower = /[\u2460-\u2468\u24b6-\u24ea\uff10-\uff19\uff21-\uff3a\uff41-\uff5a]\ufe0e?[\u0300-\u036f]/u;
-  const upperMarks = new Map([
-    ['\u0300', '\x60'], ['\u0301', "'"], ['\u0302', '^'], ['\u0303', '~'], ['\u0304', '-'],
-    ['\u0306', 'v'], ['\u0307', '.'], ['\u0308', ':'], ['\u030a', 'o'], ['\u030b', '"'],
-    ['\u030c', 'v'], ['\u0342', '~'], ['\u0305', '-'], ['\u033f', '='],
-  ]);
-  const lowerMarks = new Map([
-    ['\u0316', '\\'], ['\u0317', '/'], ['\u0318', '<'], ['\u0319', '>'], ['\u031c', '('],
-    ['\u031d', '^'], ['\u031e', 'v'], ['\u031f', '+'], ['\u0323', '.'], ['\u0324', ':'],
-    ['\u0325', 'o'], ['\u0329', '|'], ['\u0332', '-'], ['\u0333', '='],
-  ]);
-  const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+  let previousInput = null;
   const placementHints = {
     stack: 'Effects run top to bottom across the whole text.',
     grouped: 'Branch A gets the first half of each line. Branch B gets the second half.',
@@ -1278,7 +1503,7 @@ const KuruFiles = (() => {
     if (content === previewContent) return;
     previewContent = content;
     preview.replaceChildren();
-    hasVisualPreview = Boolean(segmenter && shapedTower.test(content));
+    hasVisualPreview = KuruGlyphs.hasShapedTower(content);
     if (!hasVisualPreview) {
       editingOutput = false;
       return;
@@ -1286,9 +1511,9 @@ const KuruFiles = (() => {
     const result = document.createDocumentFragment();
     let tallest = 0;
     let text = '';
-    for (const { segment } of segmenter.segment(content)) {
-      const match = shapedGlyph.exec(segment);
-      if (!match || segment.includes('\ufe0f')) {
+    for (const segment of KuruGlyphs.segments(content)) {
+      const glyph = KuruGlyphs.describe(segment);
+      if (!glyph) {
         text += segment;
         continue;
       }
@@ -1296,27 +1521,15 @@ const KuruFiles = (() => {
         result.append(text);
         text = '';
       }
-      const [, character, marks] = match;
       const wrapper = document.createElement('span');
-      wrapper.className = 'tower-glyph tower-glyph--' + (character.codePointAt(0) < 0xff00 ? 'bubble' : 'wide');
+      wrapper.className = 'tower-glyph tower-glyph--' + glyph.shape;
       const base = document.createElement('span');
-      const above = [];
-      const below = [];
-      base.textContent = character.normalize('NFKC');
-      for (const mark of marks) {
-        if (mark === '\ufe0e') continue;
-        if (mark === '\u0335' || mark === '\u0336' || mark === '\u0338') {
-          base.className = 'tower-glyph__base--strike';
-        } else if (lowerMarks.has(mark)) {
-          below.push(lowerMarks.get(mark));
-        } else {
-          above.push(upperMarks.get(mark) ?? '.');
-        }
-      }
+      base.textContent = glyph.base;
+      if (glyph.strike) base.className = 'tower-glyph__base--strike';
       wrapper.append(base);
-      addMarkStack(wrapper, above.reverse(), 'above');
-      addMarkStack(wrapper, below, 'below');
-      tallest = Math.max(tallest, above.length, below.length);
+      addMarkStack(wrapper, glyph.above, 'above');
+      addMarkStack(wrapper, glyph.below, 'below');
+      tallest = Math.max(tallest, glyph.above.length, glyph.below.length);
       result.append(wrapper);
     }
     if (text) result.append(text);
@@ -1344,7 +1557,7 @@ const KuruFiles = (() => {
   });
 
   async function updateOutputControls() {
-    for (const id of ['copy', 'downloadText']) $(id).disabled = !output.value;
+    for (const id of ['copy', 'copyOutputPicture', 'downloadText']) $(id).disabled = !output.value;
     $('undo').disabled = cursor <= 0;
     $('redo').disabled = cursor >= history.length - 1;
     const content = output.value;
@@ -1383,6 +1596,14 @@ const KuruFiles = (() => {
     } catch (error) {
       say(error.message, true);
     }
+  }
+
+  function glitchPuzzle(text) {
+    if (previousInput === null) previousInput = source.value;
+    source.value = text;
+    restoreInput.hidden = false;
+    run();
+    source.focus();
   }
 
   function loadMix() {
@@ -1442,6 +1663,14 @@ const KuruFiles = (() => {
       run();
     }
   });
+  restoreInput.addEventListener('click', () => {
+    if (previousInput === null) return;
+    source.value = previousInput;
+    previousInput = null;
+    restoreInput.hidden = true;
+    run();
+    source.focus();
+  });
   output.addEventListener('input', () => {
     history[cursor] = output.value;
     updateOutputControls();
@@ -1459,6 +1688,10 @@ const KuruFiles = (() => {
     });
   }
   $('copy').addEventListener('click', async () => say(await KuruFiles.copy(output, revealOutput)));
+  $('copyOutputPicture').addEventListener('click', async () => {
+    try { say(await KuruFiles.copyPicture(KuruPictures.text(output.value), 'glitchKIT-text.png')); }
+    catch (error) { say(error.message, true); }
+  });
   $('downloadText').addEventListener('click', () => {
     KuruFiles.download(new Blob([output.value], { type: 'text/plain;charset=utf-8' }), 'glitchKIT-output.txt');
   });
@@ -1478,6 +1711,7 @@ const KuruFiles = (() => {
   loadMix();
   refreshSavedMixes();
   run();
+  return { glitchPuzzle };
 })();
 </script>
 <script>
@@ -1731,7 +1965,14 @@ const KuruWordSearch = (() => {
     return direct >= 0 ? direct : words.findIndex((entry, index) => !found.has(index) && matches(entry, true));
   }
 
-  return { build, lineBetween, matchingEntry };
+  function asText(puzzle, includeClues = false) {
+    const { grid, size, entries } = puzzle;
+    const rows = Array.from({ length: size }, (_, row) => grid.slice(row * size, (row + 1) * size).join(' '));
+    const matrix = rows.join('\n');
+    return includeClues ? matrix + '\n\nFIND\n' + entries.map(entry => entry.label).join('\n') : matrix;
+  }
+
+  return { build, lineBetween, matchingEntry, asText };
 })();
 
 (() => {
@@ -1740,6 +1981,7 @@ const KuruWordSearch = (() => {
   const board = $('searchGrid');
   const clues = $('searchClues');
   const status = $('searchStatus');
+  const copyField = $('searchCopyField');
   const directions = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
   const found = new Set();
   const foundPaths = new Set();
@@ -1770,6 +2012,8 @@ const KuruWordSearch = (() => {
       return false;
     }
     puzzle = generated;
+    copyField.hidden = true;
+    copyField.value = '';
     variation += 1;
     anchor = null;
     focused = 0;
@@ -1878,6 +2122,21 @@ const KuruWordSearch = (() => {
     entries.value = $('source').value;
     if (build()) $('searchTitle').focus();
     else entries.focus();
+  });
+  $('copySearchText').addEventListener('click', async () => {
+    copyField.value = KuruWordSearch.asText(puzzle, true);
+    say(await KuruFiles.copy(copyField, () => { copyField.hidden = false; }));
+  });
+  $('copySearchPicture').addEventListener('click', async () => {
+    try { say(await KuruFiles.copyPicture(KuruPictures.puzzle(puzzle), 'glitchKIT-word-search.png')); }
+    catch (error) { say(error.message, true); }
+  });
+  $('glitchSearchText').addEventListener('click', () => {
+    KuruWordMangle.glitchPuzzle(KuruWordSearch.asText(puzzle));
+  });
+  $('wreckSearchPicture').addEventListener('click', () => {
+    try { KuruPixelWrecker.useCanvas(KuruPictures.puzzle(puzzle), 'Word search loaded as an image. Pick a pixel effect.'); }
+    catch (error) { say(error.message, true); }
   });
 })();
 </script>
@@ -2136,7 +2395,7 @@ const KuruWordSearch = (() => {
 })();
 </script>
 <script>
-(() => {
+const KuruPixelWrecker = (() => {
   const $ = selector => document.querySelector(selector);
   const seed = $('#seed');
   const { rngFor } = GlitchKitCore;
@@ -2409,12 +2668,15 @@ const KuruWordSearch = (() => {
     pixelStatus.textContent = message;
   }
 
-  $('#paintToPixel').addEventListener('click', () => {
-    const drawing = $('#paintCanvas');
+  function useCanvas(picture, message) {
     imageRequest += 1;
     imageFile.value = '';
-    loadPicture(drawing, drawing.width, drawing.height, 'Drawing copied. Pick a pixel effect.');
+    loadPicture(picture, picture.width, picture.height, message);
     $('#pixelTitle').focus();
+  }
+
+  $('#paintToPixel').addEventListener('click', () => {
+    useCanvas($('#paintCanvas'), 'Drawing copied. Pick a pixel effect.');
   });
 
   opticalEffect.addEventListener('change', queueOpticalPreview);
@@ -2429,9 +2691,7 @@ const KuruWordSearch = (() => {
     setComparison(imgData());
     ctx.putImageData(originalPixels, 0, 0);
   });
-  imageFile.addEventListener('change', async () => {
-    const file = imageFile.files[0];
-    if (!file) return;
+  async function loadFile(file, message) {
     const request = ++imageRequest;
     const image = new Image();
     const url = URL.createObjectURL(file);
@@ -2439,7 +2699,7 @@ const KuruWordSearch = (() => {
       image.src = url;
       await image.decode();
       if (request !== imageRequest) return;
-      loadPicture(image, image.naturalWidth, image.naturalHeight, 'Picture loaded. Pick an effect to preview it.');
+      loadPicture(image, image.naturalWidth, image.naturalHeight, message);
     } catch {
       if (request === imageRequest) {
         imageFile.value = '';
@@ -2448,6 +2708,23 @@ const KuruWordSearch = (() => {
     } finally {
       URL.revokeObjectURL(url);
     }
+  }
+
+  imageFile.addEventListener('change', () => {
+    const file = imageFile.files[0];
+    if (file) return loadFile(file, 'Picture loaded. Pick an effect to preview it.');
+  });
+  $('#pixelPaste').addEventListener('paste', event => {
+    const items = Array.from(event.clipboardData?.items ?? []);
+    const item = items.find(entry => entry.kind === 'file' && entry.type.startsWith('image/'));
+    const picture = item?.getAsFile();
+    if (!picture) {
+      pixelStatus.textContent = 'Copy an image and paste it here.';
+      return;
+    }
+    event.preventDefault();
+    imageFile.value = '';
+    return loadFile(picture, 'Pasted image loaded. Pick a pixel effect.');
   });
 
   function pxShift(){const r=rngFor(seed.value+'px'+canvas.width);for(let y=0;y<canvas.height;y+=Math.max(2,Math.floor(canvas.height/45))){if(r()<.55){const h=Math.max(1,Math.floor(2+r()*14)),shift=Math.floor((r()-.5)*canvas.width*.18);const d=ctx.getImageData(0,y,canvas.width,Math.min(h,canvas.height-y));ctx.putImageData(d,shift,y)}}}
@@ -2491,6 +2768,7 @@ const KuruWordSearch = (() => {
     pngDownload.hidden = true;
     pngDownload.removeAttribute('href');
   });
+  return { useCanvas };
 })();
 </script>
 </body>
