@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-p5YmTfy5lJaB4mHCoc9Ahm0N3nTXGoPTHoab/TOK2h8=' 'sha256-mbt8IM4cLA3TkzHCcprTqGK12nS3BpnhyHRcb2NySdM=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-QfTTDMAu9hh0j20pd5UHpcVmGsaFMyHCyfFehbT9oFk=' 'sha256-aqxCTmK7AGkWuNy6QNOuFjg9vJx5tv57KC3qB8+X8J0=' 'sha256-B4Lg73SkYiU+ltf1kDlCtUS6I+NKyxPTX8jUVue1R+w='; style-src 'sha256-KzbeffhNYJ6KEJtpEj9bdEWWdUKQiAJrrMvp2zBVvdk='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-p5YmTfy5lJaB4mHCoc9Ahm0N3nTXGoPTHoab/TOK2h8=' 'sha256-Ydy5DmCxlaARxxNNek6oRQKSmVR012BeJbC56VflXLc=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-dMsQ5QTQ15T89fCI8BIEZ6JeP9nat0kgZofd2+EYVko=' 'sha256-aqxCTmK7AGkWuNy6QNOuFjg9vJx5tv57KC3qB8+X8J0=' 'sha256-B4Lg73SkYiU+ltf1kDlCtUS6I+NKyxPTX8jUVue1R+w='; style-src 'sha256-KzbeffhNYJ6KEJtpEj9bdEWWdUKQiAJrrMvp2zBVvdk='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
   <title>glitchKIT::</title>
   <style>
     :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
@@ -228,13 +228,19 @@ unknown potato in a hat</textarea>
         <label for="searchEntries">ENTRIES</label>
         <textarea id="searchEntries" rows="4" maxlength="12000" spellcheck="false" aria-describedby="searchInstructions" placeholder="Bubble Towers&#10;Wobble Wave&#10;Cloud Pepper"></textarea>
         <p id="searchInstructions" class="tiny">One entry per line. Spaces and punctuation are skipped in the grid. Up to 24 entries, with up to 24 letters or numbers each.</p>
-        <button type="submit" class="primary">BUILD PUZZLE</button>
+        <div class="controls">
+          <button type="submit" class="primary">BUILD PUZZLE</button>
+          <button type="button" id="fillFromOutput">FILL FROM OUTPUT ABOVE</button>
+          <button type="button" id="fillDifficultLetters">FILL WITH RANDOM DIFFICULT LETTERS</button>
+        </div>
       </form>
       <p id="searchStatus" class="status" role="status"></p>
       <div id="wordSearchGame" hidden>
         <div class="controls puzzle-actions">
           <button type="button" id="copySearchText">COPY TEXT</button>
+          <button type="button" id="copySearchGrid">COPY GRID</button>
           <button type="button" id="copySearchPicture">COPY AS IMAGE</button>
+          <button type="button" id="useSearchGrid">USE GRID AS INPUT</button>
           <button type="button" id="glitchSearchText">GLITCH TEXT</button>
           <button type="button" id="wreckSearchPicture">SEND IMAGE TO PIXEL WRECKER</button>
         </div>
@@ -1598,12 +1604,17 @@ const KuruWordMangle = (() => {
     }
   }
 
-  function glitchPuzzle(text) {
+  function loadPuzzle(text) {
     if (previousInput === null) previousInput = source.value;
     source.value = text;
     restoreInput.hidden = false;
-    run();
+    say('Word search grid loaded. Press Glitch It to apply your stack.');
     source.focus();
+  }
+
+  function glitchPuzzle(text) {
+    loadPuzzle(text);
+    run();
   }
 
   function loadMix() {
@@ -1711,7 +1722,7 @@ const KuruWordMangle = (() => {
   loadMix();
   refreshSavedMixes();
   run();
-  return { glitchPuzzle };
+  return { loadPuzzle, glitchPuzzle };
 })();
 </script>
 <script>
@@ -1845,20 +1856,31 @@ const KuruWordMangle = (() => {
 <script>
 const KuruWordSearch = (() => {
   const maxSize = 24;
+  const maxInput = 12000;
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const difficultAscii = 'QXZJKVWY';
+  const difficultLetters =
+    'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞ' +
+    'ĀĂĄĆĈĊČĎĐĒĔĖĘĚĜĞĠĢĤĦĨĪĬĮİĴĶĹĻĽŁŃŅŇŊŌŎŐŒŔŖŘŚŜŞŠŢŤŦŨŪŬŮŰŲŴŶŸŹŻŽ' +
+    'ǍǏǑǓǕǗǙǛǞǠǢǦǨǪǬǮǴǸǺǼǾȘȚ';
   const directions = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]];
   const segmenter = typeof Intl.Segmenter === 'function'
     ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+  const wordSegmenter = segmenter ? new Intl.Segmenter(undefined, { granularity: 'word' }) : null;
+
+  function gridLetters(label) {
+    const normalized = label.normalize('NFKC').toUpperCase().normalize('NFC');
+    const characters = segmenter ? Array.from(segmenter.segment(normalized), item => item.segment) : Array.from(normalized);
+    return characters.filter(character => /^[\p{L}\p{N}]/u.test(character));
+  }
 
   function entriesFromText(text) {
-    if (text.length > 12000) throw Error('Use a shorter list of entries.');
+    if (text.length > maxInput) throw Error('Use a shorter list of entries.');
     const entries = [];
     for (const [index, line] of text.split(/\r\n|[\r\n]/u).entries()) {
       const label = line.trim();
       if (!label) continue;
-      const normalized = label.normalize('NFKC').toUpperCase().normalize('NFC');
-      const characters = segmenter ? Array.from(segmenter.segment(normalized), item => item.segment) : Array.from(normalized);
-      const letters = characters.filter(character => /^[\p{L}\p{N}]/u.test(character));
+      const letters = gridLetters(label);
       if (!letters.length) throw Error('Line ' + (index + 1) + ' needs at least one letter or number.');
       if (letters.length > maxSize) throw Error('Line ' + (index + 1) + ' is longer than 24 grid cells.');
       entries.push({ label, letters });
@@ -1866,6 +1888,45 @@ const KuruWordSearch = (() => {
     if (!entries.length) throw Error('Enter at least one word or phrase.');
     if (entries.length > maxSize) throw Error('Use up to 24 nonblank lines.');
     return entries;
+  }
+
+  function fromOutput(text) {
+    if (!text.trim()) throw Error('Make some output in Word Mangle first.');
+    // Break words using ordinary letters in place of bubbles. Each replacement
+    // has the same length, so the original glyphs and tower marks can be copied.
+    const wordView = text.replace(/[\u2460-\u2468\u24b6-\u24ea]/gu, letter => letter.normalize('NFKC'));
+    const words = wordSegmenter?.segment(wordView) ?? Array.from(
+      wordView.matchAll(/[\p{L}\p{N}][\p{L}\p{N}\p{M}]*/gu),
+      match => ({ segment: match[0], index: match.index, isWordLike: true })
+    );
+    const labels = [];
+    let length = 0;
+    let omitted = 0;
+    for (const word of words) {
+      if (!word.isWordLike) continue;
+      const label = text.slice(word.index, word.index + word.segment.length);
+      const letters = gridLetters(label);
+      const nextLength = length + label.length + (labels.length ? 1 : 0);
+      if (!letters.length || letters.length > maxSize || labels.length === maxSize || nextLength > maxInput) {
+        omitted += 1;
+        continue;
+      }
+      labels.push(label);
+      length = nextLength;
+    }
+    if (!labels.length) throw Error('The output needs a word or number that fits in 24 grid cells.');
+    return { text: labels.join('\n'), count: labels.length, omitted };
+  }
+
+  function randomEntries(random = Math.random) {
+    return Array.from({ length: maxSize }, () => {
+      const length = 4 + Math.floor(random() * 5);
+      const asciiIndex = Math.floor(random() * length);
+      return Array.from({ length }, (_, index) => {
+        const pool = index === asciiIndex || random() < 0.35 ? difficultAscii : difficultLetters;
+        return pool[Math.floor(random() * pool.length)];
+      }).join('');
+    }).join('\n');
   }
 
   function findPosition(grid, size, letters, random) {
@@ -1972,7 +2033,7 @@ const KuruWordSearch = (() => {
     return includeClues ? matrix + '\n\nFIND\n' + entries.map(entry => entry.label).join('\n') : matrix;
   }
 
-  return { build, lineBetween, matchingEntry, asText };
+  return { build, lineBetween, matchingEntry, asText, fromOutput, randomEntries };
 })();
 
 (() => {
@@ -2123,13 +2184,36 @@ const KuruWordSearch = (() => {
     if (build()) $('searchTitle').focus();
     else entries.focus();
   });
-  $('copySearchText').addEventListener('click', async () => {
-    copyField.value = KuruWordSearch.asText(puzzle, true);
-    say(await KuruFiles.copy(copyField, () => { copyField.hidden = false; }));
+  $('fillFromOutput').addEventListener('click', () => {
+    try {
+      const { text, count, omitted } = KuruWordSearch.fromOutput($('output').value);
+      entries.value = text;
+      entries.focus();
+      const skipped = omitted ? ' Skipped ' + omitted + ' over the puzzle limits.' : '';
+      say('Filled ' + count + (count === 1 ? ' entry.' : ' entries.') + skipped);
+    } catch (error) {
+      say(error.message, true);
+    }
   });
+  $('fillDifficultLetters').addEventListener('click', () => {
+    entries.value = KuruWordSearch.randomEntries();
+    entries.focus();
+    say('Filled 24 entries with random difficult letters.');
+  });
+
+  async function copyText(includeClues) {
+    copyField.value = KuruWordSearch.asText(puzzle, includeClues);
+    say(await KuruFiles.copy(copyField, () => { copyField.hidden = false; }));
+  }
+
+  $('copySearchText').addEventListener('click', () => copyText(true));
+  $('copySearchGrid').addEventListener('click', () => copyText(false));
   $('copySearchPicture').addEventListener('click', async () => {
     try { say(await KuruFiles.copyPicture(KuruPictures.puzzle(puzzle), 'glitchKIT-word-search.png')); }
     catch (error) { say(error.message, true); }
+  });
+  $('useSearchGrid').addEventListener('click', () => {
+    KuruWordMangle.loadPuzzle(KuruWordSearch.asText(puzzle));
   });
   $('glitchSearchText').addEventListener('click', () => {
     KuruWordMangle.glitchPuzzle(KuruWordSearch.asText(puzzle));
