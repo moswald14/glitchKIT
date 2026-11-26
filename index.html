@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>glitchKIT // ALL NEW</title>
+  <style>
+    :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0,#241031 0,transparent 35%),var(--bg);color:var(--ink);font:15px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;min-height:100vh}
+    header{padding:28px clamp(18px,5vw,64px) 15px;border-bottom:1px solid var(--line)}
+    h1{font-size:clamp(30px,6vw,72px);letter-spacing:-.08em;margin:0;color:var(--cyan);text-shadow:4px 0 var(--hot)}
+    .tag{color:var(--acid);letter-spacing:.12em}.sub{color:var(--muted);max-width:800px}
+    main{padding:20px clamp(14px,4vw,50px) 60px;display:grid;gap:18px}
+    .panel{background:linear-gradient(145deg,#15111fdd,#0d0b13e8);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 18px 60px #0008}
+    .panel h2{margin:0 0 12px;font-size:15px;color:var(--acid);letter-spacing:.13em}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    textarea{width:100%;min-height:210px;resize:vertical;background:#09080d;border:1px solid #3b3251;color:var(--ink);padding:13px;border-radius:9px;font:inherit}
+    input,select,button{font:inherit} input[type=text],input[type=number],select{background:#09080d;color:var(--ink);border:1px solid #3b3251;padding:9px;border-radius:7px}
+    input[type=range]{accent-color:var(--hot);width:150px} .controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:12px 0}
+    button{border:1px solid #514563;background:#20172c;color:var(--ink);padding:9px 12px;border-radius:8px;cursor:pointer;transition:.12s transform,.12s border-color}
+    button:hover{transform:translateY(-1px);border-color:var(--cyan)} button.primary{background:var(--hot);border-color:var(--hot);color:white;font-weight:800} button.acid{background:var(--acid);color:#10120a;border-color:var(--acid);font-weight:900}
+    .dangerously-silly{font-size:18px;padding:13px 18px;box-shadow:3px 3px 0 var(--cyan)}
+    label{color:var(--muted);font-size:12px}.status{min-height:1.5em;color:var(--cyan);word-break:break-all}.tiny{font-size:11px;color:var(--muted)}
+    canvas{width:100%;max-height:520px;object-fit:contain;background:#050507;border:1px dashed #3b3251;border-radius:9px;image-rendering:pixelated}
+    .drop{padding:14px;border:1px dashed #514563;border-radius:9px;color:var(--muted)}
+    footer{color:var(--muted);padding:0 clamp(18px,5vw,64px) 40px}.flash{animation:flash .22s steps(2)}
+    @keyframes flash{50%{filter:invert(1) hue-rotate(120deg);transform:translateX(3px)}}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}textarea{min-height:170px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="tag">mozWORLD LABS // KURU CHECK</div>
+    <h1>glitchKIT::</h1>
+    <p class="sub">ALL NEW. Deterministic chaos for text + pixels. No network calls, no mystery upload, no irreversible button. Mess with copies; keep the original.</p>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>01 // WORD MANGLE</h2>
+      <div class="controls">
+        <label>MODE <select id="mode"><option value="mixed">mixed soup</option><option value="scramble">word scramble</option><option value="symbols">symbol leak</option><option value="echo">echo chamber</option><option value="reverse">reverse shards</option><option value="zalgo">soft zalgo</option><option value="fake">[FAKE] + [SAUCE]</option></select></label>
+        <label>INTENSITY <input id="intensity" type="range" min="1" max="10" value="4"></label>
+        <label>SEED <input id="seed" type="text" value="KURU" size="12"></label>
+        <button id="randomSeed">RANDOM RANDOM</button>
+      </div>
+      <div class="grid">
+        <div><label>KNOWN INPUT</label><textarea id="source" spellcheck="false">BOOP. THINKING NOT FOUND.\nunknown potato in a hat</textarea></div>
+        <div><label>UNKNOWN OUTPUT</label><textarea id="output" spellcheck="false"></textarea></div>
+      </div>
+      <div class="controls">
+        <button class="primary" id="glitch">GLITCH IT</button>
+        <button class="acid dangerously-silly" id="total">TOTAL GLITCH</button>
+        <button id="yet">YET</button><button id="undo">UNDO</button><button id="redo">REDO</button>
+        <button id="copy">COPY</button><button id="downloadText">SAVE .TXT</button><button id="stamp">ASCII STAMP</button>
+      </div>
+      <div class="status" id="hash">SHA-256 // waiting for nonsense</div>
+    </section>
+
+    <section class="panel">
+      <h2>02 // PIXEL WRECKER</h2>
+      <div class="drop"><input id="imageFile" type="file" accept="image/*"> drop in a picture; processing stays local</div>
+      <div class="controls">
+        <button id="pixel">PIXEL SHIFT</button><button id="rgb">RGB GHOST</button><button id="smear">BLOCK SMEAR</button><button id="noise">NOISE BITE</button><button id="scan">SCANLINE</button>
+        <button class="primary" id="imageTotal">TOTAL PIXEL</button><button id="imageReset">RESET IMAGE</button><button id="savePng">SAVE PNG</button>
+      </div>
+      <canvas id="canvas" width="900" height="450"></canvas>
+      <p class="tiny">Image effects operate on the canvas copy. RESET IMAGE reconstructs from the file you chose.</p>
+    </section>
+
+    <section class="panel">
+      <h2>03 // NULL BENCH</h2>
+      <div class="controls">
+        <button data-token="␀">␀ NUL</button><button data-token="•">• DOT</button><button data-token="::">:: GATE</button><button data-token="[UNKNOWN]">[UNKNOWN]</button><button data-token="YET">YET</button><button data-token="GITTET|GODDIT">GITTET|GODDIT</button>
+      </div>
+      <p class="tiny">These insert visible symbols, including the NUL glyph ␀ — not invisible control bytes.</p>
+    </section>
+  </main>
+  <footer>glitchKIT v2026.10.05 // <span id="build">KURU:LOCAL</span> // chaos is allowed to have an undo button.</footer>
+
+<script>
+(() => {
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const source=$('#source'), output=$('#output'), mode=$('#mode'), intensity=$('#intensity'), seed=$('#seed'), hash=$('#hash');
+  let history=[''], cursor=0, originalImage=null;
+  const hash32=str=>{let h=2166136261;for(const ch of str){h^=ch.codePointAt(0);h=Math.imul(h,16777619)}return h>>>0};
+  const rngFor=str=>{let x=hash32(str)||0x9e3779b9;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296}};
+  const pick=(r,a)=>a[Math.floor(r()*a.length)];
+  const setOutput=(v,push=true)=>{output.value=v;if(push){history=history.slice(0,cursor+1);history.push(v);cursor=history.length-1}updateHash(v)};
+  async function updateHash(v){if(!crypto?.subtle){hash.textContent='SHA-256 // unavailable';return}const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));hash.textContent='SHA-256 // '+[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+  const shuffle=(word,r)=>{if(word.length<4)return word;const a=[...word], first=a.shift(),last=a.pop();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return first+a.join('')+last};
+  const combining=['̴','̷','̸','̡','̢','̨','̛','̖','̗','̘','̙','̜','̝','̞','̟','̠','̤','̥','̦','̩','̪','̫','̬','̮','̯','̰','̱','̲','̳','̹','̺','̻','̼','͇','͈'];
+  const sym={'a':'@','e':'Ξ','i':'!','o':'Ø','s':'$','t':'†','l':'|','b':'ß','g':'9'};
+  function transform(text,kind,amt,r){
+    if(kind==='scramble')return text.replace(/[A-Za-z]{4,}/g,w=>r()<amt/11?shuffle(w,r):w);
+    if(kind==='symbols')return [...text].map(c=>r()<amt/15?(sym[c.toLowerCase()]||c):c).join('');
+    if(kind==='echo')return text.split(/(\s+)/).map(w=>w.trim()&&r()<amt/14?w+' '+w.slice(0,Math.max(1,Math.floor(w.length*r()))):w).join('');
+    if(kind==='reverse')return text.split(/(\s+)/).map(w=>w.trim()&&r()<amt/12?[...w].reverse().join(''):w).join('');
+    if(kind==='zalgo')return [...text].map(c=>/\s/.test(c)?c:c+(r()<amt/11?pick(r,combining)+(r()<amt/18?pick(r,combining):''):'')).join('');
+    if(kind==='fake'){const bits=text.split(/(\s+)/);return bits.map(w=>w.trim()&&r()<amt/14?pick(r,['[FAKE]','[SAUCE]','[SECRET?]'])+w:w).join('')}
+    let v=text;for(const k of ['scramble','symbols','echo','reverse','zalgo'])v=transform(v,k,Math.max(1,amt-2),r);return v;
+  }
+  function run(total=false){const r=rngFor(seed.value+'|'+source.value+'|'+mode.value+'|'+intensity.value);const amt=total?10:+intensity.value;let kind=total?'mixed':mode.value;let v=transform(source.value,kind,amt,r);if(total)v='␀ '+v+' :: YET';setOutput(v);document.body.classList.remove('flash');void document.body.offsetWidth;document.body.classList.add('flash')}
+  $('#glitch').onclick=()=>run(false); $('#total').onclick=()=>run(true);
+  $('#randomSeed').onclick=()=>{seed.value=Math.random().toString(36).slice(2,10).toUpperCase()};
+  $('#yet').onclick=()=>setOutput((output.value||source.value)+'\nYET');
+  $('#undo').onclick=()=>{if(cursor>0){cursor--;output.value=history[cursor];updateHash(output.value)}};
+  $('#redo').onclick=()=>{if(cursor<history.length-1){cursor++;output.value=history[cursor];updateHash(output.value)}};
+  $('#copy').onclick=async()=>{await navigator.clipboard.writeText(output.value);$('#copy').textContent='COPIED';setTimeout(()=>$('#copy').textContent='COPY',700)};
+  const save=(blob,name)=>{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+  $('#downloadText').onclick=()=>save(new Blob([output.value],{type:'text/plain'}),'glitchKIT-output.txt');
+  $('#stamp').onclick=()=>{const lines=(output.value||source.value).split('\n');const w=Math.min(72,Math.max(10,...lines.map(x=>x.length)));const fit=lines.flatMap(line=>{const a=[];for(let i=0;i<line.length||i===0;i+=w)a.push(line.slice(i,i+w));return a});setOutput('┌'+'─'.repeat(w+2)+'┐\n'+fit.map(x=>'│ '+x.padEnd(w)+' │').join('\n')+'\n└'+'─'.repeat(w+2)+'┘')};
+  $$('[data-token]').forEach(b=>b.onclick=()=>{const t=b.dataset.token;const el=document.activeElement===source?source:output;const a=el.selectionStart??el.value.length,z=el.selectionEnd??a;el.value=el.value.slice(0,a)+t+el.value.slice(z);el.focus();el.selectionStart=el.selectionEnd=a+t.length;if(el===output)setOutput(el.value)});
+
+  const canvas=$('#canvas'),ctx=canvas.getContext('2d',{willReadFrequently:true});
+  const drawPlaceholder=()=>{ctx.fillStyle='#050507';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#49f6ff';ctx.font='28px monospace';ctx.fillText('DROP PIXELS HERE ::',35,70);ctx.fillStyle='#958da8';ctx.font='18px monospace';ctx.fillText('image stays on this machine',35,105)};drawPlaceholder();
+  function drawOriginal(){if(!originalImage)return;const max=1100,scale=Math.min(1,max/originalImage.naturalWidth,max/originalImage.naturalHeight);canvas.width=Math.max(1,Math.round(originalImage.naturalWidth*scale));canvas.height=Math.max(1,Math.round(originalImage.naturalHeight*scale));ctx.drawImage(originalImage,0,0,canvas.width,canvas.height)}
+  $('#imageFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const img=new Image();img.onload=()=>{originalImage=img;drawOriginal();URL.revokeObjectURL(img.src)};img.src=URL.createObjectURL(f)};
+  const imgData=()=>ctx.getImageData(0,0,canvas.width,canvas.height);
+  function pxShift(){if(!originalImage)return;const r=rngFor(seed.value+'px'+canvas.width);for(let y=0;y<canvas.height;y+=Math.max(2,Math.floor(canvas.height/45))){if(r()<.55){const h=Math.max(1,Math.floor(2+r()*14)),shift=Math.floor((r()-.5)*canvas.width*.18);const d=ctx.getImageData(0,y,canvas.width,Math.min(h,canvas.height-y));ctx.putImageData(d,shift,y)}}}
+  function rgbGhost(){if(!originalImage)return;const d=imgData(),a=d.data,copy=new Uint8ClampedArray(a),off=Math.max(1,Math.floor(canvas.width*.012))*4;for(let i=0;i<a.length;i+=4){a[i]=copy[Math.min(a.length-4,i+off)];a[i+2]=copy[Math.max(0,i-off)+2]}ctx.putImageData(d,0,0)}
+  function blockSmear(){if(!originalImage)return;const r=rngFor(seed.value+'smear');for(let n=0;n<36;n++){const w=10+r()*canvas.width*.18,h=3+r()*40,x=r()*Math.max(1,canvas.width-w),y=r()*Math.max(1,canvas.height-h),d=ctx.getImageData(x,y,w,h);ctx.putImageData(d,Math.max(0,Math.min(canvas.width-w,x+(r()-.5)*160)),y)} }
+  function noiseBite(){if(!originalImage)return;const r=rngFor(seed.value+'noise'),d=imgData(),a=d.data;for(let i=0;i<a.length;i+=4)if(r()<.035){const n=(r()-.5)*150;a[i]+=n;a[i+1]-=n*.4;a[i+2]+=n*.7}ctx.putImageData(d,0,0)}
+  function scanline(){if(!originalImage)return;ctx.save();ctx.globalCompositeOperation='multiply';ctx.fillStyle='#8c7cff55';for(let y=0;y<canvas.height;y+=5)ctx.fillRect(0,y,canvas.width,2);ctx.restore()}
+  $('#pixel').onclick=pxShift;$('#rgb').onclick=rgbGhost;$('#smear').onclick=blockSmear;$('#noise').onclick=noiseBite;$('#scan').onclick=scanline;
+  $('#imageTotal').onclick=()=>{pxShift();rgbGhost();blockSmear();noiseBite();scanline()};$('#imageReset').onclick=drawOriginal;
+  $('#savePng').onclick=()=>canvas.toBlob(b=>b&&save(b,'glitchKIT-pixels.png'),'image/png');
+  setOutput(transform(source.value,'mixed',4,rngFor('KURU')),false);
+})();
+</script>
+</body>
+</html>
