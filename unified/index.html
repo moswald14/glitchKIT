@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-knPuP0QhLKUfZmc2rv+ZklxxbXKa5I4t3IQXWbpbyms=' 'sha256-q9h6r/m5pe/uFXJ/JAjMDZJQEksEPpX/B8loyMONg2A=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-GoX2xxt7Dx3UaxldRXypbq2+GdzpNL25pR0E6s9cQZ4='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-X0tWIu1JX+AQd1cI830K2JYor0Yd4SdBrhkJIOo7780=' 'sha256-8ZXl4td6zscERXiXj/lz5tbHY82qO9R087wSVHeOkEU=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-GoX2xxt7Dx3UaxldRXypbq2+GdzpNL25pR0E6s9cQZ4='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
   <title>glitchKIT::</title>
   <style>
     :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
@@ -101,6 +101,7 @@ unknown potato in a hat</textarea>
                 <option value="gentle">Gentle Glitch</option>
                 <option value="upside">Upside-down Snack</option>
                 <option value="bubble">Bubble Bath</option>
+                <option value="bubble-towers">Bubble Towers</option>
               </optgroup>
               <optgroup id="savedMixOptions" label="Saved mixes" hidden></optgroup>
               <option value="custom">My own stack</option>
@@ -440,7 +441,12 @@ unknown potato in a hat</textarea>
   const smallMap=Object.fromEntries(chars('abcdefghijklmnopqrstuvwxyz').map((x,i)=>[x,smallChars[i]]));
   const smallBack=Object.fromEntries(Object.entries(smallMap).map(([a,b])=>[b,a]));
   const flipMap={a:'\u0250',b:'q',c:'\u0254',d:'p',e:'\u01dd',f:'\u025f',g:'\u0183',h:'\u0265',i:'\u1d09',j:'\u027e',k:'\u029e',l:'l',m:'\u026f',n:'u',o:'o',p:'d',q:'b',r:'\u0279',s:'s',t:'\u0287',u:'n',v:'\u028c',w:'\u028d',x:'x',y:'\u028e',z:'z',A:'\u2200',B:'\u15fa',C:'\u0186',D:'\u15e1',E:'\u018e',F:'\u2132',G:'\u2141',H:'H',I:'I',J:'\u017f',K:'\u029e',L:'\u02e5',M:'W',N:'N',O:'O',P:'\u0500',Q:'\u038c',R:'\u1d1a',S:'S',T:'\u22a5',U:'\u2229',V:'\u039b',W:'M',X:'X',Y:'\u2144',Z:'Z','0':'0','1':'\u0196','2':'\u1105','3':'\u0190','4':'\u3123','5':'\u03db','6':'9','7':'\u3125','8':'8','9':'6','!':'\u00a1','?':'\u00bf','(' :')',')':'(','[':']',']':'[','{':'}','}':'{'};
-  const protectedCluster=s=>/\p{Extended_Pictographic}|\p{Regional_Indicator}|\u200d|\u20e3/u.test(s);
+  function protectedCluster(cluster) {
+    // Circled letters can take combining marks. Keep emoji presentation and joined sequences together.
+    const circledText = /^[\u24b6-\u24ea]/u.test(cluster) && !cluster.includes('\ufe0f');
+    return /\p{Regional_Indicator}|\u200d|\u20e3/u.test(cluster) ||
+      (!circledText && /\p{Extended_Pictographic}/u.test(cluster));
+  }
   function latinParts(body){
     const a=chars(body),first=a.shift(),normalized=first?.normalize('NFKC');
     let base=/^[A-Za-z0-9]$/.test(first||'')?first:/^[A-Za-z0-9]$/.test(normalized||'')?normalized:smallBack[first];
@@ -748,6 +754,7 @@ const KuruFiles = (() => {
     gentle: [{ effect: 'zalgo', sauce: 'cloud-pepper' }],
     upside: [{ effect: 'upside', amount: 7, sauce: 'gravity-gravy' }],
     bubble: [{ effect: 'bubble', amount: 7, sauce: 'soap-soda' }, { effect: 'spaced', amount: 2 }],
+    'bubble-towers': [{ effect: 'bubble' }, { effect: 'zalgo', amount: 7, height: 8, direction: 'both' }],
   };
 
   function say(message, error = false) {
