@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-p5YmTfy5lJaB4mHCoc9Ahm0N3nTXGoPTHoab/TOK2h8=' 'sha256-qvbYSp8+It4kWtt5tkPik/VHjaewzaF9mc9z8ghLw9g=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-1MMtxaL+86N4zPDb//8OefEjphDX5pcLm3Lj2cPgueI='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-p5YmTfy5lJaB4mHCoc9Ahm0N3nTXGoPTHoab/TOK2h8=' 'sha256-qvbYSp8+It4kWtt5tkPik/VHjaewzaF9mc9z8ghLw9g=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-PKQLpAkTvdb2jnMPEUxDcx8+zJrPZ1UOmvuiLYTUT4c=' 'sha256-aqxCTmK7AGkWuNy6QNOuFjg9vJx5tv57KC3qB8+X8J0=' 'sha256-vHfCg//WNBVxk2Tvj74rhr0vRO8X6VwWZSepKbG/Vn0='; style-src 'sha256-8wZ66loRrAcGwO7eonA2D0NsWj6wAOK8A+jw7/eHBSU='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
   <title>glitchKIT::</title>
   <style>
     :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
@@ -87,6 +87,39 @@
     .checksum{overflow-wrap:anywhere}
     .status[data-error=true]{color:#ff9acb}
     .pixel-download{color:var(--cyan);font-size:12px}
+    .pixel-sources{display:flex;align-items:center;gap:10px 20px;flex-wrap:wrap}
+    #searchEntries{min-height:6.5em;margin-top:5px}
+    #wordSearchForm p{margin:5px 0 10px}
+    .word-search-game{display:grid;grid-template-columns:minmax(0,34rem) minmax(10rem,1fr);gap:16px 24px;align-items:start}
+    .word-search-scroll{min-width:0;overflow:auto;padding:3px}
+    #searchGrid{display:grid;grid-template-columns:repeat(var(--search-size),minmax(1.25rem,1fr));gap:3px;min-width:calc(var(--search-size) * 1.44rem)}
+    #searchGrid button{min-width:0;aspect-ratio:1;padding:0;display:grid;place-items:center;border-radius:4px;font-size:clamp(.75rem,2vw,1rem);color:var(--ink);background:#100d18}
+    #searchGrid button:hover{transform:none}
+    #searchGrid button.search-found{background:#243718;border-color:#617c34;color:#e7ffac}
+    #searchGrid button.search-current{background:#18404a;border-color:var(--cyan);color:#edffff}
+    #searchGrid button:focus-visible{z-index:1;outline-offset:0}
+    #searchClues{margin:8px 0 0;padding-left:1.3em;overflow-wrap:anywhere}
+    #searchClues li{margin:5px 0}
+    #searchClues .search-found-clue{text-decoration:line-through;color:#b5d480}
+    .paint-layout{display:grid;grid-template-columns:minmax(12rem,14rem) minmax(0,1fr);gap:16px}
+    .paint-tools{display:grid;align-content:start;gap:10px}
+    .paint-tools > label:not(.paint-mirror){display:grid;gap:4px}
+    .paint-ink,.paint-dial,.paint-mirror,.paint-history{display:flex;align-items:center;gap:8px}
+    .paint-history{flex-wrap:wrap}
+    .paint-history button{font-size:12px;padding:6px 8px}
+    .paint-ink input{width:3.7rem;height:2.1rem;padding:2px;background:#09080d;border:1px solid var(--line);border-radius:6px}
+    .paint-palette{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+    .paint-palette button{padding:0;width:100%;aspect-ratio:1;border:1px solid #ffffff4d;border-radius:5px;background:var(--paint-swatch)}
+    .paint-palette button[aria-pressed=true]{outline:2px solid var(--ink);outline-offset:1px}
+    .paint-white{--paint-swatch:#f4f7fb}.paint-yellow{--paint-swatch:#ffe12c}.paint-pink{--paint-swatch:#ff3e9d}.paint-cyan{--paint-swatch:#27e2ff}
+    .paint-green{--paint-swatch:#70ff8d}.paint-orange{--paint-swatch:#ff8a34}.paint-purple{--paint-swatch:#a572ff}.paint-black{--paint-swatch:#11151b}
+    .paint-dial input{flex:1;min-width:0}
+    .paint-dial output{min-width:2ch}
+    #paintCanvas{display:block;width:100%;height:auto;max-height:none;border:0;border-radius:8px;outline:1px solid var(--line);background:#05070a;image-rendering:auto;touch-action:none;cursor:crosshair}
+    #paintCanvas:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+    .paint-actions{margin-bottom:4px}
+    #paintStatus{margin:4px 0}
+    @media(max-width:700px){.word-search-game,.paint-layout{grid-template-columns:minmax(0,1fr)}.paint-tools{grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));align-items:center}}
     @media(max-width:520px){.sauce-rack,.layer-card{padding-inline:8px}.rack-controls label,.placement-controls label{flex-wrap:wrap}.rack-controls button{padding:7px 9px}.layer-card legend::before{width:23px}}
   </style>
 </head>
@@ -165,6 +198,7 @@ unknown potato in a hat</textarea>
         <button type="button" id="copy">COPY</button>
         <button type="button" id="downloadText">SAVE .TXT</button>
         <button type="button" id="stamp">ASCII STAMP</button>
+        <button type="button" id="searchFromWords">WORD SEARCH FROM INPUT</button>
       </div>
       <p class="status" id="wordStatus" role="status"></p>
       <div class="tiny checksum" id="hash"></div>
@@ -180,6 +214,26 @@ unknown potato in a hat</textarea>
         </div>
         <p class="tiny">Stamp printable symbols and phrases into your output.</p>
       </details>
+    </section>
+
+    <section class="panel" aria-labelledby="searchTitle">
+      <h2 id="searchTitle" tabindex="-1">WORD SEARCH</h2>
+      <form id="wordSearchForm">
+        <label for="searchEntries">ENTRIES</label>
+        <textarea id="searchEntries" rows="4" maxlength="12000" spellcheck="false" aria-describedby="searchInstructions" placeholder="Bubble Towers&#10;Wobble Wave&#10;Cloud Pepper"></textarea>
+        <p id="searchInstructions" class="tiny">One entry per line. Spaces and punctuation are skipped in the grid. Up to 24 entries, with up to 24 letters or numbers each.</p>
+        <button type="submit" class="primary">BUILD PUZZLE</button>
+      </form>
+      <p id="searchStatus" class="status" role="status"></p>
+      <div id="wordSearchGame" class="word-search-game" hidden>
+        <div class="word-search-scroll">
+          <div id="searchGrid" role="group" aria-label="Word search grid" aria-describedby="searchPlayHint"></div>
+        </div>
+        <div>
+          <p id="searchPlayHint" class="tiny">Pick the first and last letter. Words can run backward or diagonally. Use arrow keys to move and Space to pick.</p>
+          <ul id="searchClues"></ul>
+        </div>
+      </div>
     </section>
 
     <details class="panel secret-panel">
@@ -214,9 +268,67 @@ unknown potato in a hat</textarea>
       <p class="status" id="secretStatus" role="status"></p>
     </details>
 
+    <section class="panel paint-panel" aria-labelledby="paintTitle">
+      <h2 id="paintTitle" tabindex="-1">PAINT PROGRAM // WOBBLE WAVE</h2>
+      <div class="paint-layout">
+        <div class="paint-tools">
+          <label>TOOL
+            <select id="paintTool">
+              <option value="brush">Pixel Brush</option>
+              <option value="wobble">Wobble Wave</option>
+              <option value="symbol">Symbol / Text</option>
+              <option value="fill">Fill</option>
+              <option value="dropper">Eyedropper</option>
+              <option value="erase">Eraser</option>
+            </select>
+          </label>
+          <label id="paintSymbolField" hidden>STAMP
+            <input type="text" id="paintSymbol" value="✦" maxlength="24" spellcheck="false" autocomplete="off">
+          </label>
+          <div class="paint-ink">
+            <label for="paintColor">INK</label>
+            <input type="color" id="paintColor" value="#27e2ff">
+          </div>
+          <div id="paintPalette" class="paint-palette" role="group" aria-label="Paint palette">
+            <button class="paint-white" type="button" data-color="#f4f7fb" aria-label="White"></button>
+            <button class="paint-yellow" type="button" data-color="#ffe12c" aria-label="Yellow"></button>
+            <button class="paint-pink" type="button" data-color="#ff3e9d" aria-label="Pink"></button>
+            <button class="paint-cyan" type="button" data-color="#27e2ff" aria-label="Cyan"></button>
+            <button class="paint-green" type="button" data-color="#70ff8d" aria-label="Green"></button>
+            <button class="paint-orange" type="button" data-color="#ff8a34" aria-label="Orange"></button>
+            <button class="paint-purple" type="button" data-color="#a572ff" aria-label="Purple"></button>
+            <button class="paint-black" type="button" data-color="#11151b" aria-label="Near black"></button>
+          </div>
+          <div class="paint-dial">
+            <label for="paintSize">SIZE</label>
+            <input type="range" id="paintSize" min="2" max="72" value="18">
+            <output id="paintSizeOut" for="paintSize">18</output>
+          </div>
+          <label class="paint-mirror"><input type="checkbox" id="paintMirror"> Mirror strokes</label>
+          <div class="paint-history">
+            <button type="button" id="paintUndo" disabled>UNDO</button>
+            <button type="button" id="paintRedo" disabled>REDO</button>
+            <button type="button" id="paintClear">CLEAR</button>
+          </div>
+          <button type="button" id="paintRandom">RANDOM RANDOM</button>
+        </div>
+        <div class="paint-stage">
+          <canvas id="paintCanvas" width="900" height="600" tabindex="0" aria-label="Wobble Wave paint canvas"></canvas>
+          <div class="controls paint-actions">
+            <button type="button" id="paintToPixel" class="primary">SEND COPY TO PIXEL WRECKER</button>
+            <button type="button" id="paintSave">SAVE DRAWING PNG</button>
+          </div>
+          <p id="paintStatus" class="tiny" role="status"></p>
+        </div>
+      </div>
+    </section>
+
     <section class="panel">
-      <h2>PIXEL WRECKER</h2>
-      <div class="drop"><input id="imageFile" type="file" accept="image/*" aria-label="Choose a picture"> drop in a picture; processing stays local</div>
+      <h2 id="pixelTitle" tabindex="-1">PIXEL WRECKER</h2>
+      <div class="drop pixel-sources">
+        <input id="imageFile" type="file" accept="image/*" aria-label="Choose a picture">
+        <a class="pixel-download" href="#paintTitle">Draw in Wobble Wave</a>
+      </div>
       <div class="controls">
         <button id="pixel">PIXEL SHIFT</button><button id="rgb">RGB GHOST</button><button id="smear">BLOCK SMEAR</button><button id="noise">NOISE BITE</button><button id="scan">SCANLINE</button>
         <button class="primary" id="imageTotal">TOTAL PIXEL</button>
@@ -1497,6 +1609,533 @@ const KuruFiles = (() => {
 })();
 </script>
 <script>
+const KuruWordSearch = (() => {
+  const maxSize = 24;
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const directions = [[-1, -1], [0, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1]];
+  const segmenter = typeof Intl.Segmenter === 'function'
+    ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+
+  function entriesFromText(text) {
+    if (text.length > 12000) throw Error('Use a shorter list of entries.');
+    const entries = [];
+    for (const [index, line] of text.split(/\r\n|[\r\n]/u).entries()) {
+      const label = line.trim();
+      if (!label) continue;
+      const normalized = label.normalize('NFKC').toUpperCase().normalize('NFC');
+      const characters = segmenter ? Array.from(segmenter.segment(normalized), item => item.segment) : Array.from(normalized);
+      const letters = characters.filter(character => /^[\p{L}\p{N}]/u.test(character));
+      if (!letters.length) throw Error('Line ' + (index + 1) + ' needs at least one letter or number.');
+      if (letters.length > maxSize) throw Error('Line ' + (index + 1) + ' is longer than 24 grid cells.');
+      entries.push({ label, letters });
+    }
+    if (!entries.length) throw Error('Enter at least one word or phrase.');
+    if (entries.length > maxSize) throw Error('Use up to 24 nonblank lines.');
+    return entries;
+  }
+
+  function findPosition(grid, size, letters, random) {
+    let best = null;
+    let bestScore = -1;
+    const count = letters.length;
+    for (let start = 0; start < grid.length; start += 1) {
+      const x = start % size;
+      const y = Math.floor(start / size);
+      for (const [dx, dy] of directions) {
+        const endX = x + dx * (count - 1);
+        const endY = y + dy * (count - 1);
+        if (endX < 0 || endX >= size || endY < 0 || endY >= size) continue;
+        const stride = dx + dy * size;
+        let overlap = 0;
+        let fits = true;
+        for (let i = 0; i < count; i += 1) {
+          const cell = grid[start + i * stride];
+          if (!cell) continue;
+          if (cell !== letters[i]) {
+            fits = false;
+            break;
+          }
+          overlap += 1;
+        }
+        // Repeated entries each get their own path.
+        if (!fits || overlap === count) continue;
+        const score = random() + overlap * 0.12;
+        if (score > bestScore) {
+          best = { start, stride };
+          bestScore = score;
+        }
+      }
+    }
+    return best;
+  }
+
+  function writeWord(grid, letters, { start, stride }) {
+    letters.forEach((letter, index) => { grid[start + index * stride] = letter; });
+  }
+
+  function tryGrid(entries, size, random) {
+    const grid = Array(size * size).fill('');
+    for (const { letters } of entries) {
+      const placement = findPosition(grid, size, letters, random);
+      if (!placement) return null;
+      writeWord(grid, letters, placement);
+    }
+    return grid;
+  }
+
+  function fillRows(entries, size, random) {
+    // A dense list always fits in distinct rows even if the overlapping search fails.
+    const grid = Array(size * size).fill('');
+    const rows = Array.from({ length: size }, (_, row) => row);
+    for (const { letters } of entries) {
+      const [row] = rows.splice(Math.floor(random() * rows.length), 1);
+      const left = row * size + Math.floor(random() * (size - letters.length + 1));
+      const reversed = random() < 0.5;
+      writeWord(grid, letters, { start: reversed ? left + letters.length - 1 : left, stride: reversed ? -1 : 1 });
+    }
+    return grid;
+  }
+
+  function build(text, seed, variation = 0) {
+    const entries = entriesFromText(text);
+    const ordered = [...entries].sort((left, right) => right.letters.length - left.letters.length);
+    const longest = ordered[0].letters.length;
+    const total = entries.reduce((sum, entry) => sum + entry.letters.length, 0);
+    const random = GlitchKitCore.rngFor(['WORD SEARCH', seed, variation, text].join('\u0000'));
+    const startSize = Math.max(8, longest, Math.min(maxSize, Math.ceil(Math.sqrt(total * 1.55))));
+    let size = startSize;
+    let grid = null;
+    while (!grid) {
+      grid = tryGrid(ordered, size, random);
+      if (grid || size === maxSize) break;
+      size = Math.min(maxSize, size + 2);
+    }
+    if (!grid) grid = fillRows(ordered, size, random);
+    const available = [...new Set([...alphabet, ...entries.flatMap(entry => entry.letters)])];
+    return { entries, size, grid: grid.map(letter => letter || available[Math.floor(random() * available.length)]) };
+  }
+
+  function lineBetween(size, start, end) {
+    const dx = end % size - start % size;
+    const dy = Math.floor(end / size) - Math.floor(start / size);
+    if (dx && dy && Math.abs(dx) !== Math.abs(dy)) return [];
+    const stride = Math.sign(dx) + Math.sign(dy) * size;
+    return Array.from({ length: Math.max(Math.abs(dx), Math.abs(dy)) + 1 }, (_, index) => start + stride * index);
+  }
+
+  function matchingEntry(puzzle, path, found) {
+    const words = puzzle.entries;
+    const matches = (entry, reverse) => entry.letters.length === path.length &&
+      entry.letters.every((letter, index) => letter === puzzle.grid[path[reverse ? path.length - index - 1 : index]]);
+    const direct = words.findIndex((entry, index) => !found.has(index) && matches(entry, false));
+    return direct >= 0 ? direct : words.findIndex((entry, index) => !found.has(index) && matches(entry, true));
+  }
+
+  return { build, lineBetween, matchingEntry };
+})();
+
+(() => {
+  const $ = id => document.getElementById(id);
+  const entries = $('searchEntries');
+  const board = $('searchGrid');
+  const clues = $('searchClues');
+  const status = $('searchStatus');
+  const directions = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
+  const found = new Set();
+  const foundPaths = new Set();
+  let variation = 0;
+  let puzzle;
+  let anchor = null;
+  let focused = 0;
+  let cells = [];
+  let highlighted = [];
+
+  function say(message, error = false) {
+    status.dataset.error = String(error);
+    status.textContent = message;
+  }
+
+  function paintPath(path) {
+    for (const index of highlighted) cells[index].classList.remove('search-current');
+    highlighted = path;
+    for (const index of path) cells[index].classList.add('search-current');
+  }
+
+  function build() {
+    let generated;
+    try {
+      generated = KuruWordSearch.build(entries.value, $('seed').value, variation);
+    } catch (error) {
+      say(error.message, true);
+      return false;
+    }
+    puzzle = generated;
+    variation += 1;
+    anchor = null;
+    focused = 0;
+    highlighted = [];
+    found.clear();
+    foundPaths.clear();
+    board.style.setProperty('--search-size', String(puzzle.size));
+    cells = puzzle.grid.map((letter, index) => {
+      const cell = document.createElement('button');
+      const column = index % puzzle.size + 1;
+      const row = Math.floor(index / puzzle.size) + 1;
+      cell.type = 'button';
+      cell.tabIndex = index === 0 ? 0 : -1;
+      cell.dataset.index = index;
+      cell.textContent = letter;
+      cell.setAttribute('aria-label', letter + ', row ' + row + ', column ' + column);
+      return cell;
+    });
+    board.replaceChildren(...cells);
+    clues.replaceChildren(...puzzle.entries.map(entry => {
+      const clue = document.createElement('li');
+      clue.textContent = entry.label;
+      return clue;
+    }));
+    $('wordSearchGame').hidden = false;
+    say('0 / ' + clues.children.length + ' found.');
+    return true;
+  }
+
+  function cellAtEvent(event) {
+    const cell = event.target.closest('button[data-index]');
+    return cell ? Number(cell.dataset.index) : null;
+  }
+
+  function pick(index) {
+    if (anchor === null) {
+      anchor = index;
+      paintPath([index]);
+      say('First letter picked. Choose the last letter.');
+      return;
+    }
+    const path = KuruWordSearch.lineBetween(puzzle.size, anchor, index);
+    const pathKey = [Math.min(anchor, index), Math.max(anchor, index)].join(':');
+    anchor = null;
+    paintPath([]);
+    const match = path.length && !foundPaths.has(pathKey) ? KuruWordSearch.matchingEntry(puzzle, path, found) : -1;
+    if (match < 0) {
+      say(foundPaths.has(pathKey) ? 'You already found that path.' : 'Pick a straight line that spells an entry.', true);
+      return;
+    }
+    foundPaths.add(pathKey);
+    found.add(match);
+    for (const position of path) cells[position].classList.add('search-found');
+    clues.children[match].classList.add('search-found-clue');
+    clues.children[match].setAttribute('aria-label', puzzle.entries[match].label + ' — found');
+    say(found.size === puzzle.entries.length ? 'You found every entry!' :
+      'Found “' + puzzle.entries[match].label + '”. ' + found.size + ' / ' + puzzle.entries.length + ' found.');
+  }
+
+  function focusCell(index) {
+    cells[focused].tabIndex = -1;
+    cells[index].tabIndex = 0;
+    focused = index;
+  }
+
+  board.addEventListener('click', event => {
+    const index = cellAtEvent(event);
+    if (index === null) return;
+    focusCell(index);
+    pick(index);
+  });
+  board.addEventListener('pointerover', event => {
+    const index = cellAtEvent(event);
+    if (anchor === null || index === null) return;
+    const path = KuruWordSearch.lineBetween(puzzle.size, anchor, index);
+    paintPath(path.length ? path : [anchor]);
+  });
+  board.addEventListener('pointerleave', () => {
+    if (anchor !== null) paintPath([anchor]);
+  });
+  board.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && anchor !== null) {
+      anchor = null;
+      paintPath([]);
+      say(found.size + ' / ' + puzzle.entries.length + ' found.');
+      return;
+    }
+    if (!Object.hasOwn(directions, event.key)) return;
+    event.preventDefault();
+    const [dx, dy] = directions[event.key];
+    const x = Math.max(0, Math.min(puzzle.size - 1, focused % puzzle.size + dx));
+    const y = Math.max(0, Math.min(puzzle.size - 1, Math.floor(focused / puzzle.size) + dy));
+    const next = y * puzzle.size + x;
+    focusCell(next);
+    cells[next].focus();
+    if (anchor !== null) {
+      const path = KuruWordSearch.lineBetween(puzzle.size, anchor, next);
+      paintPath(path.length ? path : [anchor]);
+    }
+  });
+  $('wordSearchForm').addEventListener('submit', event => {
+    event.preventDefault();
+    if (build()) cells[0].focus();
+  });
+  $('searchFromWords').addEventListener('click', () => {
+    entries.value = $('source').value;
+    if (build()) $('searchTitle').focus();
+    else entries.focus();
+  });
+})();
+</script>
+<script>
+// Wobble Wave from Bullshit Telephone World, with a separate canvas and stroke history.
+(() => {
+  const $ = id => document.getElementById(id);
+  const canvas = $('paintCanvas');
+  const context = canvas.getContext('2d', { willReadFrequently: true });
+  const tool = $('paintTool');
+  const ink = $('paintColor');
+  const size = $('paintSize');
+  const swatches = [...$('paintPalette').querySelectorAll('[data-color]')];
+  const status = $('paintStatus');
+  const background = '#05070a';
+  const undo = [];
+  const redo = [];
+  const historyLimit = 12;
+  let stroke = null;
+
+  const pixels = () => context.getImageData(0, 0, canvas.width, canvas.height);
+
+  function syncHistory() {
+    $('paintUndo').disabled = !undo.length;
+    $('paintRedo').disabled = !redo.length;
+  }
+
+  function remember(snapshot = pixels()) {
+    undo.push(snapshot);
+    if (undo.length > historyLimit) undo.shift();
+    redo.length = 0;
+    syncHistory();
+  }
+
+  function restore(from, to, message) {
+    if (!from.length) return;
+    stroke = null;
+    to.push(pixels());
+    context.putImageData(from.pop(), 0, 0);
+    syncHistory();
+    status.textContent = message;
+  }
+
+  function wipe() {
+    context.fillStyle = background;
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function point(event) {
+    const bounds = canvas.getBoundingClientRect();
+    return {
+      x: (event.clientX - bounds.left) * canvas.width / bounds.width,
+      y: (event.clientY - bounds.top) * canvas.height / bounds.height,
+    };
+  }
+
+  function setInk(value) {
+    ink.value = value;
+    for (const swatch of swatches) swatch.setAttribute('aria-pressed', String(swatch.dataset.color === ink.value));
+  }
+
+  function mirrored(draw, mirror) {
+    context.save();
+    draw();
+    if (mirror) {
+      context.translate(canvas.width, 0);
+      context.scale(-1, 1);
+      draw();
+    }
+    context.restore();
+  }
+
+  function drawDot(position, brush) {
+    mirrored(() => {
+      context.beginPath();
+      context.fillStyle = brush.color;
+      context.arc(position.x, position.y, brush.size / 2, 0, Math.PI * 2);
+      context.fill();
+    }, brush.mirror);
+  }
+
+  function drawLine(end, brush) {
+    const start = brush.point;
+    const dx = end.x - start.x;
+    const dy = end.y - start.y;
+    const distance = Math.hypot(dx, dy);
+    if (!distance) return;
+    const points = [brush.tip];
+    if (brush.tool === 'wobble') {
+      // Keep the original Wobble Wave sine path and join it to the last brush tip.
+      const steps = Math.max(1, Math.ceil(distance / 3));
+      for (let step = 1; step <= steps; step += 1) {
+        const progress = step / steps;
+        const bend = Math.sin(brush.phase + progress * distance * 0.13) * brush.size * 1.25;
+        points.push({
+          x: start.x + dx * progress - dy / distance * bend,
+          y: start.y + dy * progress + dx / distance * bend,
+        });
+      }
+      brush.phase += distance * 0.13;
+    } else {
+      points.push(end);
+    }
+    mirrored(() => {
+      context.strokeStyle = brush.color;
+      context.lineWidth = brush.size;
+      context.lineCap = 'round';
+      context.lineJoin = 'round';
+      context.beginPath();
+      context.moveTo(points[0].x, points[0].y);
+      for (const vertex of points.slice(1)) context.lineTo(vertex.x, vertex.y);
+      context.stroke();
+    }, brush.mirror);
+    brush.point = end;
+    brush.tip = points.at(-1);
+  }
+
+  function stamp(position, brush) {
+    const mark = $('paintSymbol').value.trim() || '✦';
+    context.save();
+    context.fillStyle = brush.color;
+    context.font = '900 ' + Math.max(12, brush.size * 2.5) + 'px ui-monospace, "Segoe UI Emoji", sans-serif';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillText(mark, position.x, position.y);
+    if (brush.mirror && position.x !== canvas.width / 2) {
+      context.fillText(mark, canvas.width - position.x, position.y);
+    }
+    context.restore();
+  }
+
+  function fillArea(position, color) {
+    const original = pixels();
+    const { width, height, data } = original;
+    const painted = context.createImageData(width, height);
+    const changed = painted.data;
+    changed.set(data);
+    const replacement = [1, 3, 5].map(offset => parseInt(color.slice(offset, offset + 2), 16));
+    const origin = Math.floor(position.y) * width + Math.floor(position.x);
+    const initial = origin * 4;
+    if (replacement.every((channel, index) => data[initial + index] === channel)) return;
+    const queue = new Uint32Array(width * height);
+    let count = 0;
+    function visit(pixel) {
+      const offset = pixel * 4;
+      if (changed[offset] !== data[initial] || changed[offset + 1] !== data[initial + 1] ||
+          changed[offset + 2] !== data[initial + 2]) return;
+      changed.set(replacement, offset);
+      queue[count++] = pixel;
+    }
+    visit(origin);
+    for (let index = 0; index < count; index += 1) {
+      const pixel = queue[index];
+      const column = pixel % width;
+      if (column > 0) visit(pixel - 1);
+      if (column < width - 1) visit(pixel + 1);
+      if (pixel >= width) visit(pixel - width);
+      if (pixel < width * (height - 1)) visit(pixel + width);
+    }
+    remember(original);
+    context.putImageData(painted, 0, 0);
+    status.textContent = 'Area filled.';
+  }
+
+  canvas.addEventListener('pointerdown', event => {
+    if (stroke || event.button !== 0 || !event.isPrimary) return;
+    event.preventDefault();
+    canvas.focus({ preventScroll: true });
+    const position = point(event);
+    if (position.x < 0 || position.y < 0 || position.x >= canvas.width || position.y >= canvas.height) return;
+    const brush = {
+      tool: tool.value, color: tool.value === 'erase' ? background : ink.value,
+      size: Number(size.value), mirror: $('paintMirror').checked,
+      point: position, tip: position, phase: 0, pointer: event.pointerId,
+    };
+    if (brush.tool === 'dropper') {
+      const data = context.getImageData(Math.floor(position.x), Math.floor(position.y), 1, 1).data;
+      setInk('#' + [...data.slice(0, 3)].map(value => value.toString(16).padStart(2, '0')).join(''));
+      status.textContent = 'Color picked.';
+      return;
+    }
+    if (brush.tool === 'fill') {
+      fillArea(position, brush.color);
+      return;
+    }
+    remember();
+    if (brush.tool === 'symbol') {
+      stamp(position, brush);
+      status.textContent = 'Stamp added.';
+      return;
+    }
+    drawDot(position, brush);
+    stroke = brush;
+    canvas.setPointerCapture(event.pointerId);
+    status.textContent = '';
+  });
+
+  canvas.addEventListener('pointermove', event => {
+    if (stroke?.pointer === event.pointerId) drawLine(point(event), stroke);
+  });
+  function endStroke(event) {
+    if (stroke?.pointer !== event.pointerId) return;
+    if (event.type === 'pointerup') drawLine(point(event), stroke);
+    stroke = null;
+  }
+  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) canvas.addEventListener(event, endStroke);
+
+  for (const swatch of swatches) swatch.addEventListener('click', () => setInk(swatch.dataset.color));
+  ink.addEventListener('input', () => setInk(ink.value));
+  size.addEventListener('input', () => { $('paintSizeOut').value = size.value; });
+  tool.addEventListener('change', () => { $('paintSymbolField').hidden = tool.value !== 'symbol'; });
+  $('paintUndo').addEventListener('click', () => restore(undo, redo, 'Undid the last paint action.'));
+  $('paintRedo').addEventListener('click', () => restore(redo, undo, 'Redid the paint action.'));
+  $('paintClear').addEventListener('click', () => {
+    stroke = null;
+    remember();
+    wipe();
+    status.textContent = 'Canvas cleared. Undo brings it back.';
+  });
+  $('paintRandom').addEventListener('click', () => {
+    stroke = null;
+    remember();
+    const colors = swatches.slice(0, -1).map(swatch => swatch.dataset.color);
+    for (let index = 0; index < 46; index += 1) {
+      const radius = 4 + Math.random() * 55;
+      context.save();
+      context.globalAlpha = 0.35 + Math.random() * 0.65;
+      context.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+      context.translate(Math.random() * canvas.width, Math.random() * canvas.height);
+      context.rotate(Math.random() * Math.PI);
+      if (Math.random() > 0.4) {
+        context.fillRect(-radius / 2, -radius / 2, radius * 2, radius);
+      } else {
+        context.beginPath();
+        context.arc(0, 0, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+      context.restore();
+    }
+    status.textContent = 'Random marks added.';
+  });
+  $('paintSave').addEventListener('click', () => {
+    canvas.toBlob(blob => {
+      if (blob) KuruFiles.download(blob, 'glitchKIT-paint.png');
+      else status.textContent = 'Could not create the PNG.';
+    }, 'image/png');
+  });
+  canvas.addEventListener('keydown', event => {
+    if (!(event.ctrlKey || event.metaKey) || event.key.toLowerCase() !== 'z') return;
+    event.preventDefault();
+    if (event.shiftKey) restore(redo, undo, 'Redid the paint action.');
+    else restore(undo, redo, 'Undid the last paint action.');
+  });
+  setInk(ink.value);
+  wipe();
+})();
+</script>
+<script>
 (() => {
   const $ = selector => document.querySelector(selector);
   const seed = $('#seed');
@@ -1758,6 +2397,26 @@ const KuruFiles = (() => {
     renderOptics();
   }
 
+  function loadPicture(image, width, height, message) {
+    const scale = Math.min(1, 1100 / width, 1100 / height);
+    canvas.width = Math.max(1, Math.round(width * scale));
+    canvas.height = Math.max(1, Math.round(height * scale));
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    originalPixels = imgData();
+    $('#optics').disabled = false;
+    imageCompare.disabled = false;
+    resetImage();
+    pixelStatus.textContent = message;
+  }
+
+  $('#paintToPixel').addEventListener('click', () => {
+    const drawing = $('#paintCanvas');
+    imageRequest += 1;
+    imageFile.value = '';
+    loadPicture(drawing, drawing.width, drawing.height, 'Drawing copied. Pick a pixel effect.');
+    $('#pixelTitle').focus();
+  });
+
   opticalEffect.addEventListener('change', queueOpticalPreview);
   opticalStrength.addEventListener('input', queueOpticalPreview);
   imageCompare.addEventListener('click', () => {
@@ -1780,15 +2439,7 @@ const KuruFiles = (() => {
       image.src = url;
       await image.decode();
       if (request !== imageRequest) return;
-      const scale = Math.min(1, 1100 / image.naturalWidth, 1100 / image.naturalHeight);
-      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
-      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
-      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-      originalPixels = imgData();
-      $('#optics').disabled = false;
-      imageCompare.disabled = false;
-      resetImage();
-      pixelStatus.textContent = 'Picture loaded. Pick an effect to preview it.';
+      loadPicture(image, image.naturalWidth, image.naturalHeight, 'Picture loaded. Pick an effect to preview it.');
     } catch {
       if (request === imageRequest) {
         imageFile.value = '';
