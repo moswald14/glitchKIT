@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-X0tWIu1JX+AQd1cI830K2JYor0Yd4SdBrhkJIOo7780=' 'sha256-8ZXl4td6zscERXiXj/lz5tbHY82qO9R087wSVHeOkEU=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-GoX2xxt7Dx3UaxldRXypbq2+GdzpNL25pR0E6s9cQZ4='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-X0tWIu1JX+AQd1cI830K2JYor0Yd4SdBrhkJIOo7780=' 'sha256-ynFuh81R1GfEy/8gFx+1YtVV3+3WbpmoqOciVyJbjYE=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-LhCILlBNhkJTpjEOYQ4VDUAoqKTVv3WBKn6+a3Hxyx8='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
   <title>glitchKIT::</title>
   <style>
     :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
@@ -66,6 +66,7 @@
     .null-bench{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
     .null-bench summary,.secret-panel summary{cursor:pointer;color:var(--acid);font-size:15px;font-weight:750;letter-spacing:.08em}
     .secret-panel textarea{min-height:130px}
+    #output[data-bubble-towers=true]{line-height:3.6}
     .checksum{overflow-wrap:anywhere}
     .status[data-error=true]{color:#ff9acb}
     .pixel-download{color:var(--cyan);font-size:12px}
@@ -1006,6 +1007,7 @@ const KuruFiles = (() => {
     $('undo').disabled = cursor <= 0;
     $('redo').disabled = cursor >= history.length - 1;
     const content = output.value;
+    output.dataset.bubbleTowers = String(/[\u2460-\u2468\u24b6-\u24ea]\ufe0e?[\u0300-\u036f]/u.test(content));
     hash.textContent = '';
     if (!content || !globalThis.crypto?.subtle) return;
     const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(content));
