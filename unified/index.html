@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>glitchKIT::UNIFIED</title>
+<style>
+:root{color-scheme:dark;--bg:#08070d;--panel:#14101e;--ink:#f5f1ff;--muted:#aaa2bb;--cyan:#49f6ff;--hot:#ff2aa1;--acid:#c6ff37;--line:#393047}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0,#281135,transparent 55%),var(--bg);color:var(--ink);font:15px/1.5 ui-monospace,Consolas,monospace}
+header{padding:20px clamp(12px,4vw,48px) 12px}h1{font-size:clamp(26px,5vw,52px);margin:0;color:var(--cyan);letter-spacing:-.06em;text-shadow:3px 0 var(--hot)}p{margin:6px 0;color:var(--muted)}.eyebrow{color:var(--acid);letter-spacing:.12em;font-size:12px}
+nav{display:flex;gap:8px;flex-wrap:wrap;padding:10px clamp(12px,4vw,48px);border-bottom:1px solid var(--line)}button{font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px 14px;cursor:pointer}button[aria-selected=true]{color:#10120a;background:var(--acid);border-color:var(--acid);font-weight:700}button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{width:100%;height:80vh;min-height:540px;border:1px solid var(--line);border-radius:10px;background:var(--panel);display:block}.notice{font-size:12px;padding:4px 4px 10px}footer{padding:0 clamp(12px,4vw,48px) 20px;color:var(--muted);font-size:12px}@media(max-width:600px){iframe{min-height:480px;height:78vh}nav button{flex:1}}
+</style></head>
+<body>
+<header><div class="eyebrow">mozWORLD LABS // BTW</div><h1>glitchKIT::UNIFIED</h1><p>Two toolsets. One offline HTML file. Keep the original; glitch a copy.</p></header>
+<nav role="tablist" aria-label="GlitchKIT toolsets"><button type="button" id="tab-chaos" role="tab" aria-controls="chaos" aria-selected="true">01 // TEXT + PIXEL CHAOS</button><button type="button" id="tab-secure" role="tab" aria-controls="secure" aria-selected="false" tabindex="-1">02 // TEXT + ENCRYPTION</button></nav>
+<main>
+<section id="chaos" role="tabpanel" aria-labelledby="tab-chaos"><p class="notice">Seeded word and image effects, undo/redo and exports. Decoration is not encryption. Do not enter secrets here: this tool keeps an in-memory undo history.</p><iframe title="Text and pixel glitchKIT" sandbox="allow-scripts allow-same-origin allow-downloads" allow="clipboard-write" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+  &lt;title&gt;glitchKIT // ALL NEW&lt;/title&gt;
+  &lt;style&gt;
+    :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 20% 0,#241031 0,transparent 35%),var(--bg);color:var(--ink);font:15px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;min-height:100vh}
+    header{padding:28px clamp(18px,5vw,64px) 15px;border-bottom:1px solid var(--line)}
+    h1{font-size:clamp(30px,6vw,72px);letter-spacing:-.08em;margin:0;color:var(--cyan);text-shadow:4px 0 var(--hot)}
+    .tag{color:var(--acid);letter-spacing:.12em}.sub{color:var(--muted);max-width:800px}
+    main{padding:20px clamp(14px,4vw,50px) 60px;display:grid;gap:18px}
+    .panel{background:linear-gradient(145deg,#15111fdd,#0d0b13e8);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:0 18px 60px #0008}
+    .panel h2{margin:0 0 12px;font-size:15px;color:var(--acid);letter-spacing:.13em}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    textarea{width:100%;min-height:210px;resize:vertical;background:#09080d;border:1px solid #3b3251;color:var(--ink);padding:13px;border-radius:9px;font:inherit}
+    input,select,button{font:inherit} input[type=text],input[type=number],select{background:#09080d;color:var(--ink);border:1px solid #3b3251;padding:9px;border-radius:7px}
+    input[type=range]{accent-color:var(--hot);width:150px} .controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:12px 0}
+    button{border:1px solid #514563;background:#20172c;color:var(--ink);padding:9px 12px;border-radius:8px;cursor:pointer;transition:.12s transform,.12s border-color}
+    button:hover{transform:translateY(-1px);border-color:var(--cyan)} button.primary{background:var(--hot);border-color:var(--hot);color:white;font-weight:800} button.acid{background:var(--acid);color:#10120a;border-color:var(--acid);font-weight:900}
+    .dangerously-silly{font-size:18px;padding:13px 18px;box-shadow:3px 3px 0 var(--cyan)}
+    label{color:var(--muted);font-size:12px}.status{min-height:1.5em;color:var(--cyan);word-break:break-all}.tiny{font-size:11px;color:var(--muted)}
+    canvas{width:100%;max-height:520px;object-fit:contain;background:#050507;border:1px dashed #3b3251;border-radius:9px;image-rendering:pixelated}
+    .drop{padding:14px;border:1px dashed #514563;border-radius:9px;color:var(--muted)}
+    footer{color:var(--muted);padding:0 clamp(18px,5vw,64px) 40px}.flash{animation:flash .22s steps(2)}
+    @keyframes flash{50%{filter:invert(1) hue-rotate(120deg);transform:translateX(3px)}}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}textarea{min-height:170px}}
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;div class=&quot;tag&quot;&gt;mozWORLD LABS // KURU CHECK&lt;/div&gt;
+    &lt;h1&gt;glitchKIT::&lt;/h1&gt;
+    &lt;p class=&quot;sub&quot;&gt;ALL NEW. Deterministic chaos for text + pixels. No network calls, no mystery upload, no irreversible button. Mess with copies; keep the original.&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;section class=&quot;panel&quot;&gt;
+      &lt;h2&gt;01 // WORD MANGLE&lt;/h2&gt;
+      &lt;div class=&quot;controls&quot;&gt;
+        &lt;label&gt;MODE &lt;select id=&quot;mode&quot;&gt;&lt;option value=&quot;mixed&quot;&gt;mixed soup&lt;/option&gt;&lt;option value=&quot;scramble&quot;&gt;word scramble&lt;/option&gt;&lt;option value=&quot;symbols&quot;&gt;symbol leak&lt;/option&gt;&lt;option value=&quot;echo&quot;&gt;echo chamber&lt;/option&gt;&lt;option value=&quot;reverse&quot;&gt;reverse shards&lt;/option&gt;&lt;option value=&quot;zalgo&quot;&gt;soft zalgo&lt;/option&gt;&lt;option value=&quot;fake&quot;&gt;[FAKE] + [SAUCE]&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+        &lt;label&gt;INTENSITY &lt;input id=&quot;intensity&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;10&quot; value=&quot;4&quot;&gt;&lt;/label&gt;
+        &lt;label&gt;SEED &lt;input id=&quot;seed&quot; type=&quot;text&quot; value=&quot;KURU&quot; size=&quot;12&quot;&gt;&lt;/label&gt;
+        &lt;button id=&quot;randomSeed&quot;&gt;RANDOM RANDOM&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;grid&quot;&gt;
+        &lt;div&gt;&lt;label&gt;KNOWN INPUT&lt;/label&gt;&lt;textarea id=&quot;source&quot; spellcheck=&quot;false&quot;&gt;BOOP. THINKING NOT FOUND.\nunknown potato in a hat&lt;/textarea&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;label&gt;UNKNOWN OUTPUT&lt;/label&gt;&lt;textarea id=&quot;output&quot; spellcheck=&quot;false&quot;&gt;&lt;/textarea&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;controls&quot;&gt;
+        &lt;button class=&quot;primary&quot; id=&quot;glitch&quot;&gt;GLITCH IT&lt;/button&gt;
+        &lt;button class=&quot;acid dangerously-silly&quot; id=&quot;total&quot;&gt;TOTAL GLITCH&lt;/button&gt;
+        &lt;button id=&quot;yet&quot;&gt;YET&lt;/button&gt;&lt;button id=&quot;undo&quot;&gt;UNDO&lt;/button&gt;&lt;button id=&quot;redo&quot;&gt;REDO&lt;/button&gt;
+        &lt;button id=&quot;copy&quot;&gt;COPY&lt;/button&gt;&lt;button id=&quot;downloadText&quot;&gt;SAVE .TXT&lt;/button&gt;&lt;button id=&quot;stamp&quot;&gt;ASCII STAMP&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;status&quot; id=&quot;hash&quot;&gt;SHA-256 // waiting for nonsense&lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;section class=&quot;panel&quot;&gt;
+      &lt;h2&gt;02 // PIXEL WRECKER&lt;/h2&gt;
+      &lt;div class=&quot;drop&quot;&gt;&lt;input id=&quot;imageFile&quot; type=&quot;file&quot; accept=&quot;image/*&quot;&gt; drop in a picture; processing stays local&lt;/div&gt;
+      &lt;div class=&quot;controls&quot;&gt;
+        &lt;button id=&quot;pixel&quot;&gt;PIXEL SHIFT&lt;/button&gt;&lt;button id=&quot;rgb&quot;&gt;RGB GHOST&lt;/button&gt;&lt;button id=&quot;smear&quot;&gt;BLOCK SMEAR&lt;/button&gt;&lt;button id=&quot;noise&quot;&gt;NOISE BITE&lt;/button&gt;&lt;button id=&quot;scan&quot;&gt;SCANLINE&lt;/button&gt;
+        &lt;button class=&quot;primary&quot; id=&quot;imageTotal&quot;&gt;TOTAL PIXEL&lt;/button&gt;&lt;button id=&quot;imageReset&quot;&gt;RESET IMAGE&lt;/button&gt;&lt;button id=&quot;savePng&quot;&gt;SAVE PNG&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;canvas id=&quot;canvas&quot; width=&quot;900&quot; height=&quot;450&quot;&gt;&lt;/canvas&gt;
+      &lt;p class=&quot;tiny&quot;&gt;Image effects operate on the canvas copy. RESET IMAGE reconstructs from the file you chose.&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section class=&quot;panel&quot;&gt;
+      &lt;h2&gt;03 // NULL BENCH&lt;/h2&gt;
+      &lt;div class=&quot;controls&quot;&gt;
+        &lt;button data-token=&quot;␀&quot;&gt;␀ NUL&lt;/button&gt;&lt;button data-token=&quot;•&quot;&gt;• DOT&lt;/button&gt;&lt;button data-token=&quot;::&quot;&gt;:: GATE&lt;/button&gt;&lt;button data-token=&quot;[UNKNOWN]&quot;&gt;[UNKNOWN]&lt;/button&gt;&lt;button data-token=&quot;YET&quot;&gt;YET&lt;/button&gt;&lt;button data-token=&quot;GITTET|GODDIT&quot;&gt;GITTET|GODDIT&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;tiny&quot;&gt;These insert visible symbols, including the NUL glyph ␀ — not invisible control bytes.&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;glitchKIT v2026.10.05 // &lt;span id=&quot;build&quot;&gt;KURU:LOCAL&lt;/span&gt; // chaos is allowed to have an undo button.&lt;/footer&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  const $=s=&gt;document.querySelector(s), $$=s=&gt;[...document.querySelectorAll(s)];
+  const source=$('#source'), output=$('#output'), mode=$('#mode'), intensity=$('#intensity'), seed=$('#seed'), hash=$('#hash');
+  let history=[''], cursor=0, originalImage=null;
+  const hash32=str=&gt;{let h=2166136261;for(const ch of str){h^=ch.codePointAt(0);h=Math.imul(h,16777619)}return h&gt;&gt;&gt;0};
+  const rngFor=str=&gt;{let x=hash32(str)||0x9e3779b9;return()=&gt;{x^=x&lt;&lt;13;x^=x&gt;&gt;&gt;17;x^=x&lt;&lt;5;return(x&gt;&gt;&gt;0)/4294967296}};
+  const pick=(r,a)=&gt;a[Math.floor(r()*a.length)];
+  const setOutput=(v,push=true)=&gt;{output.value=v;if(push){history=history.slice(0,cursor+1);history.push(v);cursor=history.length-1}updateHash(v)};
+  async function updateHash(v){if(!crypto?.subtle){hash.textContent='SHA-256 // unavailable';return}const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(v));hash.textContent='SHA-256 // '+[...new Uint8Array(b)].map(x=&gt;x.toString(16).padStart(2,'0')).join('')}
+  const shuffle=(word,r)=&gt;{if(word.length&lt;4)return word;const a=[...word], first=a.shift(),last=a.pop();for(let i=a.length-1;i&gt;0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return first+a.join('')+last};
+  const combining=['̴','̷','̸','̡','̢','̨','̛','̖','̗','̘','̙','̜','̝','̞','̟','̠','̤','̥','̦','̩','̪','̫','̬','̮','̯','̰','̱','̲','̳','̹','̺','̻','̼','͇','͈'];
+  const sym={'a':'@','e':'Ξ','i':'!','o':'Ø','s':'$','t':'†','l':'|','b':'ß','g':'9'};
+  function transform(text,kind,amt,r){
+    if(kind==='scramble')return text.replace(/[A-Za-z]{4,}/g,w=&gt;r()&lt;amt/11?shuffle(w,r):w);
+    if(kind==='symbols')return [...text].map(c=&gt;r()&lt;amt/15?(sym[c.toLowerCase()]||c):c).join('');
+    if(kind==='echo')return text.split(/(\s+)/).map(w=&gt;w.trim()&amp;&amp;r()&lt;amt/14?w+' '+w.slice(0,Math.max(1,Math.floor(w.length*r()))):w).join('');
+    if(kind==='reverse')return text.split(/(\s+)/).map(w=&gt;w.trim()&amp;&amp;r()&lt;amt/12?[...w].reverse().join(''):w).join('');
+    if(kind==='zalgo')return [...text].map(c=&gt;/\s/.test(c)?c:c+(r()&lt;amt/11?pick(r,combining)+(r()&lt;amt/18?pick(r,combining):''):'')).join('');
+    if(kind==='fake'){const bits=text.split(/(\s+)/);return bits.map(w=&gt;w.trim()&amp;&amp;r()&lt;amt/14?pick(r,['[FAKE]','[SAUCE]','[SECRET?]'])+w:w).join('')}
+    let v=text;for(const k of ['scramble','symbols','echo','reverse','zalgo'])v=transform(v,k,Math.max(1,amt-2),r);return v;
+  }
+  function run(total=false){const r=rngFor(seed.value+'|'+source.value+'|'+mode.value+'|'+intensity.value);const amt=total?10:+intensity.value;let kind=total?'mixed':mode.value;let v=transform(source.value,kind,amt,r);if(total)v='␀ '+v+' :: YET';setOutput(v);document.body.classList.remove('flash');void document.body.offsetWidth;document.body.classList.add('flash')}
+  $('#glitch').onclick=()=&gt;run(false); $('#total').onclick=()=&gt;run(true);
+  $('#randomSeed').onclick=()=&gt;{seed.value=Math.random().toString(36).slice(2,10).toUpperCase()};
+  $('#yet').onclick=()=&gt;setOutput((output.value||source.value)+'\nYET');
+  $('#undo').onclick=()=&gt;{if(cursor&gt;0){cursor--;output.value=history[cursor];updateHash(output.value)}};
+  $('#redo').onclick=()=&gt;{if(cursor&lt;history.length-1){cursor++;output.value=history[cursor];updateHash(output.value)}};
+  $('#copy').onclick=async()=&gt;{await navigator.clipboard.writeText(output.value);$('#copy').textContent='COPIED';setTimeout(()=&gt;$('#copy').textContent='COPY',700)};
+  const save=(blob,name)=&gt;{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=&gt;URL.revokeObjectURL(a.href),1000)};
+  $('#downloadText').onclick=()=&gt;save(new Blob([output.value],{type:'text/plain'}),'glitchKIT-output.txt');
+  $('#stamp').onclick=()=&gt;{const lines=(output.value||source.value).split('\n');const w=Math.min(72,Math.max(10,...lines.map(x=&gt;x.length)));const fit=lines.flatMap(line=&gt;{const a=[];for(let i=0;i&lt;line.length||i===0;i+=w)a.push(line.slice(i,i+w));return a});setOutput('┌'+'─'.repeat(w+2)+'┐\n'+fit.map(x=&gt;'│ '+x.padEnd(w)+' │').join('\n')+'\n└'+'─'.repeat(w+2)+'┘')};
+  $$('[data-token]').forEach(b=&gt;b.onclick=()=&gt;{const t=b.dataset.token;const el=document.activeElement===source?source:output;const a=el.selectionStart??el.value.length,z=el.selectionEnd??a;el.value=el.value.slice(0,a)+t+el.value.slice(z);el.focus();el.selectionStart=el.selectionEnd=a+t.length;if(el===output)setOutput(el.value)});
+
+  const canvas=$('#canvas'),ctx=canvas.getContext('2d',{willReadFrequently:true});
+  const drawPlaceholder=()=&gt;{ctx.fillStyle='#050507';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#49f6ff';ctx.font='28px monospace';ctx.fillText('DROP PIXELS HERE ::',35,70);ctx.fillStyle='#958da8';ctx.font='18px monospace';ctx.fillText('image stays on this machine',35,105)};drawPlaceholder();
+  function drawOriginal(){if(!originalImage)return;const max=1100,scale=Math.min(1,max/originalImage.naturalWidth,max/originalImage.naturalHeight);canvas.width=Math.max(1,Math.round(originalImage.naturalWidth*scale));canvas.height=Math.max(1,Math.round(originalImage.naturalHeight*scale));ctx.drawImage(originalImage,0,0,canvas.width,canvas.height)}
+  $('#imageFile').onchange=e=&gt;{const f=e.target.files[0];if(!f)return;const img=new Image();img.onload=()=&gt;{originalImage=img;drawOriginal();URL.revokeObjectURL(img.src)};img.src=URL.createObjectURL(f)};
+  const imgData=()=&gt;ctx.getImageData(0,0,canvas.width,canvas.height);
+  function pxShift(){if(!originalImage)return;const r=rngFor(seed.value+'px'+canvas.width);for(let y=0;y&lt;canvas.height;y+=Math.max(2,Math.floor(canvas.height/45))){if(r()&lt;.55){const h=Math.max(1,Math.floor(2+r()*14)),shift=Math.floor((r()-.5)*canvas.width*.18);const d=ctx.getImageData(0,y,canvas.width,Math.min(h,canvas.height-y));ctx.putImageData(d,shift,y)}}}
+  function rgbGhost(){if(!originalImage)return;const d=imgData(),a=d.data,copy=new Uint8ClampedArray(a),off=Math.max(1,Math.floor(canvas.width*.012))*4;for(let i=0;i&lt;a.length;i+=4){a[i]=copy[Math.min(a.length-4,i+off)];a[i+2]=copy[Math.max(0,i-off)+2]}ctx.putImageData(d,0,0)}
+  function blockSmear(){if(!originalImage)return;const r=rngFor(seed.value+'smear');for(let n=0;n&lt;36;n++){const w=10+r()*canvas.width*.18,h=3+r()*40,x=r()*Math.max(1,canvas.width-w),y=r()*Math.max(1,canvas.height-h),d=ctx.getImageData(x,y,w,h);ctx.putImageData(d,Math.max(0,Math.min(canvas.width-w,x+(r()-.5)*160)),y)} }
+  function noiseBite(){if(!originalImage)return;const r=rngFor(seed.value+'noise'),d=imgData(),a=d.data;for(let i=0;i&lt;a.length;i+=4)if(r()&lt;.035){const n=(r()-.5)*150;a[i]+=n;a[i+1]-=n*.4;a[i+2]+=n*.7}ctx.putImageData(d,0,0)}
+  function scanline(){if(!originalImage)return;ctx.save();ctx.globalCompositeOperation='multiply';ctx.fillStyle='#8c7cff55';for(let y=0;y&lt;canvas.height;y+=5)ctx.fillRect(0,y,canvas.width,2);ctx.restore()}
+  $('#pixel').onclick=pxShift;$('#rgb').onclick=rgbGhost;$('#smear').onclick=blockSmear;$('#noise').onclick=noiseBite;$('#scan').onclick=scanline;
+  $('#imageTotal').onclick=()=&gt;{pxShift();rgbGhost();blockSmear();noiseBite();scanline()};$('#imageReset').onclick=drawOriginal;
+  $('#savePng').onclick=()=&gt;canvas.toBlob(b=&gt;b&amp;&amp;save(b,'glitchKIT-pixels.png'),'image/png');
+  setOutput(transform(source.value,'mixed',4,rngFor('KURU')),false);
+})();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></section>
+<section id="secure" role="tabpanel" aria-labelledby="tab-secure" hidden><p class="notice">The original offline Text Glitch Kit: playful effects and password-based AES-GCM encryption. Switching tabs does not clear fields; use its Clear button when finished. Passwords and results are not shared with the other toolset.</p><iframe title="Text Glitch Kit encryption and text effects" sandbox="allow-scripts allow-same-origin allow-downloads" allow="clipboard-write" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;meta name=&quot;description&quot; content=&quot;A small, offline message glitcher and password encryptor from Bullshit Telephone World.&quot;&gt;
+  &lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src 'none'; script-src 'sha256-z4xFYvakoHZzfcKrodVxXpRBHA7Ccp24WOtvSgjV9bg=' 'sha256-mzVz3UV3CqhB7ny8uOTVkPrEMQWUal2hb3XiqxGmNtE='; style-src 'sha256-FJwKnhefa9ECQjqs0qzyLiDS5kfG8624SFy6xlcxwuw='; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'&quot;&gt;
+  &lt;meta name=&quot;color-scheme&quot; content=&quot;light&quot;&gt;
+  &lt;link rel=&quot;icon&quot; href=&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23d7ff38'/%3E%3Cpath d='M13 17h38v9H37v23H27V26H13z' fill='%231b1c19'/%3E%3C/svg%3E&quot;&gt;
+  &lt;title&gt;Text Glitch Kit · BTW&lt;/title&gt;
+  &lt;style&gt;:root{--paper:#f3f1e8;--ink:#1c1e19;--muted:#62665b;--line:#c5c8b8;--lime:#d7ff38;--pink:#ff80b9;--white:#fffef8;--mono:ui-monospace,SFMono-Regular,Consolas,&quot;Liberation Mono&quot;,monospace;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}button:disabled{cursor:default}a{color:inherit}button,input,select,textarea,summary{ -webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7540c8;outline-offset:4px}input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #7540c8;outline-offset:2px}button{touch-action:manipulation}button:disabled{opacity:.45}[hidden]{display:none!important}.page{max-width:1190px;padding:0 38px;margin:auto}.masthead{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--ink);padding:25px 0 22px;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-size:11px;font-weight:800;line-height:1.2;letter-spacing:1.1px;text-decoration:none}.brand-icon{width:36px;height:36px;background:var(--ink);color:var(--lime);display:grid;place-items:center;font-size:31px;line-height:1;transform:rotate(-5deg)}.local-badge{font:10px var(--mono);letter-spacing:.7px;display:flex;align-items:center;gap:8px}.local-badge&gt;span,.privacy-dot{display:inline-block;width:7px;height:7px;background:#558000;border-radius:50%;flex-shrink:0}.intro{padding:47px 0 29px}.eyebrow{font:10px var(--mono);letter-spacing:1.5px;margin:0 0 15px}h1{font-size:clamp(46px,6.7vw,78px);letter-spacing:-5px;line-height:1.03;margin:0;font-weight:800}.glitch-word{position:relative;isolation:isolate;white-space:nowrap}.glitch-word&gt;span{position:absolute;left:3px;top:0;color:var(--pink);clip-path:polygon(0 37%,100% 37%,100% 51%,0 51%);pointer-events:none}.title-dot{color:#5f7419}.lede{font-size:16px;line-height:1.55;color:#53574e;margin:20px 0 0}.tool{border:1px solid var(--ink);background:var(--white);box-shadow:5px 5px 0 #dce0cf}.toolbar{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;gap:10px;border-bottom:1px solid var(--line)}.modes{display:flex;gap:5px;flex-wrap:wrap}.mode{border:1px solid transparent;background:transparent;padding:10px 17px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;border-radius:3px}.mode&gt;span{font-size:19px;line-height:1}.mode:hover{background:#eeeee4}.mode.active{background:var(--ink);color:var(--lime);border-color:var(--ink)}.text-button{border:0;background:transparent;font-size:11px;padding:9px 0;font-weight:600;text-underline-offset:4px}.text-button:hover{text-decoration:underline}.toolbar&gt;.text-button{white-space:nowrap;color:var(--muted)}.toolbar&gt;.text-button&gt;span{font-size:18px;padding-left:9px}.mode-note{margin:0;padding:13px 25px;font-size:12px;line-height:1.5;background:#f3f5e9;border-bottom:1px solid var(--line);min-height:47px;display:flex;gap:10px;align-items:center}.note-tag{font:9px var(--mono);letter-spacing:.7px;border:1px solid #9ba48b;border-radius:2px;padding:2px 4px;flex-shrink:0}.workbench{display:grid;grid-template-columns:1fr 1fr}.panel{padding:24px;min-width:0}.input-panel{border-right:1px solid var(--line)}.output-panel{background:#f5f6ee;display:flex;flex-direction:column}.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.panel-heading label{font-size:12px;font-weight:700}.counter,.result-tag{font:9px var(--mono);letter-spacing:.2px;color:var(--muted);text-align:right}.counter.over-limit{color:#a52a40}textarea{resize:vertical;border:1px solid var(--line);border-radius:3px;background:#fffefa;padding:15px 16px;width:100%;min-height:168px;max-height:420px;font:14px/1.65 var(--mono);display:block;overflow-wrap:anywhere}textarea::placeholder{color:#858a7c}#message::placeholder{max-width:240px}#message{min-height:174px}textarea:focus{border-color:var(--ink)}.input-under{display:flex;align-items:center;justify-content:space-between;gap:7px;min-height:42px}.input-under p,.password-settings p{font-size:10px;line-height:1.5;color:var(--muted);margin:0}.sample{font-size:10px;white-space:nowrap}.settings{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin:14px 0 23px}.settings label,.password-settings&gt;label{display:block;font-size:10px;font-weight:700;margin-bottom:9px}.style-setting select{width:100%;border:1px solid var(--line);border-radius:3px;background:var(--white);height:38px;font-size:12px;padding:0 9px}.strength-label{display:flex;justify-content:space-between;align-items:start}.strength-label output{font:10px var(--mono);color:var(--muted)}input[type=range]{width:100%;margin:6px 0 3px;accent-color:var(--ink);height:20px}.range-labels{display:flex;justify-content:space-between;gap:5px;font:8px var(--mono);color:var(--muted)}.primary-button{display:flex;align-items:center;justify-content:space-between;gap:15px;background:var(--lime);border:1px solid var(--ink);border-radius:3px;padding:13px 17px;width:100%;font-size:13px;font-weight:700;min-height:47px;box-shadow:0 2px 0 var(--ink)}.primary-button:hover:not(:disabled){background:#e2ff75}.primary-button&gt;span:last-child{font-size:22px;line-height:1}.primary-button:active:not(:disabled){transform:translateY(1px);box-shadow:0 1px 0 var(--ink)}.password-settings{margin:14px 0 20px}.password-row{display:flex;gap:10px;margin-bottom:9px;align-items:center}.password-row input{width:100%;min-width:0;height:38px;border:1px solid var(--line);border-radius:3px;background:var(--white);padding:0 10px;font-size:12px}.password-row button{width:38px;flex-shrink:0}.result-wrap{position:relative;display:flex;flex:1;min-height:223px}#result{border-color:transparent;background:transparent;padding:0;min-height:223px;resize:vertical;flex:1}#result::placeholder{font:13px/1.65 var(--mono);color:#838878}.empty-mark{position:absolute;top:91px;left:0;right:0;text-align:center;font:46px var(--mono);letter-spacing:1px;color:#d8deca;pointer-events:none}.result-hint{font-size:10px;line-height:1.5;margin:12px 0 14px;color:var(--muted)}.result-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.copy-button{border:1px solid var(--ink);background:var(--white);border-radius:3px;padding:10px 14px;font-size:11px;font-weight:700;min-height:39px;display:flex;align-items:center;gap:8px}.copy-button:hover:not(:disabled){background:var(--lime)}.copy-button&gt;span{font-size:16px}.feedback{min-height:44px;padding-top:12px}.feedback p{margin:0;font:10px/1.5 var(--mono);color:var(--muted);overflow-wrap:anywhere}#error{color:#9b1d3e}.tool-footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 24px;font:8px/1.6 var(--mono);color:var(--muted)}.tool-footer&gt;span:first-child{display:flex;align-items:center;gap:7px}.tool-footer&gt;span:last-child{letter-spacing:.7px;text-align:right}.explanation{margin:26px 0 39px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:11px}.explanation summary{padding:17px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;gap:12px;list-style:none}.explanation summary::-webkit-details-marker{display:none}.explanation summary&gt;span{font-size:18px;font-weight:400}.explanation[open] summary&gt;span{transform:rotate(45deg)}.explanation-content{display:grid;grid-template-columns:1fr 1fr;gap:8px 30px;padding:0 0 15px;line-height:1.7;color:var(--muted)}.explanation-content p{margin:0 0 8px}.explanation-content strong{color:var(--ink)}.explanation-content code{font-size:10px}.page-footer{border-top:1px solid var(--ink);padding:20px 0 25px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font:8px/1.5 var(--mono);letter-spacing:.5px}.page-footer&gt;span:last-child{letter-spacing:0}.page-footer&gt;span:last-child&gt;span{color:var(--ink);font-size:14px;margin-left:8px}
+@media(min-width:1400px){.intro{padding-top:55px}.page{padding-top:10px}}
+@media(max-width:760px){.page{padding:0 22px}.masthead{padding:20px 0}.brand{font-size:9px;letter-spacing:.7px}.local-badge{font-size:8px}.intro{padding:34px 0 26px}h1{font-size:55px;letter-spacing:-3px}.lede{font-size:14px}.workbench{grid-template-columns:1fr}.input-panel{border-right:0;border-bottom:1px solid var(--line)}.panel{padding:21px}.toolbar{padding:12px 15px}.mode{padding:9px 12px}.mode-note{padding:12px 21px}.result-wrap,#result{min-height:180px}.empty-mark{top:70px}.tool-footer&gt;span:last-child{display:none}.tool-footer{padding:12px 21px;font-size:8px}.page-footer{flex-wrap:wrap;gap:10px}.explanation-content{grid-template-columns:1fr}.explanation{margin-bottom:27px}.desktop-break{display:none}.result-hint{margin-top:8px}}
+@media(max-width:400px){.page{padding:0 15px}.local-badge{max-width:100px;font-size:7px;gap:6px}.local-badge&gt;span{width:5px;height:5px}h1{font-size:46px;letter-spacing:-2.7px}.mode{font-size:12px;padding:9px 10px;gap:5px}.mode&gt;span{font-size:16px}.toolbar{padding:10px}.toolbar&gt;.text-button{font-size:9px}.toolbar&gt;.text-button&gt;span{padding-left:2px}.panel{padding:17px}.mode-note{padding:11px 17px;font-size:11px}.settings{gap:14px}.input-under{align-items:start;padding-top:8px}.input-under p{font-size:9px}.sample{padding-top:0;font-size:9px}.panel-heading{gap:6px}.result-tag{font-size:8px}.tool-footer{padding:10px 17px}.page-footer{font-size:7px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;page&quot;&gt;
+    &lt;header class=&quot;masthead&quot;&gt;
+      &lt;a class=&quot;brand&quot; href=&quot;#main&quot; aria-label=&quot;Bullshit Telephone World, skip to message tool&quot;&gt;&lt;span class=&quot;brand-icon&quot; aria-hidden=&quot;true&quot;&gt;↯&lt;/span&gt;&lt;span&gt;BULLSHIT&lt;br&gt;TELEPHONE WORLD&lt;/span&gt;&lt;/a&gt;
+      &lt;span class=&quot;local-badge&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; ALL LOCAL. ALL YOURS.&lt;/span&gt;
+    &lt;/header&gt;
+    &lt;main id=&quot;main&quot;&gt;
+      &lt;section class=&quot;intro&quot; aria-labelledby=&quot;title&quot;&gt;
+        &lt;p class=&quot;eyebrow&quot;&gt;SMALL TOOL. STRANGE TRANSMISSIONS.&lt;/p&gt;
+        &lt;h1 id=&quot;title&quot;&gt;Text &lt;span class=&quot;glitch-word&quot;&gt;Glitch&lt;span aria-hidden=&quot;true&quot;&gt;Glitch&lt;/span&gt;&lt;/span&gt; Kit&lt;span class=&quot;title-dot&quot;&gt;.&lt;/span&gt;&lt;/h1&gt;
+        &lt;p class=&quot;lede&quot;&gt;Bend a message. Or lock it with a password.&lt;br class=&quot;desktop-break&quot;&gt; The telephone has learned some boundaries.&lt;/p&gt;
+      &lt;/section&gt;
+      &lt;section class=&quot;tool&quot; aria-label=&quot;Message tool&quot;&gt;
+        &lt;div class=&quot;toolbar&quot;&gt;
+          &lt;div class=&quot;modes&quot; role=&quot;group&quot; aria-label=&quot;Choose a mode&quot;&gt;
+            &lt;button type=&quot;button&quot; class=&quot;mode active&quot; data-mode=&quot;glitch&quot; aria-pressed=&quot;true&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;↯&lt;/span&gt; Glitch&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;mode&quot; data-mode=&quot;encrypt&quot; aria-pressed=&quot;false&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;▣&lt;/span&gt; Encrypt&lt;/button&gt;
+            &lt;button type=&quot;button&quot; class=&quot;mode&quot; data-mode=&quot;decrypt&quot; aria-pressed=&quot;false&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;↳&lt;/span&gt; Decrypt&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;button id=&quot;clear&quot; class=&quot;text-button&quot; type=&quot;button&quot;&gt;Clear all &lt;span aria-hidden=&quot;true&quot;&gt;×&lt;/span&gt;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;p id=&quot;modeNote&quot; class=&quot;mode-note&quot;&gt;&lt;span class=&quot;note-tag&quot;&gt;PLAY&lt;/span&gt; A visual remix. Glitched text is readable and isn’t encrypted.&lt;/p&gt;
+        &lt;div class=&quot;workbench&quot;&gt;
+          &lt;div class=&quot;input-panel panel&quot;&gt;
+            &lt;div class=&quot;panel-heading&quot;&gt;&lt;label id=&quot;messageLabel&quot; for=&quot;message&quot;&gt;Your message&lt;/label&gt;&lt;span id=&quot;count&quot; class=&quot;counter&quot;&gt;0 / 4,000&lt;/span&gt;&lt;/div&gt;
+            &lt;textarea id=&quot;message&quot; dir=&quot;auto&quot; rows=&quot;7&quot; spellcheck=&quot;false&quot; autocomplete=&quot;off&quot; autocapitalize=&quot;off&quot; aria-describedby=&quot;inputHint count&quot; placeholder=&quot;The pigeons have unionized. Please hold.&quot;&gt;&lt;/textarea&gt;
+            &lt;div class=&quot;input-under&quot;&gt;&lt;p id=&quot;inputHint&quot;&gt;Short messages. Maximum 4,000 characters.&lt;/p&gt;&lt;button id=&quot;sample&quot; class=&quot;text-button sample&quot; type=&quot;button&quot;&gt;Try a message ↗&lt;/button&gt;&lt;/div&gt;
+            &lt;div id=&quot;glitchSettings&quot; class=&quot;settings&quot;&gt;
+              &lt;div class=&quot;style-setting&quot;&gt;&lt;label for=&quot;style&quot;&gt;Glitch style&lt;/label&gt;&lt;select id=&quot;style&quot;&gt;&lt;option value=&quot;signal&quot;&gt;Signal leak&lt;/option&gt;&lt;option value=&quot;echo&quot;&gt;Echo chamber&lt;/option&gt;&lt;option value=&quot;telephone&quot;&gt;Bad telephone&lt;/option&gt;&lt;option value=&quot;leet&quot;&gt;Leet speak&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div class=&quot;strength-setting&quot;&gt;&lt;div class=&quot;strength-label&quot;&gt;&lt;label for=&quot;strength&quot;&gt;Strength&lt;/label&gt;&lt;output id=&quot;strengthValue&quot; for=&quot;strength&quot;&gt;3 / 5&lt;/output&gt;&lt;/div&gt;&lt;input id=&quot;strength&quot; type=&quot;range&quot; min=&quot;1&quot; max=&quot;5&quot; value=&quot;3&quot; aria-valuetext=&quot;3 of 5&quot;&gt;&lt;div class=&quot;range-labels&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;A little weird&lt;/span&gt;&lt;span&gt;Very weird&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div id=&quot;passwordSettings&quot; class=&quot;password-settings&quot; hidden&gt;
+              &lt;label for=&quot;password&quot;&gt;Password&lt;/label&gt;&lt;div class=&quot;password-row&quot;&gt;&lt;input id=&quot;password&quot; type=&quot;password&quot; spellcheck=&quot;false&quot; autocomplete=&quot;off&quot; autocapitalize=&quot;off&quot; aria-describedby=&quot;passwordHint&quot; placeholder=&quot;A long, unique passphrase&quot;&gt;&lt;button id=&quot;showPassword&quot; type=&quot;button&quot; class=&quot;text-button&quot; aria-pressed=&quot;false&quot;&gt;Show&lt;/button&gt;&lt;/div&gt;
+              &lt;p id=&quot;passwordHint&quot;&gt;At least 12 characters. Keep the password separately; there’s no reset.&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;button id=&quot;run&quot; class=&quot;primary-button&quot; type=&quot;button&quot;&gt;&lt;span id=&quot;runLabel&quot;&gt;Glitch message&lt;/span&gt;&lt;span id=&quot;runArrow&quot; aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;output-panel panel&quot;&gt;
+            &lt;div class=&quot;panel-heading&quot;&gt;&lt;label for=&quot;result&quot;&gt;The result&lt;/label&gt;&lt;span id=&quot;resultTag&quot; class=&quot;result-tag&quot;&gt;AWAITING SIGNAL&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;result-wrap&quot;&gt;&lt;textarea id=&quot;result&quot; dir=&quot;auto&quot; rows=&quot;7&quot; readonly spellcheck=&quot;false&quot; aria-label=&quot;The result&quot; placeholder=&quot;Your transformed message lands here.&quot;&gt;&lt;/textarea&gt;&lt;span class=&quot;empty-mark&quot; id=&quot;emptyMark&quot; aria-hidden=&quot;true&quot;&gt;[ &amp;nbsp; ↯ &amp;nbsp; ]&lt;/span&gt;&lt;/div&gt;
+            &lt;p id=&quot;resultHint&quot; class=&quot;result-hint&quot;&gt;A little interference goes a long way.&lt;/p&gt;
+            &lt;div class=&quot;result-actions&quot;&gt;&lt;button id=&quot;copy&quot; type=&quot;button&quot; class=&quot;copy-button&quot; disabled&gt;&lt;span aria-hidden=&quot;true&quot;&gt;▤&lt;/span&gt; Copy result&lt;/button&gt;&lt;button id=&quot;useEncrypted&quot; type=&quot;button&quot; class=&quot;text-button&quot; hidden&gt;Decrypt this result &lt;span aria-hidden=&quot;true&quot;&gt;↗&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;
+            &lt;div class=&quot;feedback&quot;&gt;&lt;p id=&quot;status&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;Ready when you are.&lt;/p&gt;&lt;p id=&quot;error&quot; role=&quot;alert&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;tool-footer&quot;&gt;&lt;span&gt;&lt;span class=&quot;privacy-dot&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt; Stays in this browser. Nothing sent or saved by this tool.&lt;/span&gt;&lt;span&gt;NO ACCOUNT. NO BIG PRODUCTION.&lt;/span&gt;&lt;/div&gt;
+      &lt;/section&gt;
+      &lt;details class=&quot;explanation&quot;&gt;&lt;summary&gt;Glitch, Encrypt, Decrypt — what’s the difference?&lt;span aria-hidden=&quot;true&quot;&gt;+&lt;/span&gt;&lt;/summary&gt;&lt;div class=&quot;explanation-content&quot;&gt;&lt;p&gt;&lt;strong&gt;Glitch is play.&lt;/strong&gt; It changes how text looks. It is readable, may lose information, and has no undo or secret key. Copy your original if you want to keep it.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Encrypt locks the message.&lt;/strong&gt; It uses AES-256-GCM with a fresh random salt and nonce, and a password-derived key (PBKDF2-SHA-256, 600,000 iterations). Use a long, unique passphrase and share it separately from the encrypted text. Weak passwords can be guessed.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Decrypt opens it.&lt;/strong&gt; Paste the entire encrypted result and enter the exact password. Spaces and capitalization matter. It also opens verified BTW &lt;code&gt;BTWE1.&lt;/code&gt; tokens within this kit’s message limit. Other formats aren’t supported. Wrong password or changed text? No partial message is shown.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Local means local.&lt;/strong&gt; No analytics, network calls, or message history. Closing or reloading clears the tool; Clear all empties its fields. Your browser, extensions and clipboard still have their own behavior. Use a trusted device. Textarea line endings follow your browser’s handling.&lt;/p&gt;&lt;/div&gt;&lt;/details&gt;
+    &lt;/main&gt;
+    &lt;footer class=&quot;page-footer&quot;&gt;&lt;span&gt;BTW / FIELD TOOLS&lt;/span&gt;&lt;span&gt;FRESH SIMPLIFIED EDITION · 2026.10&lt;/span&gt;&lt;span&gt;A small machine for your words. &lt;span aria-hidden=&quot;true&quot;&gt;↯&lt;/span&gt;&lt;/span&gt;&lt;/footer&gt;
+  &lt;/div&gt;
+  &lt;script&gt;(function (root) {
+  'use strict';
+  const encoder = new TextEncoder();
+  const decoder = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true });
+  const MAX_CHARS = 4000, MAX_BYTES = 16000, MAX_PACKED = 16044, MAX_TOKEN = 21398;
+  const HEADER = 'BTW1.';
+  const AUTH_ERROR = 'Couldn’t decrypt: the password is incorrect or the encrypted text is damaged.';
+
+  function validUnicode(text) {
+    // TextEncoder would silently replace lone surrogates, losing the original text.
+    for (let i = 0; i &lt; text.length; i++) {
+      const c = text.charCodeAt(i);
+      if (c &gt;= 0xD800 &amp;&amp; c &lt;= 0xDBFF) {
+        const next = text.charCodeAt(++i);
+        if (!(next &gt;= 0xDC00 &amp;&amp; next &lt;= 0xDFFF)) return false;
+      } else if (c &gt;= 0xDC00 &amp;&amp; c &lt;= 0xDFFF) return false;
+    }
+    return true;
+  }
+  function validateMessage(text) {
+    if (typeof text !== 'string' || !text.length) throw new Error('Enter a message first.');
+    if (!validUnicode(text)) throw new Error('This message contains an incomplete Unicode character. Paste it again.');
+    if ([...text].length &gt; MAX_CHARS || encoder.encode(text).length &gt; MAX_BYTES) {
+      throw new Error('Keep your message to 4,000 characters or fewer.');
+    }
+    return text;
+  }
+  function validatePassword(password, creating) {
+    if (typeof password !== 'string' || !password.length) throw new Error('Enter the password for this message.');
+    if (!validUnicode(password)) throw new Error('The password contains an incomplete Unicode character. Enter it again.');
+    const length = [...password].length;
+    if (creating &amp;&amp; length &lt; 12) throw new Error('Use a password of at least 12 characters. A long, unique passphrase is best.');
+    if (length &gt; 1024 || encoder.encode(password).length &gt; 4096) throw new Error('Keep your password to 1,024 characters or fewer.');
+  }
+  function cryptoApi() {
+    if (!root.crypto?.subtle) throw new Error('Encryption is unavailable here. Open this file in a current Chrome, Edge, Firefox or Safari browser.');
+    return root.crypto;
+  }
+  function base64(bytes, url) {
+    let binary = '';
+    for (const byte of bytes) binary += String.fromCharCode(byte);
+    const result = btoa(binary);
+    return url ? result.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '') : result;
+  }
+  function parseToken(input) {
+    if (typeof input !== 'string' || input.length &gt; MAX_TOKEN + 128) throw new Error('Encrypted text is too long for this short-message kit.');
+    const token = input.trim();
+    const legacy = token.startsWith('BTWE1.');
+    if (!legacy &amp;&amp; !token.startsWith(HEADER)) throw new Error('Paste a complete encrypted message beginning BTW1. or BTWE1.');
+    const body = token.slice(legacy ? 6 : 5);
+    if (body.length &gt; 21392) throw new Error('Encrypted text is too long for this short-message kit.');
+    const alphabetOK = legacy ? /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(body) : /^[A-Za-z0-9_-]+$/.test(body);
+    if (!alphabetOK || body.length % 4 === 1) throw new Error('This encrypted text is incomplete or damaged. Copy the whole result again.');
+    let bytes;
+    try { bytes = Uint8Array.from(atob(legacy ? body : body.replace(/-/g, '+').replace(/_/g, '/')), c =&gt; c.charCodeAt(0)); }
+    catch { throw new Error('This encrypted text is incomplete or damaged. Copy the whole result again.'); }
+    if (bytes.length &lt; 45 || bytes.length &gt; MAX_PACKED || base64(bytes, !legacy) !== body) {
+      throw new Error('This encrypted text is incomplete or damaged. Copy the whole result again.');
+    }
+    return { bytes, legacy };
+  }
+  async function derive(password, salt, iterations, usage) {
+    const api = cryptoApi();
+    const material = await api.subtle.importKey('raw', encoder.encode(password), 'PBKDF2', false, ['deriveKey']);
+    return api.subtle.deriveKey({ name: 'PBKDF2', salt, iterations, hash: 'SHA-256' }, material, { name: 'AES-GCM', length: 256 }, false, [usage]);
+  }
+  async function encrypt(message, password) {
+    validateMessage(message);
+    validatePassword(password, true);
+    const api = cryptoApi();
+    const salt = api.getRandomValues(new Uint8Array(16));
+    const iv = api.getRandomValues(new Uint8Array(12));
+    const key = await derive(password, salt, 600000, 'encrypt');
+    const cipher = new Uint8Array(await api.subtle.encrypt({ name: 'AES-GCM', iv, tagLength: 128, additionalData: encoder.encode(HEADER) }, key, encoder.encode(message)));
+    const packed = new Uint8Array(28 + cipher.length);
+    packed.set(salt); packed.set(iv, 16); packed.set(cipher, 28);
+    return HEADER + base64(packed, true);
+  }
+  async function decrypt(token, password) {
+    const { bytes, legacy } = parseToken(token);
+    validatePassword(password, false);
+    const api = cryptoApi();
+    const key = await derive(password, bytes.slice(0, 16), legacy ? 310000 : 600000, 'decrypt');
+    let clear;
+    try {
+      const params = { name: 'AES-GCM', iv: bytes.slice(16, 28), tagLength: 128 };
+      if (!legacy) params.additionalData = encoder.encode(HEADER);
+      clear = await api.subtle.decrypt(params, key, bytes.slice(28));
+    } catch { throw new Error(AUTH_ERROR); }
+    let text;
+    try { text = decoder.decode(clear); }
+    catch { throw new Error('The decrypted content is not valid UTF-8 text.'); }
+    return validateMessage(text);
+  }
+  function glitch(message, style = 'signal', strength = 3) {
+    validateMessage(message);
+    if (!['signal', 'echo', 'telephone', 'leet'].includes(style)) throw new Error('Choose a glitch style.');
+    if (!Number.isInteger(strength) || strength &lt; 1 || strength &gt; 5) throw new Error('Choose a strength from 1 to 5.');
+    const segments = typeof Intl.Segmenter === 'function'
+      ? Array.from(new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(message), x =&gt; x.segment)
+      : Array.from(message);
+    const marks = ['\u0338', '\u0336', '\u0301', '\u0323', '\u0308'];
+    const substitutions = { a: '4', e: '3', i: '1', o: '0', s: '5', t: '7', b: '8' };
+    let index = 0, changed = false;
+    const result = segments.map(segment =&gt; {
+      // Only affect plain ASCII letters: emoji, scripts and combining sequences stay intact.
+      if (!/^[A-Za-z]$/.test(segment)) return segment;
+      const active = index++ % (6 - strength) === 0;
+      if (!active) return segment;
+      if (style === 'signal') { changed = true; return segment + marks.slice(0, strength).join(''); }
+      if (style === 'echo') { changed = true; return segment + '·' + segment.toLowerCase().repeat(Math.ceil(strength / 2)); }
+      if (style === 'telephone') { changed = true; return index % 2 ? segment.toUpperCase() + '¿' : segment.toLowerCase(); }
+      const replacement = substitutions[segment.toLowerCase()];
+      if (replacement) { changed = true; return replacement; }
+      return segment;
+    }).join('');
+    // Give even emoji-only/non-Latin messages a visible playful result without corrupting them.
+    return changed ? result : '⟦ ' + result + ' ⟧';
+  }
+  const kit = Object.freeze({ encrypt, decrypt, glitch, validateMessage, MAX_CHARS, MAX_TOKEN, AUTH_ERROR });
+  if (typeof module !== 'undefined' &amp;&amp; module.exports) module.exports = kit;
+  else root.TextGlitchKit = kit;
+})(globalThis);
+&lt;/script&gt;
+  &lt;script&gt;(function () {
+  'use strict';
+  const kit = globalThis.TextGlitchKit;
+  const $ = id =&gt; document.getElementById(id);
+  const message = $('message'), password = $('password'), result = $('result');
+  let mode = 'glitch', revision = 0, pending = false;
+  const modes = {
+    glitch: { label: 'Your message', button: 'Glitch message', tag: 'PLAY', note: 'A visual remix. Glitched text is readable and isn’t encrypted.', placeholder: 'The pigeons have unionized. Please hold.', result: 'Your transformed message lands here.', hint: 'A little interference goes a long way.' },
+    encrypt: { label: 'Your message', button: 'Encrypt message', tag: 'LOCK', note: 'Password-based encryption. Only the exact password can open the result.', placeholder: 'Write the message you want to keep private.', result: 'Your encrypted message lands here.', hint: 'Copy the entire result. Keep your password separately.' },
+    decrypt: { label: 'Encrypted message', button: 'Decrypt message', tag: 'OPEN', note: 'Paste an encrypted result, then enter the password used to lock it.', placeholder: 'BTW1. … paste the entire encrypted message', result: 'Your original message lands here.', hint: 'Your message appears only after its password and integrity check pass.' }
+  };
+  function announce(text) { $('status').textContent = text; }
+  function count() {
+    const total = [...message.value].length, limit = mode === 'decrypt' ? kit.MAX_TOKEN : kit.MAX_CHARS;
+    $('count').textContent = total.toLocaleString('en-US') + ' / ' + limit.toLocaleString('en-US');
+    $('count').classList.toggle('over-limit', total &gt; limit);
+  }
+  function invalidate(text = 'Changed. Run again to make a new result.') {
+    revision++;
+    result.value = '';
+    $('copy').disabled = true;
+    $('useEncrypted').hidden = true;
+    $('emptyMark').hidden = false;
+    $('resultTag').textContent = 'AWAITING SIGNAL';
+    $('error').hidden = true;
+    $('error').textContent = '';
+    if (text) announce(text);
+    count();
+  }
+  function buttonState() {
+    $('run').disabled = pending;
+    $('runLabel').textContent = pending ? 'Working…' : modes[mode].button;
+    $('runArrow').textContent = pending ? '···' : '↗';
+    $('run').setAttribute('aria-busy', String(pending));
+  }
+  function setMode(next) {
+    mode = next;
+    invalidate('Ready when you are.');
+    document.querySelectorAll('[data-mode]').forEach(button =&gt; {
+      const active = button.dataset.mode === mode;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    const config = modes[mode];
+    $('messageLabel').textContent = config.label;
+    message.placeholder = config.placeholder;
+    result.placeholder = config.result;
+    $('resultHint').textContent = config.hint;
+    $('glitchSettings').hidden = mode !== 'glitch';
+    $('passwordSettings').hidden = mode === 'glitch';
+    $('sample').hidden = mode === 'decrypt';
+    $('inputHint').textContent = mode === 'decrypt' ? 'Paste the full BTW1. or BTWE1. result, including its prefix.' : 'Short messages. Maximum 4,000 characters.';
+    $('passwordHint').textContent = mode === 'encrypt' ? 'At least 12 characters. Keep the password separately; there’s no reset.' : 'Use the exact original password, including spaces and capitalization.';
+    $('modeNote').replaceChildren();
+    const tag = document.createElement('span'); tag.className = 'note-tag'; tag.textContent = config.tag;
+    $('modeNote').append(tag, document.createTextNode(config.note));
+    hidePassword();
+    buttonState();
+  }
+  function hidePassword() {
+    password.type = 'password';
+    $('showPassword').textContent = 'Show';
+    $('showPassword').setAttribute('aria-pressed', 'false');
+  }
+  document.querySelectorAll('[data-mode]').forEach(button =&gt; button.addEventListener('click', () =&gt; setMode(button.dataset.mode)));
+  message.addEventListener('input', () =&gt; invalidate());
+  password.addEventListener('input', () =&gt; invalidate());
+  $('style').addEventListener('change', () =&gt; invalidate());
+  $('strength').addEventListener('input', () =&gt; {
+    $('strengthValue').value = $('strength').value + ' / 5';
+    $('strength').setAttribute('aria-valuetext', $('strength').value + ' of 5');
+    invalidate();
+  });
+  $('sample').addEventListener('click', () =&gt; {
+    message.value = 'The pigeons have unionized. Please hold. 🐦';
+    invalidate('Sample loaded. Give it a little interference.');
+    message.focus();
+  });
+  $('showPassword').addEventListener('click', () =&gt; {
+    const show = password.type === 'password';
+    password.type = show ? 'text' : 'password';
+    $('showPassword').textContent = show ? 'Hide' : 'Show';
+    $('showPassword').setAttribute('aria-pressed', String(show));
+  });
+  $('clear').addEventListener('click', () =&gt; {
+    message.value = ''; password.value = '';
+    hidePassword();
+    invalidate('Cleared. The fields are empty.');
+    message.focus();
+  });
+  $('run').addEventListener('click', async () =&gt; {
+    if (pending) return;
+    invalidate('');
+    const current = revision, currentMode = mode;
+    pending = true; buttonState();
+    announce(mode === 'glitch' ? 'Glitching…' : mode === 'encrypt' ? 'Encrypting locally…' : 'Checking password and message…');
+    try {
+      const text = message.value;
+      const output = currentMode === 'glitch' ? kit.glitch(text, $('style').value, Number($('strength').value)) : currentMode === 'encrypt' ? await kit.encrypt(text, password.value) : await kit.decrypt(text, password.value);
+      // Crypto cannot be canceled; discard any result whose inputs have changed.
+      if (current !== revision) return;
+      result.value = output;
+      $('copy').disabled = false;
+      $('useEncrypted').hidden = currentMode !== 'encrypt';
+      $('emptyMark').hidden = true;
+      $('resultTag').textContent = currentMode === 'glitch' ? 'GLITCHED / READABLE' : currentMode === 'encrypt' ? 'ENCRYPTED / BTW1' : 'DECRYPTED / VERIFIED';
+      announce(currentMode === 'glitch' ? 'Glitch ready. Your original is unchanged.' : currentMode === 'encrypt' ? 'Encrypted locally. Copy the entire result to keep it.' : 'Decrypted. Password and message integrity verified.');
+    } catch (error) {
+      if (current !== revision) return;
+      announce('');
+      $('error').textContent = error.message || 'Something went wrong. Check your message and try again.';
+      $('error').hidden = false;
+    } finally {
+      pending = false; buttonState();
+    }
+  });
+  $('copy').addEventListener('click', async () =&gt; {
+    if (!result.value) return;
+    const current = revision;
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+      await navigator.clipboard.writeText(result.value);
+      if (current === revision) announce('Copied. Your clipboard now holds the result.');
+    } catch {
+      if (current !== revision) return;
+      result.focus(); result.select(); result.setSelectionRange(0, result.value.length);
+      announce('Copy manually: the result is selected. Press Ctrl+C (Command+C on Mac), or use your device’s Copy menu.');
+    }
+  });
+  $('useEncrypted').addEventListener('click', () =&gt; {
+    if (mode !== 'encrypt' || !result.value) return;
+    message.value = result.value;
+    setMode('decrypt');
+    announce('Encrypted result loaded. Use the same password to open it.');
+    password.focus();
+  });
+  // Browser back/forward caching may retain a page; always clear fields when leaving.
+  window.addEventListener('pagehide', () =&gt; {
+    message.value = ''; password.value = ''; hidePassword(); invalidate('Ready when you are.');
+  });
+  setMode('glitch');
+})();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></section>
+</main><footer>UNIFIED integration preview // original engines embedded without modification. No external resources required. Browser clipboard permissions may vary.</footer>
+<script>(() => {
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function choose(index,focus=false){
+ tabs.forEach((tab,i)=>{
+  const selected=i===index;
+  tab.setAttribute('aria-selected',String(selected));
+  tab.tabIndex=selected?0:-1;
+  document.getElementById(tab.getAttribute('aria-controls')).hidden=!selected;
+ });
+ if(focus)tabs[index].focus();
+}
+tabs.forEach((tab,i)=>{
+ tab.addEventListener('click',()=>choose(i));
+ tab.addEventListener('keydown',event=>{
+  const keys={'ArrowLeft':(i+tabs.length-1)%tabs.length,'ArrowRight':(i+1)%tabs.length,'Home':0,'End':tabs.length-1};
+  if(Object.hasOwn(keys,event.key)){event.preventDefault();choose(keys[event.key],true);}
+ });
+});
+choose(0);
+})();</script></body></html>
