@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-knPuP0QhLKUfZmc2rv+ZklxxbXKa5I4t3IQXWbpbyms=' 'sha256-ya46lQ7CFK31bQTrxNXl0SOa89uParv4WLx9nc8PVPQ=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-fp85KO5CQM2mdC/Q2Y4jBSeosKqDm5sewdc7WwTPrgU='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-knPuP0QhLKUfZmc2rv+ZklxxbXKa5I4t3IQXWbpbyms=' 'sha256-q9h6r/m5pe/uFXJ/JAjMDZJQEksEPpX/B8loyMONg2A=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-GoX2xxt7Dx3UaxldRXypbq2+GdzpNL25pR0E6s9cQZ4='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
   <title>glitchKIT::</title>
   <style>
     :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
@@ -59,6 +59,10 @@
     .layer-tower input[type=range]{max-width:100%}
     .layer-tower output{min-width:4ch;color:var(--ink)}
     .rack-actions{margin:7px 0 0}
+    .save-mix{margin:10px 0 0;padding-top:10px;border-top:1px solid var(--line)}
+    .save-mix input{flex:0 1 16em;min-width:0;max-width:100%}
+    #mixPreset{max-width:min(100%,24ch)}
+    #mixStatus{min-height:0;overflow-wrap:anywhere}
     .null-bench{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
     .null-bench summary,.secret-panel summary{cursor:pointer;color:var(--acid);font-size:15px;font-weight:750;letter-spacing:.08em}
     .secret-panel textarea{min-height:130px}
@@ -92,10 +96,13 @@ unknown potato in a hat</textarea>
         <div class="controls rack-controls">
           <label>MIX
             <select id="mixPreset">
-              <option value="towers">Tower Garden</option>
-              <option value="gentle">Gentle Glitch</option>
-              <option value="upside">Upside-down Snack</option>
-              <option value="bubble">Bubble Bath</option>
+              <optgroup label="Presets">
+                <option value="towers">Tower Garden</option>
+                <option value="gentle">Gentle Glitch</option>
+                <option value="upside">Upside-down Snack</option>
+                <option value="bubble">Bubble Bath</option>
+              </optgroup>
+              <optgroup id="savedMixOptions" label="Saved mixes" hidden></optgroup>
               <option value="custom">My own stack</option>
             </select>
           </label>
@@ -109,6 +116,12 @@ unknown potato in a hat</textarea>
           <button id="addEffect" type="button">+ STACK AN EFFECT</button>
           <span id="stackCount" class="tiny"></span>
         </div>
+        <form id="saveMixForm" class="controls save-mix">
+          <label for="mixName">MIX NAME</label>
+          <input id="mixName" type="text" maxlength="64" autocomplete="off" required>
+          <button id="saveMix" type="submit">SAVE MIX</button>
+        </form>
+        <p id="mixStatus" class="status tiny" role="status"></p>
       </fieldset>
       <div class="controls">
         <button class="primary" type="button" id="glitch">GLITCH IT</button>
@@ -712,12 +725,18 @@ const KuruFiles = (() => {
   const seed = $('seed');
   const preset = $('mixPreset');
   const addEffect = $('addEffect');
+  const mixName = $('mixName');
+  const saveMix = $('saveMix');
+  const savedMixOptions = $('savedMixOptions');
+  const mixStatus = $('mixStatus');
+  const mixPrefix = 'glitchkit.kuru-check.mix.v1:';
   const wordStatus = $('wordStatus');
   const hash = $('hash');
   const history = [''];
   let cursor = 0;
   let nextLayer = 1;
   let stack = [];
+  let savedMixes = new Map();
 
   const layerTypes = Object.fromEntries(core.effectDefs.map(effect => [effect.id, effect]));
   const amountEffects = new Set(['zalgo', 'mixed', 'scramble', 'symbols', 'echo', 'reverse', 'polyglot',
@@ -735,6 +754,105 @@ const KuruFiles = (() => {
     wordStatus.textContent = message;
     wordStatus.dataset.error = String(error);
   }
+
+  function sayMix(message, error = false) {
+    mixStatus.textContent = message;
+    mixStatus.dataset.error = String(error);
+  }
+
+  function keyForMix(name) {
+    return mixPrefix + name.trim().normalize('NFC').toLowerCase();
+  }
+
+  function layerSettings({ effect, sauce, amount, height, direction, enabled }) {
+    return { effect, sauce, amount, height, direction, enabled };
+  }
+
+  function validLayer(layer) {
+    return layer && typeof layer.effect === 'string' && Object.hasOwn(layerTypes, layer.effect) &&
+      core.saucesFor(layer.effect).some(sauce => sauce.id === layer.sauce) &&
+      Number.isFinite(layer.amount) && layer.amount >= 0 && layer.amount <= 10 &&
+      Number.isInteger(layer.height) && layer.height >= 1 && layer.height <= 12 &&
+      directions.some(direction => direction.id === layer.direction) && typeof layer.enabled === 'boolean';
+  }
+
+  function readSavedMixes() {
+    const storage = window.localStorage;
+    const recipes = new Map();
+    for (let i = 0; i < storage.length; i += 1) {
+      const key = storage.key(i);
+      if (!key?.startsWith(mixPrefix)) continue;
+      const raw = storage.getItem(key);
+      let recipe;
+      try { recipe = JSON.parse(raw); }
+      catch { continue; }
+      if (typeof recipe?.name !== 'string' || !recipe.name.trim() || recipe.name.length > 64 ||
+          keyForMix(recipe.name) !== key || typeof recipe.seed !== 'string' || recipe.seed.length > 80 ||
+          typeof recipe.readable !== 'boolean' || !Array.isArray(recipe.layers) ||
+          recipe.layers.length > 8 || !recipe.layers.every(validLayer)) continue;
+      recipes.set(key, recipe);
+    }
+    return recipes;
+  }
+
+  function updateSaveButton() {
+    saveMix.textContent = savedMixes.has(keyForMix(mixName.value)) ? 'UPDATE MIX' : 'SAVE MIX';
+  }
+
+  function refreshSavedMixes(selected = preset.value) {
+    try { savedMixes = readSavedMixes(); }
+    catch {
+      sayMix('Saved mixes are unavailable in this browser.', true);
+      return false;
+    }
+    const options = [...savedMixes].sort(([, a], [, b]) => a.name.localeCompare(b.name));
+    savedMixOptions.replaceChildren(...options.map(([key, recipe]) => new Option(recipe.name, key)));
+    savedMixOptions.hidden = options.length === 0;
+    preset.value = selected.startsWith(mixPrefix) && !savedMixes.has(selected) ? 'custom' : selected;
+    updateSaveButton();
+    return true;
+  }
+
+  $('saveMixForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const name = mixName.value.trim();
+    if (!name) {
+      sayMix('Enter a name for this mix.', true);
+      mixName.focus();
+      return;
+    }
+    if (name.length > mixName.maxLength) {
+      sayMix('Use a mix name of 64 characters or fewer.', true);
+      mixName.focus();
+      return;
+    }
+    const key = keyForMix(name);
+    const recipe = { name, seed: seed.value, readable: $('readable').checked, layers: stack.map(layerSettings) };
+    let exists;
+    try {
+      const storage = window.localStorage;
+      exists = storage.getItem(key) !== null;
+      if (exists && !savedMixes.has(key)) {
+        refreshSavedMixes();
+        sayMix(savedMixes.has(key) ? 'That name is already saved. Use Update Mix to replace it.' :
+          'That name is already in use. Choose another name.', true);
+        return;
+      }
+      storage.setItem(key, JSON.stringify(recipe));
+    } catch {
+      sayMix('Could not save this mix. Browser storage may be full or unavailable.', true);
+      return;
+    }
+    mixName.value = name;
+    if (refreshSavedMixes(key)) sayMix((exists ? 'Updated “' : 'Saved “') + name + '”.');
+  });
+  mixName.addEventListener('input', () => {
+    updateSaveButton();
+    sayMix('');
+  });
+  window.addEventListener('storage', event => {
+    if (event.key === null || event.key.startsWith(mixPrefix)) refreshSavedMixes();
+  });
 
   function makeLayer(options = {}) {
     return { id: nextLayer++, effect: 'zalgo', amount: 3, height: 5, direction: 'up', sauce: 'none', enabled: true, ...options };
@@ -912,9 +1030,22 @@ const KuruFiles = (() => {
   }
 
   function loadMix() {
-    if (preset.value === 'custom') return;
-    stack = mixes[preset.value].map(makeLayer);
-    $('readable').checked = true;
+    const saved = savedMixes.get(preset.value);
+    if (saved) {
+      stack = saved.layers.map(layer => makeLayer(layerSettings(layer)));
+      $('readable').checked = saved.readable;
+      seed.value = saved.seed;
+      mixName.value = saved.name;
+      sayMix('Loaded “' + saved.name + '”.');
+    } else if (Object.hasOwn(mixes, preset.value)) {
+      stack = mixes[preset.value].map(makeLayer);
+      $('readable').checked = true;
+      mixName.value = '';
+      sayMix('');
+    } else {
+      return;
+    }
+    updateSaveButton();
     renderStack();
   }
 
@@ -929,8 +1060,12 @@ const KuruFiles = (() => {
     refreshLayer(layer, 'effect');
   });
   $('readable').addEventListener('change', changed);
+  seed.addEventListener('input', () => {
+    if (savedMixes.has(preset.value)) changed();
+  });
   $('randomSeed').addEventListener('click', () => {
     seed.value = Math.random().toString(36).slice(2, 10).toUpperCase();
+    if (savedMixes.has(preset.value)) changed();
     run();
   });
   $('glitch').addEventListener('click', () => run());
@@ -974,6 +1109,7 @@ const KuruFiles = (() => {
   }
 
   loadMix();
+  refreshSavedMixes();
   run();
 })();
 </script>
