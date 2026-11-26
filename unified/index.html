@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-X0tWIu1JX+AQd1cI830K2JYor0Yd4SdBrhkJIOo7780=' 'sha256-ynFuh81R1GfEy/8gFx+1YtVV3+3WbpmoqOciVyJbjYE=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-LhCILlBNhkJTpjEOYQ4VDUAoqKTVv3WBKn6+a3Hxyx8='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-V0P7wAGdsTHgQu9onHMRZlvtcnW4/Mp4u8RJ3o4JJMg=' 'sha256-p5YmTfy5lJaB4mHCoc9Ahm0N3nTXGoPTHoab/TOK2h8=' 'sha256-qvbYSp8+It4kWtt5tkPik/VHjaewzaF9mc9z8ghLw9g=' 'sha256-aRC4lWI8KNgCUbRnsHMbC1W1dsNJLEQA2kCOW2+eJXI=' 'sha256-sJD+y+wP1A/Is3A7dEDya8rrGqDgeT2gbSQPFR6QGYM='; style-src 'sha256-1MMtxaL+86N4zPDb//8OefEjphDX5pcLm3Lj2cPgueI='; img-src blob: data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
   <title>glitchKIT::</title>
   <style>
     :root{--bg:#08070d;--panel:#12101a;--ink:#f5f1ff;--muted:#958da8;--hot:#ff2aa1;--cyan:#49f6ff;--acid:#c6ff37;--line:#2c263b}
@@ -45,8 +45,16 @@
     .rack-controls{gap:10px 18px;margin:0 0 6px}
     .rack-controls label{display:inline-flex;align-items:center;gap:8px}
     .rack-controls select,.layer-fields select,.layer-tower select{max-width:100%}
+    .placement-controls{align-items:baseline;gap:4px 14px;margin:8px 0 2px}
+    .placement-controls label{display:inline-flex;align-items:center;gap:8px}
+    .layer-tree{position:relative;padding-inline-start:17px}
+    .layer-tree:not(:empty)::before{content:"";position:absolute;inset:0 auto 13px 4px;border-inline-start:1px solid var(--line)}
     .layer-card{min-width:0;margin:10px 0;padding:10px 12px;background:#110d1a;border:1px solid var(--line);border-radius:9px}
-    .layer-card legend{padding-inline:5px;font-size:12px;color:var(--ink)}
+    .layer-card legend{position:relative;padding-inline:5px;font-size:12px;color:var(--ink)}
+    .layer-card legend::before{content:"";position:absolute;width:27px;inset:50% 100% auto auto;border-block-start:1px solid var(--line)}
+    .layer-card legend::after{content:"";position:absolute;right:100%;top:50%;width:5px;height:5px;margin-top:-2px;background:currentColor;border-radius:50%}
+    .layer-card[data-branch=a] legend{color:var(--cyan)}
+    .layer-card[data-branch=b] legend{color:#ff9acb}
     .layer-card[data-bypassed=true] legend{color:var(--muted)}
     .layer-head,.layer-tower{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px}
     .layer-head{justify-content:space-between;margin-bottom:10px}
@@ -66,11 +74,20 @@
     .null-bench{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
     .null-bench summary,.secret-panel summary{cursor:pointer;color:var(--acid);font-size:15px;font-weight:750;letter-spacing:.08em}
     .secret-panel textarea{min-height:130px}
-    #output[data-bubble-towers=true]{line-height:3.6}
+    .output-heading{display:flex;justify-content:space-between;align-items:center;min-height:22px}
+    .output-heading button{padding:2px 7px;font-size:11px}
+    .output-preview{height:210px;min-height:210px;resize:vertical;overflow:auto;background:#09080d;border:1px solid #3b3251;color:var(--ink);padding:12px;border-radius:9px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:var(--tower-line,4.5);user-select:none}
+    .tower-glyph{position:relative;display:inline-block;vertical-align:baseline;text-align:center;line-height:1.18}
+    .tower-glyph--bubble{width:1.18em;height:1.18em;border:1px solid currentColor;border-radius:50%;font-size:.9em}
+    .tower-glyph--wide{width:1.05em}
+    .tower-glyph__marks{position:absolute;inset-inline:0;white-space:pre;text-align:center;font-size:.72rem;line-height:.56;pointer-events:none}
+    .tower-glyph__marks--above{bottom:calc(100% + 1px);color:var(--cyan)}
+    .tower-glyph__marks--below{top:calc(100% + 1px);color:#ff9acb}
+    .tower-glyph__base--strike{text-decoration:line-through}
     .checksum{overflow-wrap:anywhere}
     .status[data-error=true]{color:#ff9acb}
     .pixel-download{color:var(--cyan);font-size:12px}
-    @media(max-width:520px){.sauce-rack,.layer-card{padding-inline:8px}.rack-controls label{flex-wrap:wrap}.rack-controls button{padding:7px 9px}}
+    @media(max-width:520px){.sauce-rack,.layer-card{padding-inline:8px}.rack-controls label,.placement-controls label{flex-wrap:wrap}.rack-controls button{padding:7px 9px}.layer-card legend::before{width:23px}}
   </style>
 </head>
 <body>
@@ -88,8 +105,12 @@
 unknown potato in a hat</textarea>
         </div>
         <div>
-          <label for="output">UNKNOWN OUTPUT</label>
+          <div class="output-heading">
+            <label id="outputLabel" for="output">UNKNOWN OUTPUT</label>
+            <button type="button" id="outputView" hidden>Edit text</button>
+          </div>
           <textarea id="output" spellcheck="false" aria-describedby="wordStatus"></textarea>
+          <div id="outputPreview" class="output-preview" role="region" aria-labelledby="outputLabel" tabindex="0" hidden></div>
         </div>
       </div>
       <fieldset class="sauce-rack">
@@ -112,8 +133,18 @@ unknown potato in a hat</textarea>
           <label>SEED <input id="seed" type="text" maxlength="80" value="KURU" size="10" autocomplete="off" spellcheck="false"></label>
           <button type="button" id="randomSeed">NEW VARIATION</button>
         </div>
-        <p class="tiny">Effects run top to bottom. Each layer has its own sauce.</p>
-        <div id="effectStack"></div>
+        <div class="controls placement-controls">
+          <label>LAYER PLACEMENT
+            <select id="layerPlacement" aria-describedby="layerHint">
+              <option value="stack">Stacked</option>
+              <option value="grouped">Grouped</option>
+              <option value="scattered">Scattered</option>
+              <option value="crossed">Crossed</option>
+            </select>
+          </label>
+          <p id="layerHint" class="tiny"></p>
+        </div>
+        <div id="effectStack" class="layer-tree"></div>
         <div class="controls rack-actions">
           <button id="addEffect" type="button">+ STACK AN EFFECT</button>
           <span id="stackCount" class="tiny"></span>
@@ -573,6 +604,75 @@ unknown potato in a hat</textarea>
     state.units = result;
   }
 
+  function assignBranches(units, placement, random) {
+    const lines = [[]];
+    for (const unit of units) {
+      if (/[\r\n\u2028\u2029]/u.test(unit.body)) lines.push([]);
+      else lines.at(-1).push(unit);
+    }
+    lines.forEach((line, row) => {
+      const groups = words(line);
+      // A single word can still split between branches without breaking a grapheme.
+      const parts = groups.length === 1 ? groups[0].map(unit => [unit]) : groups;
+      const midpoint = Math.ceil(parts.length / 2);
+      const crossed = [1, 3, 2, 3];
+      const shuffled = placement === 'scattered'
+        ? new Set(parts.map((_, index) => ({ index, rank: random() }))
+          .sort((a, b) => a.rank - b.rank).slice(0, midpoint).map(item => item.index))
+        : null;
+      parts.forEach((part, index) => {
+        let mask = index < midpoint ? 1 : 2;
+        if (shuffled) mask = shuffled.has(index) ? 1 : 2;
+        if (placement === 'crossed') mask = crossed[(index + 2 * row) % crossed.length];
+        for (const unit of part) unit.branchMask = mask;
+      });
+
+      // Keep spaces inside a shared branch and leave line breaks and boundaries outside it.
+      let previousMask = 0;
+      let gap = [];
+      for (const unit of line) {
+        if (!unit.branchMask) {
+          gap.push(unit);
+          continue;
+        }
+        for (const space of gap) space.branchMask = previousMask & unit.branchMask;
+        gap = [];
+        previousMask = unit.branchMask;
+      }
+    });
+  }
+
+  function applyBranchEffect(state, layer, random, mask) {
+    const source = state.units;
+    const result = [];
+    for (let start = 0; start < source.length;) {
+      if (!(source[start].branchMask & mask)) {
+        result.push(source[start++]);
+        continue;
+      }
+      let end = start + 1;
+      while (end < source.length && (source[end].branchMask & mask)) end++;
+      state.units = source.slice(start, end);
+      applyEffect(state, layer, random);
+      for (const unit of state.units) {
+        unit.branchMask ??= mask;
+        result.push(unit);
+      }
+      start = end;
+    }
+    state.units = result;
+  }
+
+  function applyStack(state, stack, random, placement, routeRandom) {
+    const branchMode = ['grouped', 'scattered', 'crossed'].includes(placement);
+    if (branchMode) assignBranches(state.units, placement, routeRandom);
+    for (const layer of stack) {
+      const mask = layer.branch === 'a' ? 1 : layer.branch === 'b' ? 2 : 0;
+      if (branchMode && mask) applyBranchEffect(state, layer, random, mask);
+      else applyEffect(state, layer, random);
+    }
+  }
+
   function applyEffect(s,layer,r){
     const kind=layer.effect,amt=layer.sauce==='mild-mayo'?layer.amount/2:layer.amount;
     if(!amt)return;
@@ -657,7 +757,7 @@ unknown potato in a hat</textarea>
       return {...layer,amount:Math.max(0,Math.min(10,amount)),sauce};
     });
     const s=makeState(text,options.readable!==false),r=rngFor((options.seed||'KURU')+'|'+text+'|'+JSON.stringify(stack));
-    for(const layer of stack)applyEffect(s,layer,r);
+    applyStack(s, stack, r, options.placement, rngFor((options.seed || 'KURU') + '|branches|' + text));
     const output=s.units.map(visible).join('');
     if(options.stamp){const framed=stamp(output);if(chars(framed).length>OUTPUT_LIMIT)throw new Error('This frame would be too large. Turn off the ASCII frame or use fewer effects.');return framed}
     return output;
@@ -710,11 +810,12 @@ const KuruFiles = (() => {
     setTimeout(() => URL.revokeObjectURL(url), 10000);
   }
 
-  async function copy(field) {
+  async function copy(field, reveal) {
     try {
       await navigator.clipboard.writeText(field.value);
       return 'Copied.';
     } catch {
+      reveal?.();
       field.focus();
       field.select();
       return 'Press Ctrl+C or Command+C to copy the selected text.';
@@ -729,8 +830,11 @@ const KuruFiles = (() => {
   const core = GlitchKitCore;
   const source = $('source');
   const output = $('output');
+  const preview = $('outputPreview');
+  const outputView = $('outputView');
   const seed = $('seed');
   const preset = $('mixPreset');
+  const placement = $('layerPlacement');
   const addEffect = $('addEffect');
   const mixName = $('mixName');
   const saveMix = $('saveMix');
@@ -744,7 +848,32 @@ const KuruFiles = (() => {
   let nextLayer = 1;
   let stack = [];
   let savedMixes = new Map();
+  let editingOutput = false;
+  let previewContent = '';
+  let hasVisualPreview = false;
 
+  const shapedGlyph = /^([\u2460-\u2468\u24b6-\u24ea\uff10-\uff19\uff21-\uff3a\uff41-\uff5a])\ufe0e?(\p{M}*)$/u;
+  const shapedTower = /[\u2460-\u2468\u24b6-\u24ea\uff10-\uff19\uff21-\uff3a\uff41-\uff5a]\ufe0e?[\u0300-\u036f]/u;
+  const upperMarks = new Map([
+    ['\u0300', '\x60'], ['\u0301', "'"], ['\u0302', '^'], ['\u0303', '~'], ['\u0304', '-'],
+    ['\u0306', 'v'], ['\u0307', '.'], ['\u0308', ':'], ['\u030a', 'o'], ['\u030b', '"'],
+    ['\u030c', 'v'], ['\u0342', '~'], ['\u0305', '-'], ['\u033f', '='],
+  ]);
+  const lowerMarks = new Map([
+    ['\u0316', '\\'], ['\u0317', '/'], ['\u0318', '<'], ['\u0319', '>'], ['\u031c', '('],
+    ['\u031d', '^'], ['\u031e', 'v'], ['\u031f', '+'], ['\u0323', '.'], ['\u0324', ':'],
+    ['\u0325', 'o'], ['\u0329', '|'], ['\u0332', '-'], ['\u0333', '='],
+  ]);
+  const segmenter = typeof Intl.Segmenter === 'function' ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+  const placementHints = {
+    stack: 'Effects run top to bottom across the whole text.',
+    grouped: 'Branch A gets the first half of each line. Branch B gets the second half.',
+    scattered: 'The seed scatters words between Branch A and Branch B.',
+    crossed: 'Branches alternate, with both effects landing on crossover words.',
+  };
+  const branchOptions = [
+    { id: 'all', label: 'Whole text' }, { id: 'a', label: 'Branch A' }, { id: 'b', label: 'Branch B' },
+  ];
   const layerTypes = Object.fromEntries(core.effectDefs.map(effect => [effect.id, effect]));
   const amountEffects = new Set(['zalgo', 'mixed', 'scramble', 'symbols', 'echo', 'reverse', 'polyglot',
     'void', 'paras', 'horizon', 'strike', 'fake', 'signal', 'letter-echo', 'telephone', 'leet']);
@@ -772,8 +901,10 @@ const KuruFiles = (() => {
     return mixPrefix + name.trim().normalize('NFC').toLowerCase();
   }
 
-  function layerSettings({ effect, sauce, amount, height, direction, enabled }) {
-    return { effect, sauce, amount, height, direction, enabled };
+  function layerSettings({ effect, sauce, amount, height, direction, enabled, branch }) {
+    const settings = { effect, sauce, amount, height, direction, enabled };
+    if (branch && branch !== 'all') settings.branch = branch;
+    return settings;
   }
 
   function validLayer(layer) {
@@ -781,6 +912,7 @@ const KuruFiles = (() => {
       core.saucesFor(layer.effect).some(sauce => sauce.id === layer.sauce) &&
       Number.isFinite(layer.amount) && layer.amount >= 0 && layer.amount <= 10 &&
       Number.isInteger(layer.height) && layer.height >= 1 && layer.height <= 12 &&
+      (layer.branch === undefined || branchOptions.some(branch => branch.id === layer.branch)) &&
       directions.some(direction => direction.id === layer.direction) && typeof layer.enabled === 'boolean';
   }
 
@@ -797,6 +929,8 @@ const KuruFiles = (() => {
       if (typeof recipe?.name !== 'string' || !recipe.name.trim() || recipe.name.length > 64 ||
           keyForMix(recipe.name) !== key || typeof recipe.seed !== 'string' || recipe.seed.length > 80 ||
           typeof recipe.readable !== 'boolean' || !Array.isArray(recipe.layers) ||
+          (recipe.placement !== undefined &&
+            (typeof recipe.placement !== 'string' || !Object.hasOwn(placementHints, recipe.placement))) ||
           recipe.layers.length > 8 || !recipe.layers.every(validLayer)) continue;
       recipes.set(key, recipe);
     }
@@ -836,6 +970,7 @@ const KuruFiles = (() => {
     }
     const key = keyForMix(name);
     const recipe = { name, seed: seed.value, readable: $('readable').checked, layers: stack.map(layerSettings) };
+    if (placement.value !== 'stack') recipe.placement = placement.value;
     let exists;
     try {
       const storage = window.localStorage;
@@ -863,7 +998,7 @@ const KuruFiles = (() => {
   });
 
   function makeLayer(options = {}) {
-    return { id: nextLayer++, effect: 'zalgo', amount: 3, height: 5, direction: 'up', sauce: 'none', enabled: true, ...options };
+    return { id: nextLayer++, effect: 'zalgo', amount: 3, height: 5, direction: 'up', sauce: 'none', enabled: true, branch: 'all', ...options };
   }
 
   function changed() {
@@ -901,14 +1036,18 @@ const KuruFiles = (() => {
 
   function renderStack() {
     const list = $('effectStack');
+    const branched = placement.value !== 'stack';
+    $('layerHint').textContent = placementHints[placement.value];
     list.replaceChildren();
     stack.forEach((layer, index) => {
       const number = index + 1;
       const card = document.createElement('fieldset');
       card.className = 'layer-card';
       card.dataset.bypassed = String(!layer.enabled);
+      card.dataset.branch = branched ? layer.branch : 'all';
       const legend = document.createElement('legend');
-      legend.textContent = 'Layer ' + number;
+      const branch = branchOptions.find(option => option.id === layer.branch);
+      legend.textContent = 'Layer ' + number + (branched ? ' · ' + branch.label : '');
       card.append(legend);
 
       const header = document.createElement('div');
@@ -933,6 +1072,12 @@ const KuruFiles = (() => {
           refreshLayer(layer, 'effect');
         }, destination < 0 || destination >= stack.length));
       }
+      tools.append(button('Duplicate', 'Duplicate layer ' + number, () => {
+        if (stack.length >= 8) return;
+        const duplicate = makeLayer(layerSettings(layer));
+        stack.splice(index + 1, 0, duplicate);
+        refreshLayer(duplicate, 'effect');
+      }, stack.length >= 8));
       tools.append(button('Remove', 'Remove layer ' + number, () => {
         stack.splice(index, 1);
         changed();
@@ -954,6 +1099,12 @@ const KuruFiles = (() => {
         layer.sauce = value;
         refreshLayer(layer, 'sauce');
       }));
+      if (branched) {
+        fields.append(select('Layer path', 'branch-' + layer.id, branchOptions, layer.branch, value => {
+          layer.branch = value;
+          refreshLayer(layer, 'branch');
+        }));
+      }
       card.append(fields);
       const help = document.createElement('p');
       help.className = 'tiny';
@@ -1002,12 +1153,91 @@ const KuruFiles = (() => {
     addEffect.disabled = stack.length >= 8;
   }
 
+  function addMarkStack(glyph, marks, side) {
+    if (!marks.length) return;
+    const decoration = document.createElement('span');
+    decoration.className = 'tower-glyph__marks tower-glyph__marks--' + side;
+    decoration.setAttribute('aria-hidden', 'true');
+    decoration.textContent = marks.join('\n');
+    glyph.append(decoration);
+  }
+
+  function renderTextPreview(content) {
+    if (content === previewContent) return;
+    previewContent = content;
+    preview.replaceChildren();
+    hasVisualPreview = Boolean(segmenter && shapedTower.test(content));
+    if (!hasVisualPreview) {
+      editingOutput = false;
+      return;
+    }
+    const result = document.createDocumentFragment();
+    let tallest = 0;
+    let text = '';
+    for (const { segment } of segmenter.segment(content)) {
+      const match = shapedGlyph.exec(segment);
+      if (!match || segment.includes('\ufe0f')) {
+        text += segment;
+        continue;
+      }
+      if (text) {
+        result.append(text);
+        text = '';
+      }
+      const [, character, marks] = match;
+      const wrapper = document.createElement('span');
+      wrapper.className = 'tower-glyph tower-glyph--' + (character.codePointAt(0) < 0xff00 ? 'bubble' : 'wide');
+      const base = document.createElement('span');
+      const above = [];
+      const below = [];
+      base.textContent = character.normalize('NFKC');
+      for (const mark of marks) {
+        if (mark === '\ufe0e') continue;
+        if (mark === '\u0335' || mark === '\u0336' || mark === '\u0338') {
+          base.className = 'tower-glyph__base--strike';
+        } else if (lowerMarks.has(mark)) {
+          below.push(lowerMarks.get(mark));
+        } else {
+          above.push(upperMarks.get(mark) ?? '.');
+        }
+      }
+      wrapper.append(base);
+      addMarkStack(wrapper, above.reverse(), 'above');
+      addMarkStack(wrapper, below, 'below');
+      tallest = Math.max(tallest, above.length, below.length);
+      result.append(wrapper);
+    }
+    if (text) result.append(text);
+    preview.style.setProperty('--tower-line', String(Math.max(3, 1.6 + 0.88 * tallest)));
+    preview.append(result);
+  }
+
+  function updateOutputView() {
+    const showPreview = hasVisualPreview && !editingOutput;
+    output.hidden = showPreview;
+    preview.hidden = !showPreview;
+    outputView.hidden = !hasVisualPreview;
+    outputView.textContent = showPreview ? 'Edit text' : 'Show preview';
+  }
+
+  function revealOutput() {
+    editingOutput = true;
+    updateOutputView();
+  }
+
+  outputView.addEventListener('click', () => {
+    editingOutput = !editingOutput;
+    updateOutputView();
+    (editingOutput ? output : preview).focus();
+  });
+
   async function updateOutputControls() {
     for (const id of ['copy', 'downloadText']) $(id).disabled = !output.value;
     $('undo').disabled = cursor <= 0;
     $('redo').disabled = cursor >= history.length - 1;
     const content = output.value;
-    output.dataset.bubbleTowers = String(/[\u2460-\u2468\u24b6-\u24ea]\ufe0e?[\u0300-\u036f]/u.test(content));
+    renderTextPreview(content);
+    updateOutputView();
     hash.textContent = '';
     if (!content || !globalThis.crypto?.subtle) return;
     const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(content));
@@ -1027,10 +1257,15 @@ const KuruFiles = (() => {
   }
 
   function run(total = false) {
-    const active = stack.filter(layer => layer.enabled).map(({ effect, amount, height, direction, sauce }) =>
-      ({ effect, amount: total && amount ? 10 : amount, height, direction, sauce }));
+    const active = stack.filter(layer => layer.enabled).map(({ effect, amount, height, direction, sauce, branch }) => {
+      const settings = { effect, amount: total && amount ? 10 : amount, height, direction, sauce };
+      if (placement.value !== 'stack' && branch !== 'all') settings.branch = branch;
+      return settings;
+    });
     try {
-      const result = core.glitch(source.value, { stack: active, readable: $('readable').checked, seed: seed.value });
+      const result = core.glitch(source.value, {
+        stack: active, readable: $('readable').checked, seed: seed.value, placement: placement.value,
+      });
       setOutput(total ? '␀ ' + result + ' :: YET' : result);
       say(active.length ? 'Stack applied.' : 'All layers bypassed.');
     } catch (error) {
@@ -1042,12 +1277,14 @@ const KuruFiles = (() => {
     const saved = savedMixes.get(preset.value);
     if (saved) {
       stack = saved.layers.map(layer => makeLayer(layerSettings(layer)));
+      placement.value = saved.placement ?? 'stack';
       $('readable').checked = saved.readable;
       seed.value = saved.seed;
       mixName.value = saved.name;
       sayMix('Loaded “' + saved.name + '”.');
     } else if (Object.hasOwn(mixes, preset.value)) {
       stack = mixes[preset.value].map(makeLayer);
+      placement.value = 'stack';
       $('readable').checked = true;
       mixName.value = '';
       sayMix('');
@@ -1062,9 +1299,17 @@ const KuruFiles = (() => {
     loadMix();
     say('Mix selected. Press Glitch It to apply it.');
   });
+  placement.addEventListener('change', () => {
+    if (placement.value !== 'stack' && stack.every(layer => layer.branch === 'all')) {
+      stack.forEach((layer, index) => { layer.branch = index % 2 ? 'b' : 'a'; });
+    }
+    changed();
+    renderStack();
+  });
   addEffect.addEventListener('click', () => {
     if (stack.length >= 8) return;
-    const layer = makeLayer({ effect: 'symbols' });
+    const branch = placement.value === 'stack' ? 'all' : stack.length % 2 ? 'b' : 'a';
+    const layer = makeLayer({ effect: 'symbols', branch });
     stack.push(layer);
     refreshLayer(layer, 'effect');
   });
@@ -1101,7 +1346,7 @@ const KuruFiles = (() => {
       updateOutputControls();
     });
   }
-  $('copy').addEventListener('click', async () => say(await KuruFiles.copy(output)));
+  $('copy').addEventListener('click', async () => say(await KuruFiles.copy(output, revealOutput)));
   $('downloadText').addEventListener('click', () => {
     KuruFiles.download(new Blob([output.value], { type: 'text/plain;charset=utf-8' }), 'glitchKIT-output.txt');
   });
@@ -1111,6 +1356,7 @@ const KuruFiles = (() => {
       const end = output.selectionEnd;
       const token = stamp.dataset.token;
       setOutput(output.value.slice(0, start) + token + output.value.slice(end));
+      revealOutput();
       output.focus();
       output.setSelectionRange(start + token.length, start + token.length);
       say('Stamp added to output.');
