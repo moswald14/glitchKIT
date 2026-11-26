@@ -12,7 +12,7 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
 <header><div class="eyebrow">mozWORLD LABS // BTW</div><h1>glitchKIT::UNIFIED</h1><p>Two toolsets. One offline HTML file. Keep the original; glitch a copy.</p></header>
 <nav role="tablist" aria-label="GlitchKIT toolsets"><button type="button" id="tab-chaos" role="tab" aria-controls="chaos" aria-selected="true">01 // TEXT + PIXEL CHAOS</button><button type="button" id="tab-secure" role="tab" aria-controls="secure" aria-selected="false" tabindex="-1">02 // TEXT + ENCRYPTION</button></nav>
 <main>
-<section id="chaos" role="tabpanel" aria-labelledby="tab-chaos"><p class="notice">Seeded word and image effects, undo/redo and exports. Decoration is not encryption. Do not enter secrets here: this tool keeps an in-memory undo history.</p><iframe title="Text and pixel glitchKIT" sandbox="allow-scripts allow-same-origin allow-downloads" allow="clipboard-write" srcdoc="&lt;!doctype html&gt;
+<section id="chaos" role="tabpanel" aria-labelledby="tab-chaos"><p class="notice">Seeded text effects, optical illusions and image exports. Decoration is not encryption. Do not enter secrets here: this tool keeps an in-memory undo history.</p><iframe title="Text and pixel glitchKIT" sandbox="allow-scripts allow-same-origin allow-downloads" allow="clipboard-write" srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
   &lt;meta charset=&quot;utf-8&quot;&gt;
@@ -36,6 +36,15 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
     label{color:var(--muted);font-size:12px}.status{min-height:1.5em;color:var(--cyan);word-break:break-all}.tiny{font-size:11px;color:var(--muted)}
     canvas{width:100%;max-height:520px;object-fit:contain;background:#050507;border:1px dashed #3b3251;border-radius:9px;image-rendering:pixelated}
     .drop{padding:14px;border:1px dashed #514563;border-radius:9px;color:var(--muted)}
+    .drop input{max-width:100%}
+    .optics{min-width:0;margin:12px 0;padding:10px 12px 8px;border:1px solid var(--line);border-radius:9px}
+    .optics legend{padding:0 6px;color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:.08em}
+    .optics .controls{margin:0;gap:10px 18px}
+    .optics label{display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px}
+    .optics output{min-width:4ch;color:var(--ink)}
+    .optics p{margin:8px 0 0}
+    button[aria-pressed=true]{border-color:var(--cyan);color:var(--cyan)}
+    button:disabled{opacity:.55;cursor:default;transform:none}
     footer{color:var(--muted);padding:0 clamp(18px,5vw,64px) 40px}.flash{animation:flash .22s steps(2)}
     @keyframes flash{50%{filter:invert(1) hue-rotate(120deg);transform:translateX(3px)}}
     @media(max-width:760px){.grid{grid-template-columns:1fr}textarea{min-height:170px}}
@@ -71,13 +80,37 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
 
     &lt;section class=&quot;panel&quot;&gt;
       &lt;h2&gt;02 // PIXEL WRECKER&lt;/h2&gt;
-      &lt;div class=&quot;drop&quot;&gt;&lt;input id=&quot;imageFile&quot; type=&quot;file&quot; accept=&quot;image/*&quot;&gt; drop in a picture; processing stays local&lt;/div&gt;
+      &lt;div class=&quot;drop&quot;&gt;&lt;input id=&quot;imageFile&quot; type=&quot;file&quot; accept=&quot;image/*&quot; aria-label=&quot;Choose a picture&quot;&gt; drop in a picture; processing stays local&lt;/div&gt;
       &lt;div class=&quot;controls&quot;&gt;
         &lt;button id=&quot;pixel&quot;&gt;PIXEL SHIFT&lt;/button&gt;&lt;button id=&quot;rgb&quot;&gt;RGB GHOST&lt;/button&gt;&lt;button id=&quot;smear&quot;&gt;BLOCK SMEAR&lt;/button&gt;&lt;button id=&quot;noise&quot;&gt;NOISE BITE&lt;/button&gt;&lt;button id=&quot;scan&quot;&gt;SCANLINE&lt;/button&gt;
-        &lt;button class=&quot;primary&quot; id=&quot;imageTotal&quot;&gt;TOTAL PIXEL&lt;/button&gt;&lt;button id=&quot;imageReset&quot;&gt;RESET IMAGE&lt;/button&gt;&lt;button id=&quot;savePng&quot;&gt;SAVE PNG&lt;/button&gt;
+        &lt;button class=&quot;primary&quot; id=&quot;imageTotal&quot;&gt;TOTAL PIXEL&lt;/button&gt;
       &lt;/div&gt;
-      &lt;canvas id=&quot;canvas&quot; width=&quot;900&quot; height=&quot;450&quot;&gt;&lt;/canvas&gt;
-      &lt;p class=&quot;tiny&quot;&gt;Image effects operate on the canvas copy. RESET IMAGE reconstructs from the file you chose.&lt;/p&gt;
+      &lt;fieldset class=&quot;optics&quot; id=&quot;optics&quot; disabled&gt;
+        &lt;legend&gt;OPTICAL ILLUSIONS&lt;/legend&gt;
+        &lt;div class=&quot;controls&quot;&gt;
+          &lt;label for=&quot;opticalEffect&quot;&gt;ILLUSION
+            &lt;select id=&quot;opticalEffect&quot;&gt;
+              &lt;option value=&quot;none&quot;&gt;None&lt;/option&gt;
+              &lt;option value=&quot;ripple&quot;&gt;Ripple Lens&lt;/option&gt;
+              &lt;option value=&quot;twist&quot;&gt;Twist Lens&lt;/option&gt;
+              &lt;option value=&quot;moire&quot;&gt;Moiré Bands&lt;/option&gt;
+              &lt;option value=&quot;cafe&quot;&gt;Café Wall&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/label&gt;
+          &lt;label for=&quot;opticalStrength&quot;&gt;STRENGTH
+            &lt;input id=&quot;opticalStrength&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;60&quot; disabled&gt;
+          &lt;/label&gt;
+          &lt;output for=&quot;opticalStrength&quot; id=&quot;opticalAmount&quot; aria-hidden=&quot;true&quot;&gt;60%&lt;/output&gt;
+        &lt;/div&gt;
+        &lt;p class=&quot;tiny&quot;&gt;Each illusion previews from your original. Layer other pixel effects afterward.&lt;/p&gt;
+      &lt;/fieldset&gt;
+      &lt;div class=&quot;controls&quot;&gt;
+        &lt;button id=&quot;imageCompare&quot; aria-pressed=&quot;false&quot; disabled&gt;SHOW ORIGINAL&lt;/button&gt;
+        &lt;button id=&quot;imageReset&quot;&gt;RESET IMAGE&lt;/button&gt;
+        &lt;button id=&quot;savePng&quot;&gt;SAVE PNG&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;canvas id=&quot;canvas&quot; width=&quot;900&quot; height=&quot;450&quot; role=&quot;img&quot; aria-label=&quot;Pixel effects preview&quot;&gt;&lt;/canvas&gt;
+      &lt;p class=&quot;tiny&quot; id=&quot;pixelStatus&quot; role=&quot;status&quot;&gt;&lt;/p&gt;
     &lt;/section&gt;
 
     &lt;section class=&quot;panel&quot;&gt;
@@ -85,16 +118,16 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
       &lt;div class=&quot;controls&quot;&gt;
         &lt;button data-token=&quot;␀&quot;&gt;␀ NUL&lt;/button&gt;&lt;button data-token=&quot;•&quot;&gt;• DOT&lt;/button&gt;&lt;button data-token=&quot;::&quot;&gt;:: GATE&lt;/button&gt;&lt;button data-token=&quot;[UNKNOWN]&quot;&gt;[UNKNOWN]&lt;/button&gt;&lt;button data-token=&quot;YET&quot;&gt;YET&lt;/button&gt;&lt;button data-token=&quot;GITTET|GODDIT&quot;&gt;GITTET|GODDIT&lt;/button&gt;
       &lt;/div&gt;
-      &lt;p class=&quot;tiny&quot;&gt;These insert visible symbols, including the NUL glyph ␀ — not invisible control bytes.&lt;/p&gt;
+      &lt;p class=&quot;tiny&quot;&gt;Stamp symbols and phrases into Word Mangle text. ␀ is the printable NUL symbol.&lt;/p&gt;
     &lt;/section&gt;
   &lt;/main&gt;
-  &lt;footer&gt;glitchKIT v2026.10.05 // &lt;span id=&quot;build&quot;&gt;KURU:LOCAL&lt;/span&gt; // chaos is allowed to have an undo button.&lt;/footer&gt;
+  &lt;footer&gt;glitchKIT v2026.11.26 // &lt;span id=&quot;build&quot;&gt;KURU:LOCAL&lt;/span&gt; // chaos is allowed to have an undo button.&lt;/footer&gt;
 
 &lt;script&gt;
 (() =&gt; {
   const $=s=&gt;document.querySelector(s), $$=s=&gt;[...document.querySelectorAll(s)];
   const source=$('#source'), output=$('#output'), mode=$('#mode'), intensity=$('#intensity'), seed=$('#seed'), hash=$('#hash');
-  let history=[''], cursor=0, originalImage=null;
+  let history=[''], cursor=0;
   const hash32=str=&gt;{let h=2166136261;for(const ch of str){h^=ch.codePointAt(0);h=Math.imul(h,16777619)}return h&gt;&gt;&gt;0};
   const rngFor=str=&gt;{let x=hash32(str)||0x9e3779b9;return()=&gt;{x^=x&lt;&lt;13;x^=x&gt;&gt;&gt;17;x^=x&lt;&lt;5;return(x&gt;&gt;&gt;0)/4294967296}};
   const pick=(r,a)=&gt;a[Math.floor(r()*a.length)];
@@ -124,19 +157,245 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
   $('#stamp').onclick=()=&gt;{const lines=(output.value||source.value).split('\n');const w=Math.min(72,Math.max(10,...lines.map(x=&gt;x.length)));const fit=lines.flatMap(line=&gt;{const a=[];for(let i=0;i&lt;line.length||i===0;i+=w)a.push(line.slice(i,i+w));return a});setOutput('┌'+'─'.repeat(w+2)+'┐\n'+fit.map(x=&gt;'│ '+x.padEnd(w)+' │').join('\n')+'\n└'+'─'.repeat(w+2)+'┘')};
   $$('[data-token]').forEach(b=&gt;b.onclick=()=&gt;{const t=b.dataset.token;const el=document.activeElement===source?source:output;const a=el.selectionStart??el.value.length,z=el.selectionEnd??a;el.value=el.value.slice(0,a)+t+el.value.slice(z);el.focus();el.selectionStart=el.selectionEnd=a+t.length;if(el===output)setOutput(el.value)});
 
-  const canvas=$('#canvas'),ctx=canvas.getContext('2d',{willReadFrequently:true});
-  const drawPlaceholder=()=&gt;{ctx.fillStyle='#050507';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#49f6ff';ctx.font='28px monospace';ctx.fillText('DROP PIXELS HERE ::',35,70);ctx.fillStyle='#958da8';ctx.font='18px monospace';ctx.fillText('image stays on this machine',35,105)};drawPlaceholder();
-  function drawOriginal(){if(!originalImage)return;const max=1100,scale=Math.min(1,max/originalImage.naturalWidth,max/originalImage.naturalHeight);canvas.width=Math.max(1,Math.round(originalImage.naturalWidth*scale));canvas.height=Math.max(1,Math.round(originalImage.naturalHeight*scale));ctx.drawImage(originalImage,0,0,canvas.width,canvas.height)}
-  $('#imageFile').onchange=e=&gt;{const f=e.target.files[0];if(!f)return;const img=new Image();img.onload=()=&gt;{originalImage=img;drawOriginal();URL.revokeObjectURL(img.src)};img.src=URL.createObjectURL(f)};
-  const imgData=()=&gt;ctx.getImageData(0,0,canvas.width,canvas.height);
-  function pxShift(){if(!originalImage)return;const r=rngFor(seed.value+'px'+canvas.width);for(let y=0;y&lt;canvas.height;y+=Math.max(2,Math.floor(canvas.height/45))){if(r()&lt;.55){const h=Math.max(1,Math.floor(2+r()*14)),shift=Math.floor((r()-.5)*canvas.width*.18);const d=ctx.getImageData(0,y,canvas.width,Math.min(h,canvas.height-y));ctx.putImageData(d,shift,y)}}}
-  function rgbGhost(){if(!originalImage)return;const d=imgData(),a=d.data,copy=new Uint8ClampedArray(a),off=Math.max(1,Math.floor(canvas.width*.012))*4;for(let i=0;i&lt;a.length;i+=4){a[i]=copy[Math.min(a.length-4,i+off)];a[i+2]=copy[Math.max(0,i-off)+2]}ctx.putImageData(d,0,0)}
-  function blockSmear(){if(!originalImage)return;const r=rngFor(seed.value+'smear');for(let n=0;n&lt;36;n++){const w=10+r()*canvas.width*.18,h=3+r()*40,x=r()*Math.max(1,canvas.width-w),y=r()*Math.max(1,canvas.height-h),d=ctx.getImageData(x,y,w,h);ctx.putImageData(d,Math.max(0,Math.min(canvas.width-w,x+(r()-.5)*160)),y)} }
-  function noiseBite(){if(!originalImage)return;const r=rngFor(seed.value+'noise'),d=imgData(),a=d.data;for(let i=0;i&lt;a.length;i+=4)if(r()&lt;.035){const n=(r()-.5)*150;a[i]+=n;a[i+1]-=n*.4;a[i+2]+=n*.7}ctx.putImageData(d,0,0)}
-  function scanline(){if(!originalImage)return;ctx.save();ctx.globalCompositeOperation='multiply';ctx.fillStyle='#8c7cff55';for(let y=0;y&lt;canvas.height;y+=5)ctx.fillRect(0,y,canvas.width,2);ctx.restore()}
-  $('#pixel').onclick=pxShift;$('#rgb').onclick=rgbGhost;$('#smear').onclick=blockSmear;$('#noise').onclick=noiseBite;$('#scan').onclick=scanline;
-  $('#imageTotal').onclick=()=&gt;{pxShift();rgbGhost();blockSmear();noiseBite();scanline()};$('#imageReset').onclick=drawOriginal;
-  $('#savePng').onclick=()=&gt;canvas.toBlob(b=&gt;b&amp;&amp;save(b,'glitchKIT-pixels.png'),'image/png');
+  const canvas = $('#canvas');
+  const ctx = canvas.getContext('2d', { willReadFrequently: true });
+  const imageFile = $('#imageFile');
+  const opticalEffect = $('#opticalEffect');
+  const opticalStrength = $('#opticalStrength');
+  const opticalAmount = $('#opticalAmount');
+  const imageCompare = $('#imageCompare');
+  const pixelStatus = $('#pixelStatus');
+  const imgData = () =&gt; ctx.getImageData(0, 0, canvas.width, canvas.height);
+  let originalPixels = null;
+  let comparisonPixels = null;
+  let previewFrame = null;
+  let imageRequest = 0;
+
+  ctx.fillStyle = '#050507';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#49f6ff';
+  ctx.font = '28px monospace';
+  ctx.fillText('DROP PIXELS HERE ::', 35, 70);
+  ctx.fillStyle = '#958da8';
+  ctx.font = '18px monospace';
+  ctx.fillText('image stays on this machine', 35, 105);
+
+  function samplePixel(sourceData, width, height, x, y, target, index) {
+    x = Math.max(0, Math.min(width - 1, x));
+    y = Math.max(0, Math.min(height - 1, y));
+    const left = Math.floor(x);
+    const top = Math.floor(y);
+    const right = Math.min(left + 1, width - 1);
+    const bottom = Math.min(top + 1, height - 1);
+    const dx = x - left;
+    const dy = y - top;
+    const a = (top * width + left) * 4;
+    const b = (top * width + right) * 4;
+    const c = (bottom * width + left) * 4;
+    const d = (bottom * width + right) * 4;
+    // Weight by alpha before mixing colors so transparent pixels do not add dark fringes.
+    const wa = sourceData[a + 3] * (1 - dx) * (1 - dy);
+    const wb = sourceData[b + 3] * dx * (1 - dy);
+    const wc = sourceData[c + 3] * (1 - dx) * dy;
+    const wd = sourceData[d + 3] * dx * dy;
+    const alpha = wa + wb + wc + wd;
+    target[index + 3] = alpha;
+    for (let channel = 0; channel &lt; 3; channel += 1) {
+      const color = sourceData[a + channel] * wa + sourceData[b + channel] * wb
+        + sourceData[c + channel] * wc + sourceData[d + channel] * wd;
+      target[index + channel] = alpha ? color / alpha : 0;
+    }
+  }
+
+  function applyLens(pixels, isRipple, strength) {
+    const { width, height, data } = pixels;
+    const result = ctx.createImageData(width, height);
+    result.data.set(data);
+    const centerX = (width - 1) / 2;
+    const centerY = (height - 1) / 2;
+    const radiusX = Math.max(0.5, centerX);
+    const radiusY = Math.max(0.5, centerY);
+    // Sample the original for every destination pixel and keep the outer edge fixed.
+    for (let y = 0; y &lt; height; y += 1) {
+      const ny = (y - centerY) / radiusY;
+      for (let x = 0; x &lt; width; x += 1) {
+        const nx = (x - centerX) / radiusX;
+        const radius = Math.sqrt(nx * nx + ny * ny);
+        if (radius &gt;= 1 || radius === 0) continue;
+        const falloff = 1 - radius;
+        let sampleX;
+        let sampleY;
+        if (isRipple) {
+          const scale = 1 + Math.sin(radius * 6 * Math.PI) * strength * 0.85 * falloff;
+          sampleX = nx * scale;
+          sampleY = ny * scale;
+        } else {
+          const angle = 3.6 * strength * falloff ** 2;
+          const cos = Math.cos(angle);
+          const sin = Math.sin(angle);
+          sampleX = nx * cos - ny * sin;
+          sampleY = nx * sin + ny * cos;
+        }
+        samplePixel(data, width, height, centerX + sampleX * radiusX, centerY + sampleY * radiusY,
+          result.data, (y * width + x) * 4);
+      }
+    }
+    return result;
+  }
+
+  function applyPattern(pixels, isMoire, strength) {
+    const { width, height, data } = pixels;
+    const result = ctx.createImageData(width, height);
+    result.data.set(data);
+    const size = Math.min(width, height);
+    const period = Math.max(4, size / 64);
+    const frequency = 2 * Math.PI / period;
+    const tile = Math.max(3, Math.round(size / 10));
+    const mortar = Math.max(1, Math.round(tile / 15));
+    const rowHeight = tile + mortar;
+    for (let y = 0; y &lt; height; y += 1) {
+      const offset = Math.floor(y / rowHeight) % 2 * tile / 2;
+      const isMortar = y % rowHeight &gt;= tile;
+      const tiltedPhase = (y - height / 2) * frequency * 0.087;
+      for (let x = 0; x &lt; width; x += 1) {
+        let shade;
+        let opacity;
+        if (isMoire) {
+          const phase = (x - width / 2) * frequency;
+          const tilted = phase * 1.018 + tiltedPhase;
+          const contrast = (0.68 * Math.cos(phase - tilted) + 0.32 * Math.cos(phase + tilted)) * strength;
+          shade = contrast &gt;= 0 ? 255 : 0;
+          opacity = 0.48 * Math.abs(contrast);
+        } else {
+          const dark = Math.floor((x + offset) / tile) % 2 === 0;
+          shade = isMortar ? 125 : dark ? 16 : 242;
+          opacity = 0.88 * strength;
+        }
+        const index = (y * width + x) * 4;
+        for (let channel = 0; channel &lt; 3; channel += 1) {
+          const value = data[index + channel];
+          result.data[index + channel] = value + (shade - value) * opacity;
+        }
+      }
+    }
+    return result;
+  }
+
+  function setComparison(pixels) {
+    comparisonPixels = pixels;
+    imageCompare.setAttribute('aria-pressed', String(Boolean(pixels)));
+  }
+
+  function showEditedImage() {
+    if (!comparisonPixels) return;
+    ctx.putImageData(comparisonPixels, 0, 0);
+    setComparison(null);
+  }
+
+  function renderOptics() {
+    if (previewFrame !== null) cancelAnimationFrame(previewFrame);
+    previewFrame = null;
+    if (!originalPixels) return;
+    setComparison(null);
+    const effect = opticalEffect.value;
+    const strength = Number(opticalStrength.value) / 100;
+    let pixels = originalPixels;
+    if (strength &amp;&amp; effect !== 'none') {
+      pixels = effect === 'ripple' || effect === 'twist'
+        ? applyLens(originalPixels, effect === 'ripple', strength)
+        : applyPattern(originalPixels, effect === 'moire', strength);
+    }
+    ctx.putImageData(pixels, 0, 0);
+  }
+
+  function updateOpticsControls() {
+    opticalStrength.disabled = opticalEffect.value === 'none';
+    opticalAmount.value = opticalStrength.value + '%';
+    opticalStrength.setAttribute('aria-valuetext', opticalAmount.value);
+  }
+
+  function queueOpticalPreview() {
+    updateOpticsControls();
+    if (originalPixels &amp;&amp; previewFrame === null) {
+      previewFrame = requestAnimationFrame(renderOptics);
+    }
+  }
+
+  function resetImage() {
+    opticalEffect.value = 'none';
+    updateOpticsControls();
+    renderOptics();
+  }
+
+  opticalEffect.addEventListener('change', queueOpticalPreview);
+  opticalStrength.addEventListener('input', queueOpticalPreview);
+  imageCompare.addEventListener('click', () =&gt; {
+    if (!originalPixels) return;
+    if (previewFrame !== null) renderOptics();
+    if (comparisonPixels) {
+      showEditedImage();
+      return;
+    }
+    setComparison(imgData());
+    ctx.putImageData(originalPixels, 0, 0);
+  });
+  imageFile.addEventListener('change', async () =&gt; {
+    const file = imageFile.files[0];
+    if (!file) return;
+    const request = ++imageRequest;
+    const image = new Image();
+    const url = URL.createObjectURL(file);
+    try {
+      image.src = url;
+      await image.decode();
+      if (request !== imageRequest) return;
+      const scale = Math.min(1, 1100 / image.naturalWidth, 1100 / image.naturalHeight);
+      canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+      canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      originalPixels = imgData();
+      $('#optics').disabled = false;
+      imageCompare.disabled = false;
+      resetImage();
+      pixelStatus.textContent = 'Picture loaded. Pick an effect to preview it.';
+    } catch {
+      if (request === imageRequest) {
+        imageFile.value = '';
+        pixelStatus.textContent = 'Could not open that picture. Choose a supported image such as PNG or JPEG.';
+      }
+    } finally {
+      URL.revokeObjectURL(url);
+    }
+  });
+
+  function pxShift(){const r=rngFor(seed.value+'px'+canvas.width);for(let y=0;y&lt;canvas.height;y+=Math.max(2,Math.floor(canvas.height/45))){if(r()&lt;.55){const h=Math.max(1,Math.floor(2+r()*14)),shift=Math.floor((r()-.5)*canvas.width*.18);const d=ctx.getImageData(0,y,canvas.width,Math.min(h,canvas.height-y));ctx.putImageData(d,shift,y)}}}
+  function rgbGhost(){const d=imgData(),a=d.data,copy=new Uint8ClampedArray(a),off=Math.max(1,Math.floor(canvas.width*.012))*4;for(let i=0;i&lt;a.length;i+=4){a[i]=copy[Math.min(a.length-4,i+off)];a[i+2]=copy[Math.max(0,i-off)+2]}ctx.putImageData(d,0,0)}
+  function blockSmear(){const r=rngFor(seed.value+'smear');for(let n=0;n&lt;36;n++){const w=10+r()*canvas.width*.18,h=3+r()*40,x=r()*Math.max(1,canvas.width-w),y=r()*Math.max(1,canvas.height-h),d=ctx.getImageData(x,y,w,h);ctx.putImageData(d,Math.max(0,Math.min(canvas.width-w,x+(r()-.5)*160)),y)} }
+  function noiseBite(){const r=rngFor(seed.value+'noise'),d=imgData(),a=d.data;for(let i=0;i&lt;a.length;i+=4)if(r()&lt;.035){const n=(r()-.5)*150;a[i]+=n;a[i+1]-=n*.4;a[i+2]+=n*.7}ctx.putImageData(d,0,0)}
+  function scanline(){ctx.save();ctx.globalCompositeOperation='multiply';ctx.fillStyle='#8c7cff55';for(let y=0;y&lt;canvas.height;y+=5)ctx.fillRect(0,y,canvas.width,2);ctx.restore()}
+  const pixelEffects = {
+    pixel: pxShift,
+    rgb: rgbGhost,
+    smear: blockSmear,
+    noise: noiseBite,
+    scan: scanline,
+    imageTotal() { pxShift(); rgbGhost(); blockSmear(); noiseBite(); scanline(); },
+  };
+  for (const [id, effect] of Object.entries(pixelEffects)) {
+    $('#' + id).addEventListener('click', () =&gt; {
+      if (!originalPixels) return;
+      if (previewFrame !== null) renderOptics();
+      showEditedImage();
+      effect();
+    });
+  }
+  $('#imageReset').addEventListener('click', resetImage);
+  $('#savePng').addEventListener('click', () =&gt; {
+    if (previewFrame !== null) renderOptics();
+    canvas.toBlob(blob =&gt; {
+      if (blob) save(blob, 'glitchKIT-pixels.png');
+    }, 'image/png');
+  });
   setOutput(transform(source.value,'mixed',4,rngFor('KURU')),false);
 })();
 &lt;/script&gt;
@@ -482,7 +741,7 @@ main{padding:12px clamp(8px,2vw,24px) 20px}section[hidden]{display:none}iframe{w
 &lt;/body&gt;
 &lt;/html&gt;
 "></iframe></section>
-</main><footer>UNIFIED integration preview // original engines embedded without modification. No external resources required. Browser clipboard permissions may vary.</footer>
+</main><footer>UNIFIED // local image and text processing. Clipboard access depends on your browser.</footer>
 <script>(() => {
 const tabs=[...document.querySelectorAll('[role=tab]')];
 function choose(index,focus=false){
